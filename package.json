@@ -5,7 +5,8 @@
   "author": "team-pesto-n6-delta",
   "scripts": {
     "lint": "lerna run lint --stream",
-    "start": "lerna run start --stream"
+    "start": "lerna run start --stream",
+    "boot": "lerna bootstrap"
   },
   "devDependencies": {
     "husky": "^3.0.4",
