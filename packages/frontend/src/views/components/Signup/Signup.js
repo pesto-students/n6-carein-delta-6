@@ -85,9 +85,9 @@ export default function SignUp() {
     <div
 				className="auth-wrapper"
 				style={{
-					backgroundImage: `url(${toAbsoluteUrl('./assets/media/bg/bg-7.jpg')})`,         
-                    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+				backgroundImage: `url(${toAbsoluteUrl('./assets/media/bg/bg-7.jpg')})`,         
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
 				}}
 			>
 
