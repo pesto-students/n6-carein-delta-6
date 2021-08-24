@@ -50,8 +50,8 @@
 	"homepage": "./",
 	"scripts": {
 		"start": "react-scripts start",
-		"build:dev": "cross-env REACT_APP_URL=sandbox BUILD_ENV=dev BUILD_PATH='../backend/public' react-scripts build",
-		"build:prod": "cross-env REACT_APP_URL=prod BUILD_ENV=prod BUILD_PATH='../backend/public' react-scripts build",
+		"build:dev": "cross-env REACT_APP_URL=sandbox BUILD_ENV=dev react-scripts build",
+		"build:prod": "cross-env REACT_APP_URL=prod BUILD_ENV=prod react-scripts build",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
