@@ -1,4 +1,5 @@
 node_modules
 .DS_Store
 cert.pem
-packages/backend/public/*
+packages/backend/package-lock.json
+packages/backend/yarn.lock
