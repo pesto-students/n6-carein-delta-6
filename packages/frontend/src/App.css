@@ -125,7 +125,12 @@ a,a:hover{
     border-color: #fff;
 }
 
-
+.auth-wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
 
 .cus-modal .modal-content {
     border: none;
