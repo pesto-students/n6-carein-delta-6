@@ -23,6 +23,7 @@ const TheLayout = React.lazy(() => import("./containers/TheLayout"));
 
 //Pages
 const Login = React.lazy(() => import("./views/components/Login/Login"));
+const Forgotpassword = React.lazy(() => import("./views/components/Login/Forgotpassword"));
 const Signup = React.lazy(() => import("./views/components/Signup/Signup"));
 
 
@@ -52,6 +53,14 @@ class App extends Component {
             name="Signup"
             component={Signup}
             render={(props) => <Signup {...props} />}
+            />
+
+            <Route
+            exact
+            path="/Forgotpassword"
+            name="Forgotpassword"
+            component={Forgotpassword}
+            render={(props) => <Forgotpassword {...props} />}
             />
             
             <Route component={NoMatchPage} />
