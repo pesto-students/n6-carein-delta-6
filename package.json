@@ -1,11 +1,13 @@
 {
-  "name": "carely-monorepo",
+  "name": "carein-monorepo",
   "version": "0.0.1",
   "main": "index.js",
   "author": "team-pesto-n6-delta",
   "scripts": {
     "lint": "lerna run lint --stream",
     "start": "lerna run start --scope 'foodly'",
+    "backend:develop": "lerna run develop --scope 'backend-carein'",
+    "frontend:develop": "lerna run start --scope 'frontend-carein'",
     "boot": "lerna bootstrap"
   },
   "devDependencies": {
