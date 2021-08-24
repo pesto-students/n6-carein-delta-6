@@ -5,7 +5,7 @@
   "author": "team-pesto-n6-delta",
   "scripts": {
     "lint": "lerna run lint --stream",
-    "start": "lerna run build:prod --scope 'react-pms'   && lerna run start --scope 'foodly'",
+    "start": "lerna run start --scope 'foodly'",
     "boot": "lerna bootstrap"
   },
   "devDependencies": {
