@@ -25,6 +25,7 @@ const TheLayout = React.lazy(() => import("./containers/TheLayout"));
 const Login = React.lazy(() => import("./views/components/Login/Login"));
 const Forgotpassword = React.lazy(() => import("./views/components/Login/Forgotpassword"));
 const Signup = React.lazy(() => import("./views/components/Signup/Signup"));
+const Homepage = React.lazy(() => import("./views/components/Homepage/Homepage"));
 
 
 if (localStorage.jwtToken) {
@@ -61,6 +62,14 @@ class App extends Component {
             name="Forgotpassword"
             component={Forgotpassword}
             render={(props) => <Forgotpassword {...props} />}
+            />
+
+            <Route
+            exact
+            path="/Homepage"
+            name="Homepage"
+            component={Homepage}
+            render={(props) => <Homepage {...props} />}
             />
             
             <Route component={NoMatchPage} />
