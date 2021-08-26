@@ -41,6 +41,10 @@ import { useFormik, Form, FormikProvider } from 'formik';
      width: '100%', 
      marginTop: theme.spacing(3),
    },
+   logo: {
+    margin: theme.spacing(-21, 0, -20),
+	
+  },
    submit: {
      margin: theme.spacing(3, 0, 2),
    },
@@ -82,9 +86,11 @@ import { useFormik, Form, FormikProvider } from 'formik';
      <Container component="main" maxWidth="xs">
        <CssBaseline />
        <div className={classes.paper}>
-         <Typography component="h1" variant="h2">
-           Carein
-         </Typography>
+       <Typography component="h1" variant="h2">
+       <div>
+       <img className={classes.logo} src="./assets/media/bg/carelogo.png" alt="logo" />
+       </div>
+       </Typography>
 
          <Typography component="h1" variant="h5">
            Reset your password
@@ -115,7 +121,7 @@ import { useFormik, Form, FormikProvider } from 'formik';
                  required
                  fullWidth
                  name="password"
-                 label="Password"
+                 label="New Password"
                  type="password"
                  id="password"
                  autoComplete="current-password"
@@ -131,7 +137,7 @@ import { useFormik, Form, FormikProvider } from 'formik';
                required
                fullWidth
                name="confirmpassword"
-               label="Confirm Password"
+               label="Confirm New Password"
                type="confirmpassword"
                id="confirmpassword"
                {...getFieldProps('confirmpassword')}
