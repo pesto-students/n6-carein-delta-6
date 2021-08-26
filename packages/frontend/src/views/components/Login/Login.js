@@ -106,8 +106,6 @@ export default function SignInSide() {
               id="email"
               label="Email Address"
               name="email"
-              autoComplete="email"
-              
               type="email"
               {...getFieldProps('email')}
               error={Boolean(touched.email && errors.email)}
@@ -122,7 +120,6 @@ export default function SignInSide() {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
               {...getFieldProps('password')}
               error={Boolean(touched.password && errors.password)}
               helperText={touched.password && errors.password}

@@ -42,7 +42,7 @@ import { useFormik, Form, FormikProvider } from 'formik';
      marginTop: theme.spacing(3),
    },
    logo: {
-    margin: theme.spacing(-21, 0, -20),
+    margin: theme.spacing(-21, 0, -15),
 	
   },
    submit: {
@@ -88,7 +88,7 @@ import { useFormik, Form, FormikProvider } from 'formik';
        <div className={classes.paper}>
        <Typography component="h1" variant="h2">
        <div>
-       <img className={classes.logo} src="./assets/media/bg/carelogo.png" alt="logo" />
+       <img className={classes.logo} src="./assets/media/bg/carelogo2.png" alt="logo" />
        </div>
        </Typography>
 

@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   logo: {
-    margin: theme.spacing(-21, 0, -20),
+    margin: theme.spacing(-26, 0, -17),
 	
   },
   form: {
@@ -103,7 +103,7 @@ export default function SignInSide() {
       
         <Typography component="h1" variant="h2">
         <div>
-        <img className={classes.logo} src="./assets/media/bg/carelogo.png" alt="logo" />
+        <img className={classes.logo} src="./assets/media/bg/carelogo2.png" alt="logo" />
         </div>
         </Typography>
           <FormikProvider value={formik}>

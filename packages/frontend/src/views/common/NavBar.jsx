@@ -58,9 +58,16 @@ const useStyles = makeStyles((theme) => ({
   },
   sectionDesktop: {
     display: 'none',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       display: 'flex',
     },
+  },
+  logo: {
+    margin: theme.spacing(-25, -20, -33),
+	
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
   },
   sectionMobile: {
     display: 'flex',
@@ -139,11 +146,12 @@ export default function NavBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          
           <Typography className={classes.title} variant="h6" noWrap>
-            Carein
+          <div>
+          <img className={classes.logo} src="./assets/media/bg/carelogo4.png" alt="logo" />
+          </div>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
