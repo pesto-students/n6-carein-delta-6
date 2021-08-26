@@ -31,12 +31,16 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://images.pexels.com/photos/156731/pexels-photo-156731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)',
+    backgroundImage: 'url(https://images.unsplash.com/photo-1504004030892-d06adf9ffbcf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+	
+  },
+  logo: {
+    margin: theme.spacing(-21, 0, -17),
 	
   },
   paper: {
@@ -86,9 +90,11 @@ export default function SignInSide() {
       
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-      
+              
           <Typography component="h1" variant="h2">
-            Carein
+          <div>
+          <img className={classes.logo} src="./assets/media/bg/carelogo2.png" alt="logo" />
+          </div>
           </Typography>
           <FormikProvider value={formik}>
           <Form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -100,8 +106,6 @@ export default function SignInSide() {
               id="email"
               label="Email Address"
               name="email"
-              autoComplete="email"
-              
               type="email"
               {...getFieldProps('email')}
               error={Boolean(touched.email && errors.email)}
@@ -116,7 +120,6 @@ export default function SignInSide() {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
               {...getFieldProps('password')}
               error={Boolean(touched.password && errors.password)}
               helperText={touched.password && errors.password}
