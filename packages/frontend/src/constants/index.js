@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 const server = {
-	baseUrl: '',
-	prod: ''
+	baseUrl: 'https://carein.vubalsoft.com/',
+	prod: 'https://carein.vubalsoft.com/'
 };
 
 class Api extends React.Component {

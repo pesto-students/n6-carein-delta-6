@@ -8,29 +8,26 @@ import Api from '../constants/index';
 const api = new Api();
 
 export const loginUser = (userData) => (dispatch) => {
+	console.log(dispatch)
 	console.log('req with', userData);
 	axios
-		.post(api.getCurrentHost() + 'api/v1/users/login', userData)
+		.post(api.getCurrentHost() + 'auth/local', userData)
 		.then((res) => {
 			console.log(res, 'res is');
 			//const { token } = res.data;
 			const secret = 'FxUum76z';
 			const currentTime = Date.now() / 1000;
 			const payload = {
-				id: res.data.id,
-				email: res.data.email,
-				user_type: res.data.user_type,
-				token: res.data.token,
-				name: res.data.name,
-				expires: currentTime + 604800
+				jwt: res.data.jwt,
 			};
 			// encode
 			const token = jwt.encode(payload, secret);
 
-			localStorage.setItem('jwtToken', token);
-			setAuthToken(token);
-			window.open('/dashboard', '_self');
-			//const decoded = jwt_decode(token);
+			localStorage.setItem('jwtToken', res.data.jwt);
+			localStorage.setItem('user', res.data.user);
+
+			// window.open('/dashboard', '_self');
+			// const decoded = jwt_decode(token);
 
 			// decode
 			const decoded = jwt.decode(token, secret);
@@ -99,7 +96,7 @@ export const verifyUser = (userData) => (dispatch) => {
 
 			localStorage.setItem('jwtToken', token);
 			setAuthToken(token);
-			window.open('/dashboard', '_self');
+			// window.open('/dashboard', '_self');
 			//const decoded = jwt_decode(token);
 
 			// decode
