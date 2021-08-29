@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "feeds",
+  "info": {
+    "name": "feed"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "visibleToAll": {
+      "type": "boolean",
+      "default": true
+    },
+    "media": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "postedBy": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "likes": {
+      "via": "feed",
+      "collection": "feed-like"
+    },
+    "comments": {
+      "via": "feed",
+      "collection": "comment"
+    }
+  }
+}

@@ -51,6 +51,10 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
+  logo: {
+    margin: theme.spacing(-26, 0, -17),
+	
+  },
   form: {
     width: "100%",
     marginTop: theme.spacing(1),
@@ -115,9 +119,12 @@ const Sign = () => {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Typography component="h1" variant="h2">
-            Carein
-          </Typography>
+      
+        <Typography component="h1" variant="h2">
+        <div>
+        <img className={classes.logo} src="./assets/media/bg/carelogo2.png" alt="logo" />
+        </div>
+        </Typography>
           <FormikProvider value={formik}>
             <Form className={classes.form} onSubmit={handleSubmit}>
               <Grid container spacing={2}>
