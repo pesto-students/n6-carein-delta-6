@@ -3,7 +3,7 @@ module.exports = ({ env }) => ({
     provider: "nodemailer",
     providerOptions: {
       host: "email-smtp.us-east-2.amazonaws.com",
-      port: 25,
+      port: 465,
       auth: {
         user: "AKIAYT43VJ6HEBNC2PPS",
         pass: "BCNd88xdDshvr0y7ahTiVHuC1MP36PFyIk7i6C/Q6IQ6",
