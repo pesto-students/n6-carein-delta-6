@@ -27,7 +27,8 @@ const Forgotpassword = React.lazy(() => import("./views/components/Login/Forgotp
 const Emailverify = React.lazy(() => import("./views/components/Login/Emailverify"));
 const Signup = React.lazy(() => import("./views/components/Signup/Signup"));
 const Homepage = React.lazy(() => import("./views/components/Homepage/Homepage"));
-
+const Friends = React.lazy(() => import("./views/components/Homepage/Friends"));
+const Events = React.lazy(() => import("./views/components/Homepage/Events"));
 
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken;
@@ -79,6 +80,22 @@ class App extends Component {
             name="Emailverify"
             component={Emailverify}
             render={(props) => <Emailverify {...props} />}
+            />
+
+            <Route
+            exact
+            path="/Friends"
+            name="Friends"
+            component={Friends}
+            render={(props) => <Friends {...props} />}
+            />
+
+            <Route
+            exact
+            path="/Events"
+            name="Events"
+            component={Events}
+            render={(props) => <Events {...props} />}
             />
             
             <Route component={NoMatchPage} />

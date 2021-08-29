@@ -29,10 +29,10 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fG9sZCUyMG1lbiUyMGdyb3VwfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60)',
+    backgroundImage: 'url(https://media.istockphoto.com/photos/two-senior-men-with-arms-outstretched-at-park-picture-id1289138199?k=20&m=1289138199&s=612x612&w=0&h=rKn-RfIYdZ72CUqSVR9wMA3sFi2nhICGVWQiLRfxv78=)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
+    theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
 	
@@ -250,7 +250,6 @@ export default function SignInSide() {
         <Copyright />
       </Box>
       </Grid>
-      
     </Grid>
   
   );
