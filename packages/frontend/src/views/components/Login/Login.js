@@ -13,10 +13,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import { useFormik, Form, FormikProvider } from "formik";
 import { loginUser  } from '../../../actions/authActions';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-function Copyright() {
+
+const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
@@ -63,10 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Login = () => {
-  
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const location = useLocation();
+
   const classes = useStyles();
   const dispatch = useDispatch();
   
@@ -104,12 +101,9 @@ const Login = () => {
     
     validationSchema: LoginSchema,
     onSubmit: (values) => {
-      console.log('ghjkgjk')
-      // this.props.loginUser(userData);
-
-        dispatch(loginUser(values));
-    // }
-  }});
+      dispatch(loginUser(values));
+    }
+  });
 
   const { errors, touched, values, isSubmitting, getFieldProps,handleSubmit } =
     formik;
@@ -154,7 +148,7 @@ const Login = () => {
                 error={Boolean(touched.password && errors.password)}
                 helperText={touched.password && errors.password}
               />
-              {/* <FormControlLabel
+              <FormControlLabel
                 control={
                   <Checkbox
                     {...getFieldProps("remember")}
@@ -163,7 +157,7 @@ const Login = () => {
                   />
                 }
                 label="Remember me"
-              /> */}
+              />
 
               <Button
                 type="submit"

@@ -42,17 +42,17 @@ export const loginUser = (userData) => (dispatch) => {
 		});
 };
 
-// OTP sending
-export const otpUser = (userData) => (dispatch) => {
+// signup sending
+export const signupUser = (userData) => (dispatch) => {
 	let config = {
 		method: 'POST',
-		url: api.getCurrentHost() + 'api/v1/users/sendotp',
+		url: api.getCurrentHost() + 'auth/local/register',
 		data: userData,
-		headers: {
-			Authorization: 'Bearer ' + userData.token,
-			Accept: 'application/json',
-			'Content-Type': 'application/json'
-		}
+		// headers: {
+		// 	Authorization: 'Bearer ' + userData.token,
+		// 	Accept: 'application/json',
+		// 	'Content-Type': 'application/json'
+		// }
 	};
 	console.log('CONFIG', config);
 	axios(config).then(
