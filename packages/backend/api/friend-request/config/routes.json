@@ -1,0 +1,60 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/friend-requests",
+      "handler": "friend-request.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/friend-requests/count",
+      "handler": "friend-request.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/friend-requests/:id",
+      "handler": "friend-request.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/friend-requests",
+      "handler": "friend-request.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/friend-requests/confirm",
+      "handler": "friend-request.confirmFR",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/friend-requests/:id",
+      "handler": "friend-request.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/friend-requests/:id",
+      "handler": "friend-request.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
