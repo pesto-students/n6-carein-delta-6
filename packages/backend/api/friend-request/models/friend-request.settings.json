@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "friend_requests",
+  "info": {
+    "name": "friendRequest",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "from": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "to": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "marked": {
+      "type": "boolean",
+      "default": false
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "accept",
+        "decline"
+      ]
+    },
+    "info": {
+      "type": "string"
+    }
+  }
+}

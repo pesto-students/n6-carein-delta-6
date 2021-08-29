@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/feed-likes",
+      "handler": "feed-like.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/feed-likes/count",
+      "handler": "feed-like.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/feed-likes/:id",
+      "handler": "feed-like.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/feed-likes",
+      "handler": "feed-like.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/feed-likes/:id",
+      "handler": "feed-like.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/feed-likes/:id",
+      "handler": "feed-like.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
