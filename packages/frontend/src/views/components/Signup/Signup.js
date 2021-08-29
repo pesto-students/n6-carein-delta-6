@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     margin: theme.spacing(-26, 0, -17),
-	
   },
   form: {
     width: "100%",
@@ -67,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 const Sign = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  
+
   const RegisterSchema = Yup.object().shape({
     firstName: Yup.string()
       .min(2, "Too Short!")
@@ -90,7 +89,7 @@ const Sign = () => {
       .max(10, "Mobile number should be 10 digits")
       .required("Mobile number is required"),
     addressLine1: Yup.string().required("Address is required"),
-    dob: Yup.date().required("Date of Birth is required"),
+    dob: Yup.string().required("Date of Birth is required"),
   });
 
   const formik = useFormik({
@@ -102,16 +101,26 @@ const Sign = () => {
       username: "",
       addressLine1: "",
       dob: "",
+      mobnumber : null,
     },
     validationSchema: RegisterSchema,
     onSubmit: (values) => {
-      console.log("fdsfsdf", values);
-      dispatch(signupUser(values));
+      
+      let body = {
+        firstName : values.firstName,
+        lastName : values.lastName,
+        email : values.email,
+        password : values.password,
+        username : values.mobnumber,
+        phone : values.mobnumber,
+        addressLine1 : values.addressLine1
+      }
+      console.log(body);
+      dispatch(signupUser(body));
     },
   });
 
-
-  const { errors, touched, isSubmitting, getFieldProps, handleSubmit} = formik;
+  const { errors, touched, isSubmitting, getFieldProps, handleSubmit } = formik;
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -119,12 +128,15 @@ const Sign = () => {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-      
-        <Typography component="h1" variant="h2">
-        <div>
-        <img className={classes.logo} src="./assets/media/bg/carelogo2.png" alt="logo" />
-        </div>
-        </Typography>
+          <Typography component="h1" variant="h2">
+            <div>
+              <img
+                className={classes.logo}
+                src="./assets/media/bg/carelogo2.png"
+                alt="logo"
+              />
+            </div>
+          </Typography>
           <FormikProvider value={formik}>
             <Form className={classes.form} onSubmit={handleSubmit}>
               <Grid container spacing={2}>
@@ -177,11 +189,11 @@ const Sign = () => {
                     fullWidth
                     id="mobnumber"
                     label="Mobile Number"
-                    name="username"
+                    name="mobnumber"
                     autoComplete="mobnumber"
-                    {...getFieldProps("username")}
-                    error={Boolean(touched.username && errors.username)}
-                    helperText={touched.username && errors.username}
+                    {...getFieldProps("mobnumber")}
+                    error={Boolean(touched.mobnumber && errors.mobnumber)}
+                    helperText={touched.mobnumber && errors.mobnumber}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -201,7 +213,6 @@ const Sign = () => {
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
-                    required
                     fullWidth
                     id="dob"
                     label="Date of birth"
@@ -233,7 +244,6 @@ const Sign = () => {
                 fullWidth
                 variant="contained"
                 color="primary"
-                loading={isSubmitting}
                 className={classes.submit}
               >
                 Sign Up
