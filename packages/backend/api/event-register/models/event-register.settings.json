@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "event_registers",
+  "info": {
+    "name": "eventRegister"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "event": {
+      "model": "event"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "paymentId": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "float"
+    }
+  }
+}
