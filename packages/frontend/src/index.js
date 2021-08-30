@@ -13,7 +13,7 @@ import { Provider } from 'react-redux';
 
 const theme = createMuiTheme({
 	typography: {
-	  "fontFamily": `"Lato", sans-serif`,
+	  "fontFamily": "inter",
 	  "fontWeightLight": 300,
 	  "fontWeightRegular": 400,
 	  "fontWeightMedium": 600,
