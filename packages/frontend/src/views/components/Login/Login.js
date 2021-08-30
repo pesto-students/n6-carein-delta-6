@@ -87,7 +87,6 @@ const Login = () => {
 
   const LoginSchema = Yup.object().shape({
     identifier: Yup.string()
-      
       .required("Email is required"),
     password: Yup.string()
       .min(4, "Too short")
@@ -124,57 +123,68 @@ const Login = () => {
           </div>
           </Typography>
           <FormikProvider value={formik}>
-            <Form className={classes.form} noValidate onSubmit={handleSubmit}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="identifier"
-                autoComplete="email"
-                type="email"
-                {...getFieldProps("identifier")}
-                error={Boolean(touched.identifier && errors.identifier)}
-                helperText={touched.identifier && errors.identifier}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                {...getFieldProps("password")}
-                error={Boolean(touched.password && errors.password)}
-                helperText={touched.password && errors.password}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    {...getFieldProps("remember")}
-                    checked={values.remember}
-                    color="primary"
-                  />
-                }
-                label="Remember me"
-              />
-
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
+          <Form className={classes.form} noValidate onSubmit={handleSubmit}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="identifier"
+            autoComplete="email"
+            type="email"
+            {...getFieldProps("identifier")}
+            error={Boolean(touched.identifier && errors.identifier)}
+            helperText={touched.identifier && errors.identifier}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            {...getFieldProps("password")}
+            error={Boolean(touched.password && errors.password)}
+            helperText={touched.password && errors.password}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                {...getFieldProps("remember")}
+                checked={values.remember}
                 color="primary"
-                loading={isSubmitting}
-                className={classes.submit}
-              >
-                SIGN IN
-              </Button>
+              />
+            }
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            loading={isSubmitting}
+            className={classes.submit}
+          >
+            SIGN IN
+          </Button>
 
+          <Grid container>
+            <Grid item xs>
+              <Link href="/Forgotpassword" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link to="/Signup" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+            </Grid>
               <Grid container>
                 <Grid item xs>
                   <Link href="/Forgotpassword" variant="body2">
@@ -190,7 +200,7 @@ const Login = () => {
             </Form>
           </FormikProvider>      
         </div>
-      </Grid>
+    </Grid>
     </Grid>
   );
 };

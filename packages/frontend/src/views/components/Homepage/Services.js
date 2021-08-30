@@ -1,15 +1,12 @@
 import React from 'react'
-import RightNav from '../../common/RightNav'
 import SideNav from '../../common/SideNav'
 
-
-const Homepage = () => {
+const Services = () => {
     return (
         <div>
             <SideNav/>
-            <RightNav/>
         </div>
     )
 }
 
-export default Homepage
+export default Services
