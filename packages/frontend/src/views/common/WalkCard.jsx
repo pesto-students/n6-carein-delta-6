@@ -62,38 +62,10 @@ function WalkCard() {
         </CardContent>
       </CardActionArea>
     </Card>
-
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          image="./assets/media/bg/event.jpg"
-        />
-        <CardContent >
-          <Typography className={classes.main} gutterBottom variant="h5" component="h6">
-            Sat, 4 September
-          </Typography>
-          <Typography className={classes.text} variant="h6" color="textSecondary" component="p">
-            Morning Exercise Group
-          </Typography>
-          <Typography className={classes.text} variant="h6" color="textSecondary" component="p">
-            6:00 AM to 7:00 AM
-          </Typography>
-          <Typography className={classes.text} variant="h6" color="textSecondary" component="p">
-            Jayant Park, New Delhi
-          </Typography>
-
-          <Button className={classes.buttonstyle} size="small" color="secondary" href="/">
-          Interested
-        </Button>
-        <Button className={classes.buttonstyle} size="small" color="secondary" href="/">
-          Register
-        </Button>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-
+   
     </>
+
+    
   );
 }
 

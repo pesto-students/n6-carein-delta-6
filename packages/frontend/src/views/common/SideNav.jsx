@@ -39,11 +39,11 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerContainer: {
     overflow: 'auto',
-    background: 'linear-gradient(45deg, #a4bfef 30%, #6a93cb 90%)',
+    background: 'linear-gradient(45deg, #b7e9f7 30%, #92dff3 90%)',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
+    color: 'black',
     height: 800,
     //padding: '0 30px',
     margin: theme.spacing(0, 0,0),
