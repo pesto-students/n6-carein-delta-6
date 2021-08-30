@@ -11,7 +11,6 @@ const Friends = React.lazy(() => import('./views/components/Homepage/Friends'));
 const Events = React.lazy(() => import('./views/components/Homepage/Events'));
 
 const routes = [
-     
      { path: '/login', name: 'Login', component: Login },
      { path: '/forgotpassword', name: 'Forgotpassword', component: Forgotpassword },
      { path: '/emailverify', name: 'Emailverify', component: Emailverify },
