@@ -1,18 +1,18 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import CardActions from '@material-ui/core/CardActions';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth:300,
-    maxWidth: 300,
-    minHeight:300,
+    minWidth:250,
+    maxWidth: 250,
+    minHeight:250,
+    maxHeight:250,
     margin: theme.spacing(0, 40, 2),
   },
   text: {
@@ -30,36 +30,30 @@ const useStyles = makeStyles((theme) => ({
 })
 );
 
-function FriendCard() {
-  const classes = useStyles();
 
-  return (
-    <>
-    <Card className={classes.root}>
+
+const DedicatedServiceCard = () => {
+    const classes = useStyles();
+    return (
+        <Card className={classes.root}>
         <CardMedia
           component="img"
-          image="./assets/media/bg/event.jpg"
+          image="./assets/media/bg/dedicated.jpg"
         />
         <CardContent >
           <Typography className={classes.main} gutterBottom variant="h5" component="h6">
-            Sakshi Verma
+            Dedicated Assistance Service
           </Typography>
-          <Typography className={classes.text} variant="p" color="textSecondary" component="p">
-            7 Mutual Friends
-          </Typography>
-        <Button size="small" className={classes.buttonstyle}>
-          Add Friend
-        </Button>
-        <Button size="small" className={classes.removebutton}>
-         Remove
+        <Button size="small" className={classes.buttonstyle}
+        type="submit"
+        fullWidth
+        variant="contained"
+        color="primary">
+          More Details
         </Button>
         </CardContent>
-    </Card>
-   
-    </>
-
-    
-  );
+    </Card>  
+    )
 }
 
-export default FriendCard
+export default DedicatedServiceCard

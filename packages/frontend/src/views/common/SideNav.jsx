@@ -78,7 +78,7 @@ export default function SideNav() {
         <Toolbar />
         <div>
         <List component="nav" className={classes.contentmargin}>
-        <ListItem button component={Link} to="/Homepage">
+        <ListItem button component={Link} to="/homepage">
           <ListItemIcon>
             <DynamicFeedIcon/>
           </ListItemIcon>

@@ -9,7 +9,27 @@ const Events = () => {
         <div>
         <SideNav/>        
         <EventHead/>
-        <WalkCard/>    
+        <Grid container>
+        <Grid item xs={12} sm={6} md={3}>
+        <WalkCard/>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+        <WalkCard/>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+        <WalkCard/>
+        </Grid> 
+        <Grid item xs={12} sm={6} md={3}>
+        <WalkCard/>
+        </Grid> 
+        <Grid item xs={12} sm={6} md={3}>
+        <WalkCard/>
+        </Grid> 
+        <Grid item xs={12} sm={6} md={3}>
+        <WalkCard/>
+        </Grid> 
+        </Grid>
+            
         </div>
     )
 }

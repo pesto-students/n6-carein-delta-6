@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 })
 );
 
-function EventHead() {
+function ServiceHead() {
   const classes = useStyles();
 
   return (
@@ -26,7 +26,7 @@ function EventHead() {
     <Card className={classes.root}>
         <CardContent >
           <Typography className={classes.main} gutterBottom variant="h5" component="h6">
-            Discover Events Near you
+            Services
           </Typography>
         </CardContent>
     </Card>
@@ -35,4 +35,4 @@ function EventHead() {
   );
 }
 
-export default EventHead
+export default ServiceHead
