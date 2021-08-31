@@ -29,6 +29,8 @@ const Signup = React.lazy(() => import("./views/components/Signup/Signup"));
 const Homepage = React.lazy(() => import("./views/components/Homepage/Homepage"));
 const Friends = React.lazy(() => import("./views/components/Homepage/Friends"));
 const Events = React.lazy(() => import("./views/components/Homepage/Events"));
+const Services = React.lazy(() => import("./views/components/Homepage/Services"));
+const Subscription = React.lazy(() => import("./views/components/Homepage/Subscription"));
 
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken;
@@ -96,6 +98,22 @@ class App extends Component {
             name="Events"
             component={Events}
             render={(props) => <Events {...props} />}
+            />
+
+            <Route
+            exact
+            path="/Services"
+            name="Services"
+            component={Services}
+            render={(props) => <Services {...props} />}
+            />
+
+            <Route
+            exact
+            path="/Subscription"
+            name="Subscription"
+            component={Subscription}
+            render={(props) => <Subscription {...props} />}
             />
             
             <Route component={NoMatchPage} />

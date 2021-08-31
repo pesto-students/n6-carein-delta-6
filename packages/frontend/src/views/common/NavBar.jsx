@@ -10,6 +10,7 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -150,7 +151,9 @@ export default function NavBar() {
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
           <div>
-          <img className={classes.logo} src="./assets/media/bg/carelogo4.png" alt="logo" />
+          <Link to='/Homepage'>
+          <img className={classes.logo} src="./assets/media/bg/carelogo4.png" alt="logo"/>
+          </Link>
           </div>
           </Typography>
           <div className={classes.search}>

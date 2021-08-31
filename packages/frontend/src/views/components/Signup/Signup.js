@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -89,6 +89,10 @@ export default function SignInSide() {
     validationSchema: RegisterSchema
   });
 
+  var curr = new Date();
+  curr.setDate(curr.getDate() + 3);
+  var date = curr.toISOString().substr(0,10);
+
   const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
 
   return (
@@ -118,7 +122,6 @@ export default function SignInSide() {
                   fullWidth
                   id="firstName"
                   label="First Name"
-                  
                   {...getFieldProps('firstName')}
                   error={Boolean(touched.firstName && errors.firstName)}
                   helperText={touched.firstName && errors.firstName}
@@ -152,6 +155,23 @@ export default function SignInSide() {
                   helperText={touched.email && errors.email}
                 />
               </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  {...getFieldProps('password')}
+                  error={Boolean(touched.password && errors.password)}
+                  helperText={touched.password && errors.password}
+                />
+              </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"
@@ -185,30 +205,21 @@ export default function SignInSide() {
                   variant="outlined"
                   required
                   fullWidth
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  type="date"
                   id="dob"
                   label="Date of birth"
                   name="dob"
                   autoComplete="dob"
+                  defaultValue={date}
                   {...getFieldProps('dob')}
                   error={Boolean(touched.dob && errors.dob)}
                   helperText={touched.dob && errors.dob}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  {...getFieldProps('password')}
-                  error={Boolean(touched.password && errors.password)}
-                  helperText={touched.password && errors.password}
-                />
-              </Grid>
+              
              
             </Grid>
             <Button
@@ -223,7 +234,7 @@ export default function SignInSide() {
             </Button>
             <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
                Already have an account?&nbsp;
-              <Link href="/" underline="always" sx={{ color: 'text.primary' }}>
+              <Link to="/" underline="always" sx={{ color: 'text.primary' }}>
                 Sign In
               </Link>
                .

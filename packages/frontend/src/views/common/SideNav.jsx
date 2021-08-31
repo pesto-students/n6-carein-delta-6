@@ -18,6 +18,7 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
 import NavBar from './NavBar';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 300;
 
@@ -75,33 +76,34 @@ export default function SideNav() {
         }}
       >
         <Toolbar />
-        <div className={classes.drawerContainer}>
+        <div>
         <List component="nav" className={classes.contentmargin}>
-        <ListItem button>
+        <ListItem button component={Link} to="/Homepage">
           <ListItemIcon>
             <DynamicFeedIcon/>
           </ListItemIcon>
           <ListItemText primary="Feed" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/Friends">
           <ListItemIcon>
             <GroupIcon />
           </ListItemIcon>
           <ListItemText primary="Friends" />
-        </ListItem>
-        <ListItem button>
+        </ListItem>        
+        <ListItem button component={Link} to="/Events">
           <ListItemIcon>
             <DateRangeIcon />
           </ListItemIcon>
           <ListItemText primary="Events" />
         </ListItem>
-        <ListItem button>
+     
+        <ListItem button component={Link} to="/Services">
           <ListItemIcon>
             <SettingsApplicationsIcon />
           </ListItemIcon>
           <ListItemText primary="Services" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/Subscription">
           <ListItemIcon>
             <SubscriptionsIcon />
           </ListItemIcon>
