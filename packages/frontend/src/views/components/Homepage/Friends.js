@@ -1,5 +1,5 @@
 import React from 'react'
-import FriendCard from '../../common/FriendCard'
+import FriendCard from '../../common/friendCard'
 import SideNav from '../../common/SideNav'
 
 
@@ -7,8 +7,8 @@ import SideNav from '../../common/SideNav'
 const Friends = () => {
     return (
         <div>
-        <SideNav/>
-        <FriendCard/>
+            <SideNav/>
+            <FriendCard/>
         </div>
     )
 }

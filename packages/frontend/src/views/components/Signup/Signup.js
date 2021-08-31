@@ -10,7 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import * as Yup from 'yup';
 import { useFormik, Form, FormikProvider } from 'formik';
-
+import { useDispatch } from 'react-redux';
+import { signupUser } from "../../../actions/authActions";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
