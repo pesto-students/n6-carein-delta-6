@@ -26,7 +26,7 @@ export const loginUser = (userData) => (dispatch) => {
 			localStorage.setItem('jwtToken', res.data.jwt);
 			localStorage.setItem('user', res.data.user);
 
-			// window.open('/dashboard', '_self');
+			window.open('/homepage', '_self');
 			// const decoded = jwt_decode(token);
 
 			// decode

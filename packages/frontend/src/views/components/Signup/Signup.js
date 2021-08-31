@@ -14,19 +14,19 @@ import { useFormik, Form, FormikProvider } from 'formik';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="#">
         Carein
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    height: "100vh",
   },
   image: {
     backgroundImage: 'url(https://media.istockphoto.com/photos/two-senior-men-with-arms-outstretched-at-park-picture-id1289138199?k=20&m=1289138199&s=612x612&w=0&h=rKn-RfIYdZ72CUqSVR9wMA3sFi2nhICGVWQiLRfxv78=)',
@@ -35,13 +35,13 @@ const useStyles = makeStyles((theme) => ({
     theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-	
+
   },
   paper: {
     margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -49,10 +49,9 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     margin: theme.spacing(-26, 0, -17),
-	
   },
   form: {
-    width: '100%',
+    width: "100%",
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -60,33 +59,61 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+const Sign = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const RegisterSchema = Yup.object().shape({
     firstName: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('First name required'),
-    lastName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Last name required'),
-    email: Yup.string().email('Email must be a valid email address').required('Email is required'),
-    password: Yup.string().min(4, 'Too short').max(15, 'Too Long').required('Password is required'),
-    mobnumber: Yup.string().matches(/^[0-9]+$/, "Must be only digits").min(10, 'Mobile number should be 10 digits').max(10, 'Mobile number should be 10 digits').required('Mobile number is required'),
-    address: Yup.string().required('Address is required'),
-    dob: Yup.date().required('Date of Birth is required')
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("First name required"),
+    lastName: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Last name required"),
+    email: Yup.string()
+      .email("Email must be a valid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(4, "Too short")
+      .max(15, "Too Long")
+      .required("Password is required"),
+    mobnumber: Yup.string()
+      .matches(/^[0-9]+$/, "Must be only digits")
+      .min(10, "Mobile number should be 10 digits")
+      .max(10, "Mobile number should be 10 digits")
+      .required("Mobile number is required"),
+    addressLine1: Yup.string().required("Address is required"),
+    dob: Yup.string().required("Date of Birth is required"),
   });
 
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      mobnumber: '',
-      address: '',
-      dob: ''
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      username: "",
+      addressLine1: "",
+      dob: "",
+      mobnumber : null,
     },
-    validationSchema: RegisterSchema
+    validationSchema: RegisterSchema,
+    onSubmit: (values) => {
+      
+      let body = {
+        firstName : values.firstName,
+        lastName : values.lastName,
+        email : values.email,
+        password : values.password,
+        username : values.mobnumber,
+        phone : values.mobnumber,
+        addressLine1 : values.addressLine1
+      }
+      console.log(body);
+      dispatch(signupUser(body));
+    },
   });
 
   var curr = new Date();
@@ -96,20 +123,20 @@ export default function SignInSide() {
   const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
 
   return (
-
-	
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-      
-        <Typography component="h1" variant="h2">
-        <div>
-        <img className={classes.logo} src="./assets/media/bg/carelogo2.png" alt="logo" />
-        </div>
-        </Typography>
+          <Typography component="h1" variant="h2">
+            <div>
+              <img
+                className={classes.logo}
+                src="./assets/media/bg/carelogo2.png"
+                alt="logo"
+              />
+            </div>
+          </Typography>
           <FormikProvider value={formik}>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2}>
@@ -243,25 +270,29 @@ export default function SignInSide() {
           </form>
           </FormikProvider>
 
-          <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
-          By registering, I agree to Carein&nbsp;
-          <Link href="#" underline="always" sx={{ color: 'text.primary' }}>
-            Terms of Service
-          </Link>
-          &nbsp;and&nbsp;
-          <Link href="#" underline="always" sx={{ color: 'text.primary' }}>
-            Privacy Policy
-          </Link>
-          .
-        </Typography>
+          <Typography
+            variant="body2"
+            align="center"
+            sx={{ color: "text.secondary", mt: 3 }}
+          >
+            By registering, I agree to Carein&nbsp;
+            <Link href="#" underline="always" sx={{ color: "text.primary" }}>
+              Terms of Service
+            </Link>
+            &nbsp;and&nbsp;
+            <Link href="#" underline="always" sx={{ color: "text.primary" }}>
+              Privacy Policy
+            </Link>
+            .
+          </Typography>
+        </div>
 
-           </div>
-
-           <Box mt={5}>
-        <Copyright />
-      </Box>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
       </Grid>
     </Grid>
-  
   );
-}
+};
+
+export default Sign;

@@ -68,7 +68,7 @@ class App extends Component {
             render={(props) => <Forgotpassword {...props} />}
             />
 
-            <Route
+            <PrivateRoute
             exact
             path="/homepage"
             name="Homepage"

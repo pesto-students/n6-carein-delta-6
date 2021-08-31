@@ -13,7 +13,6 @@ const Services = React.lazy(() => import('./views/components/Homepage/Services')
 const Subscription = React.lazy(() => import('./views/components/Homepage/Subscription'));
 
 const routes = [
-     
      { path: '/login', name: 'Login', component: Login },
      { path: '/forgotpassword', name: 'Forgotpassword', component: Forgotpassword },
      { path: '/emailverify', name: 'Emailverify', component: Emailverify },

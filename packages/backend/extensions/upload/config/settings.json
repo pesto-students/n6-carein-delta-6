@@ -1,0 +1,11 @@
+{
+  "provider": "aws-s3",
+  "providerOptions": {
+    "accessKeyId": "AKIAYT43VJ6HIT62EDGK",
+    "secretAccessKey": "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",
+    "region": "ap-south-1",
+    "params": {
+      "Bucket": "carein"
+    }
+  }
+}
