@@ -23,9 +23,11 @@ const useStyles = makeStyles((theme) => ({
   activity: {
     margin: theme.spacing(3,3,3),
   },
+
   seemore: {
     margin: theme.spacing(-6,20 ,4),
   },
+
   drawerPaper: {
     width: drawerWidth,
   },
@@ -66,66 +68,85 @@ export default function RightNav() {
       >
         <div className={classes.toolbar} />
       
+
         <List component="nav">
         <Typography component="h1" variant="h6" sx={{ color: 'text.secondary', mt: 3 }} className={classes.activity}>
           Friends
         </Typography>
         <ListItem button>   
           <ListItemIcon>
+
           <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
+
           </ListItemIcon>
           <ListItemText primary="Rakesh Kumar" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
+
           <Avatar alt="M" src="./assets/media/bg/pp1.jpg" />
+
           </ListItemIcon>
           <ListItemText primary="Manish Singh" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
+
           <Avatar alt="M" src="./assets/media/bg/pp2.png" />
+
           </ListItemIcon>
           <ListItemText primary="Megha Sharma" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
+
           <Avatar alt="V" src="./assets/media/bg/pp3.jpg" />
+
           </ListItemIcon>
           <ListItemText primary="Vimla Gupta" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
+
           <Avatar alt="A" src="./assets/media/bg/pp4.jpg" />
+
           </ListItemIcon>
           <ListItemText primary="Anish Kumar" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
+
           <Avatar alt="S" src="./assets/media/bg/pp5.jpg" />
           </ListItemIcon>
           <ListItemText primary="Shubham Bhatia" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
+
           <Avatar alt="V" src="./assets/media/bg/pp6.jpg" />
+
           </ListItemIcon>
           <ListItemText primary="Vinit Borole" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
+
           <Avatar alt="T" src="./assets/media/bg/pp7.jpg" />
+
           </ListItemIcon>
           <ListItemText primary="Tanu Grover" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
+
           <Avatar alt="M" src="./assets/media/bg/pp8.jpg" />
+
           </ListItemIcon>
           <ListItemText primary="Mahesh Bhatia" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
+
           <Avatar alt="S" src="./assets/media/bg/pp9.jpg" />
           </ListItemIcon>
           <ListItemText primary="Simran Kapoor" />

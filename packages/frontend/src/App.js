@@ -29,6 +29,7 @@ const Signup = React.lazy(() => import("./views/components/Signup/Signup"));
 const Homepage = React.lazy(() => import("./views/components/Homepage/Homepage"));
 const Friends = React.lazy(() => import("./views/components/Homepage/Friends"));
 const Events = React.lazy(() => import("./views/components/Homepage/Events"));
+
 const Services = React.lazy(() => import("./views/components/Homepage/Services"));
 const Subscription = React.lazy(() => import("./views/components/Homepage/Subscription"));
 
@@ -100,6 +101,7 @@ class App extends Component {
             render={(props) => <Events {...props} />}
             />
 
+
             <Route
             exact
             path="/Services"
@@ -115,6 +117,7 @@ class App extends Component {
             component={Subscription}
             render={(props) => <Subscription {...props} />}
             />
+
             
             <Route component={NoMatchPage} />
           </Switch>

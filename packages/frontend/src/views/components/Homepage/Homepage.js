@@ -1,5 +1,7 @@
 import React from 'react'
+
 import PostCard from '../../common/PostCard'
+
 import RightNav from '../../common/RightNav'
 import SideNav from '../../common/SideNav'
 
