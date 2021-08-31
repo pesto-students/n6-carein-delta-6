@@ -9,7 +9,7 @@ const Events = () => {
         <div>
         <SideNav/>        
         <EventHead/>
-        <Grid container>
+        <Grid container xs={12}>
         <Grid item xs={12} sm={6} md={3}>
         <WalkCard/>
         </Grid>

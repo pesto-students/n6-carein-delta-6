@@ -38,7 +38,7 @@ function FriendCard() {
     <Card className={classes.root}>
         <CardMedia
           component="img"
-          image="./assets/media/bg/event.jpg"
+          image="./assets/media/bg/profile.jpg"
         />
         <CardContent >
           <Typography className={classes.main} gutterBottom variant="h5" component="h6">

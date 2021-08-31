@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: 'url(https://media.istockphoto.com/photos/two-senior-men-with-arms-outstretched-at-park-picture-id1289138199?k=20&m=1289138199&s=612x612&w=0&h=rKn-RfIYdZ72CUqSVR9wMA3sFi2nhICGVWQiLRfxv78=)',
+    backgroundImage: 'url(https://media.istockphoto.com/photos/two-senior-men-discussing-on-park-bench-picture-id1289142883?b=1&k=20&m=1289142883&s=170667a&w=0&h=fQnvJBfG3QiNLLmRFx2jrGG8mEfjMEjktTWARPnkCzE=)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
     theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
@@ -81,7 +81,7 @@ const Sign = () => {
       .min(4, "Too short")
       .max(15, "Too Long")
       .required("Password is required"),
-    mobnumber: Yup.string()
+    mobnumber: Yup.string   ()
       .matches(/^[0-9]+$/, "Must be only digits")
       .min(10, "Mobile number should be 10 digits")
       .max(10, "Mobile number should be 10 digits")

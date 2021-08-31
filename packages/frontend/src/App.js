@@ -84,7 +84,7 @@ class App extends Component {
             render={(props) => <Emailverify {...props} />}
             />
 
-            <Route
+            <PrivateRoute
             exact
             path="/Friends"
             name="Friends"
@@ -92,7 +92,7 @@ class App extends Component {
             render={(props) => <Friends {...props} />}
             />
 
-            <Route
+            <PrivateRoute
             exact
             path="/Events"
             name="Events"
@@ -101,7 +101,7 @@ class App extends Component {
             />
 
 
-            <Route
+            <PrivateRoute
             exact
             path="/Services"
             name="Services"
@@ -109,7 +109,7 @@ class App extends Component {
             render={(props) => <Services {...props} />}
             />
 
-            <Route
+            <PrivateRoute
             exact
             path="/Subscription"
             name="Subscription"

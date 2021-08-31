@@ -16,7 +16,7 @@ const Services = () => {
             <AssistanceServiceCard/>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-            <DedicatedServiceCard/>
+            <AssistanceServiceCard/>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
             <CaretackerCard/>
