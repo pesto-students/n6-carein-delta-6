@@ -29,7 +29,6 @@ const Signup = React.lazy(() => import("./views/components/Signup/Signup"));
 const Homepage = React.lazy(() => import("./views/components/Homepage/Homepage"));
 const Friends = React.lazy(() => import("./views/components/Homepage/Friends"));
 const Events = React.lazy(() => import("./views/components/Homepage/Events"));
-
 const Services = React.lazy(() => import("./views/components/Homepage/Services"));
 const Subscription = React.lazy(() => import("./views/components/Homepage/Subscription"));
 
@@ -85,7 +84,7 @@ class App extends Component {
             render={(props) => <Emailverify {...props} />}
             />
 
-            <Route
+            <PrivateRoute
             exact
             path="/Friends"
             name="Friends"
@@ -93,7 +92,7 @@ class App extends Component {
             render={(props) => <Friends {...props} />}
             />
 
-            <Route
+            <PrivateRoute
             exact
             path="/Events"
             name="Events"
@@ -102,7 +101,7 @@ class App extends Component {
             />
 
 
-            <Route
+            <PrivateRoute
             exact
             path="/Services"
             name="Services"
@@ -110,7 +109,7 @@ class App extends Component {
             render={(props) => <Services {...props} />}
             />
 
-            <Route
+            <PrivateRoute
             exact
             path="/Subscription"
             name="Subscription"

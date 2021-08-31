@@ -73,46 +73,42 @@ export default function SideNav() {
         }}
       >
         <Toolbar />
-        <div className={classes.drawerContainer}>
-          <List component="nav" className={classes.contentmargin}>
-            <ListItem button>
-              <ListItemIcon>
-                <DynamicFeedIcon />
-              </ListItemIcon>
 
-              <Link>
-                <ListItemText primary="Feed" />
-              </Link>
-            </ListItem>
-            <Link to="/Friends">
-              <ListItem button>
-                <ListItemIcon>
-                  <GroupIcon />
-                </ListItemIcon>
-                <ListItemText primary="Friends" />
-              </ListItem>
-            </Link>
-            <ListItem button>
-              <ListItemIcon>
-                <DateRangeIcon />
-              </ListItemIcon>
-              <Link to="/events">
-                <ListItemText primary="Events" />
-              </Link>
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <SettingsApplicationsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Services" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <SubscriptionsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Subscription" />
-            </ListItem>
-          </List>
+        <div>
+        <List component="nav" className={classes.contentmargin}>
+        <ListItem button component={Link} to="/homepage">
+          <ListItemIcon>
+            <DynamicFeedIcon/>
+          </ListItemIcon>
+          <ListItemText primary="Feed" />
+        </ListItem>
+        <ListItem button component={Link} to="/Friends">
+          <ListItemIcon>
+            <GroupIcon />
+          </ListItemIcon>
+          <ListItemText primary="Friends" />
+        </ListItem>        
+        <ListItem button component={Link} to="/Events">
+          <ListItemIcon>
+            <DateRangeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Events" />
+        </ListItem>
+     
+        <ListItem button component={Link} to="/Services">
+          <ListItemIcon>
+            <SettingsApplicationsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Services" />
+        </ListItem>
+        <ListItem button component={Link} to="/Subscription">
+          <ListItemIcon>
+            <SubscriptionsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Subscription" />
+        </ListItem>
+      </List>
+
           <Divider />
           <Typography
             component="h5"

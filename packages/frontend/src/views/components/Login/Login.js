@@ -175,18 +175,6 @@ const Login = () => {
 
           <Grid container>
             </Grid>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="/Forgotpassword" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="/Signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
             </Form>
           </FormikProvider>      
         </div>
