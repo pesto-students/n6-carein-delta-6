@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     minWidth:300,
     maxWidth: 300,
-    minHeight:300,
+    minHeight: 300,
+    maxHeight:300,
     margin: theme.spacing(0, 40, 2),
   },
   text: {
