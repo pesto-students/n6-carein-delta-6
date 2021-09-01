@@ -31,6 +31,7 @@ const Friends = React.lazy(() => import("./views/components/Homepage/Friends"));
 const Events = React.lazy(() => import("./views/components/Homepage/Events"));
 const Services = React.lazy(() => import("./views/components/Homepage/Services"));
 const Subscription = React.lazy(() => import("./views/components/Homepage/Subscription"));
+const ServiceDetails = React.lazy(() => import("./views/components/Homepage/ServiceDetails"));
 
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken;
@@ -115,6 +116,14 @@ class App extends Component {
             name="Subscription"
             component={Subscription}
             render={(props) => <Subscription {...props} />}
+            />
+
+            <PrivateRoute
+            exact
+            path="/Servicedetails"
+            name="Servicedetails"
+            component={ServiceDetails}
+            render={(props) => <ServiceDetails {...props} />}
             />
 
             

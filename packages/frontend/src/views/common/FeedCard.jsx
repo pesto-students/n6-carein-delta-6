@@ -135,13 +135,10 @@ function FeedCard() {
         fullWidth
         id="postfield"
         label="What's on your mind?"
-        name="postfield"
-        
+        name="postfield" 
       />
         </Grid>
         </Grid>
-        
-        
       </CardContent>
     </Card>
   );

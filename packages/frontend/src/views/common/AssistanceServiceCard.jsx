@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +48,8 @@ const AssistanceServiceCard = () => {
         type="submit"
         fullWidth
         variant="contained"
-        color="primary">
+        color="primary"
+        component={Link} to="/ServiceDetails">
           More Details
         </Button>
         </CardContent>

@@ -3,15 +3,24 @@ import React from 'react'
 import FriendHead from '../../common/FriendHead'
 import FriendCard from '../../common/friendCard'
 import SideNav from '../../common/SideNav'
+import { makeStyles } from '@material-ui/core'
 
 
 
 const Friends = () => {
+
+    const useStyles = makeStyles((theme) => ({
+        root: {
+          marginLeft: 310,
+        },
+    })
+    );
+
     return (
         <div>
         <SideNav/>
         <FriendHead/>
-        <Grid container>
+        <Grid container className={useStyles.root}>
         <Grid item xs={12} sm={6} md={3}>
         <FriendCard/>
         </Grid>
@@ -36,6 +45,7 @@ const Friends = () => {
         <Grid item xs={12} sm={6} md={3}>
         <FriendCard/>
         </Grid>
+        
         </Grid>
         </div>
     )
