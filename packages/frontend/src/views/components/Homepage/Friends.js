@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core'
 import React from 'react'
-import FriendCard from '../../common/FriendCard'
 import FriendHead from '../../common/FriendHead'
+import FriendCard from '../../common/friendCard'
 import SideNav from '../../common/SideNav'
 import { makeStyles } from '@material-ui/core'
 
@@ -47,7 +47,6 @@ const Friends = () => {
         </Grid>
         
         </Grid>
-        
         </div>
     )
 }

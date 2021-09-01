@@ -19,11 +19,16 @@ const routes = [
      { path: '/emailverify', name: 'Emailverify', component: Emailverify },
      { path: '/signup', name: 'Signup', component: Signup },
      { path: '/homepage', name: 'Homepage', component: Homepage },
+<<<<<<< HEAD
      { path: '/Friends', name: 'Friends', component: Friends },
      { path: '/Events', name: 'Events', component: Events },
      { path: '/Services', name: 'Services', component: Services },
      { path: '/Subscription', name: 'Subscription', component: Subscription },
      { path: '/Servicedetails', name: 'Servicedetails', component: ServiceDetails },
+=======
+     { path: '/friends', name: 'Friends', component: Friends },
+     { path: '/events', name: 'Events', component: Events },
+>>>>>>> 8bdaf778cbabb0611a4798fc287b5318dbb69f51
 ];
 
 export default routes;
