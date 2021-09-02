@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
   },
-  
+
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
@@ -119,7 +119,7 @@ export default function SideNav() {
   return (
     <>
       <CssBaseline />
-   
+
       <NavBar handleDrawer={handleDrawerToggle}></NavBar>
       <nav className={classes.drawer}>
         <Hidden smUp implementation="css">
