@@ -116,20 +116,9 @@ export default function SideNav() {
             sx={{ color: "text.secondary", mt: 3 }}
             className={classes.activity}
           >
-            Activities you Like
+            Events you Like
           </Typography>
-          <List className={classes.contentmargin}>
-            {["Dance Club", "Morning Walk", "Temple Buddies"].map(
-              (text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              )
-            )}
-          </List>
+          
         </div>
       </Drawer>
       <main className={classes.content}>
