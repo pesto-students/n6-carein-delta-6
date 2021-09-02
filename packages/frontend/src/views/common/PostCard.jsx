@@ -12,8 +12,8 @@ import PhotoIcon from "@material-ui/icons/Photo";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
-    height: 150,
-    margin: theme.spacing(-3, 40, 2),
+    height: 150 ,
+    margin : '10px 0px'
   },
   main: {
     margin: theme.spacing(0, 0, 2),

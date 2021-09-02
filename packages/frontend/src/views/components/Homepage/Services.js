@@ -1,41 +1,21 @@
-import React from 'react'
-import AssistanceServiceCard from '../../common/AssistanceServiceCard'
-import SideNav from '../../common/SideNav'
-import { Grid } from '@material-ui/core'
-import ServiceHead from '../../common/ServiceHead'
-import DedicatedServiceCard from '../../common/DedicatedServiceCard'
-import CaretackerCard from '../../common/CaretackerCard'
+import React from "react";
+import AssistanceServiceCard from "../../common/AssistanceServiceCard";
+import SideNav from "../../common/SideNav";
+import { Grid } from "@material-ui/core";
+import ServiceHead from "../../common/ServiceHead";
+import DedicatedServiceCard from "../../common/DedicatedServiceCard";
+import CaretackerCard from "../../common/CaretackerCard";
+import DashboardLayout from "../../../containers/TheLayout";
 
 const Services = () => {
-    return (
-        <div>
-            <SideNav/>
-            <ServiceHead/>
-            <Grid container>
-            <Grid item xs={12} sm={6} md={3}>
-            <AssistanceServiceCard/>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-            <AssistanceServiceCard/>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-            <CaretackerCard/>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-            <AssistanceServiceCard/>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-            <AssistanceServiceCard/>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-            <AssistanceServiceCard/>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-            <AssistanceServiceCard/>
-            </Grid>
-            </Grid>
-        </div>
-    )
-}
+  let data = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  return (
+    <DashboardLayout rightDrawer={false}>
+      {data.map((text, index) => (
+        <AssistanceServiceCard key={index} />
+      ))}
+    </DashboardLayout>
+  );
+};
 
-export default Services
+export default Services;

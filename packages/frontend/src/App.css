@@ -460,7 +460,10 @@ div.select__control{color: #3f4254; border: none!important;min-height: 51px!impo
     width: 42px;
     height: 42px;
 }
-
+.MuiDrawer-paperAnchorRight {
+    left: auto;
+    right: -15px !important;
+}
 .btn.filterDown-toggle svg path {
     fill: var(--whiteColor);
 }
