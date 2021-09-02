@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -7,6 +7,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
+import { listEvents  } from '../../actions/eventActions';
+import { useDispatch,useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,8 +33,13 @@ const useStyles = makeStyles((theme) => ({
 );
 
 function WalkCard() {
+  const data = useSelector((state) => state.apiRes)
   const classes = useStyles();
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(listEvents())
+  },[]);
+  
   return (
     
     <Card className={classes.root}>
