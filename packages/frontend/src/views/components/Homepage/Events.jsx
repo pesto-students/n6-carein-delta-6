@@ -8,17 +8,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { listEvents } from "../../../actions/eventActions";
 
 const Events = () => {
-  const eventData = useSelector((state) => state.apiRes);
+  const eventData = useSelector((state) => state.apiRes.events);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(listEvents());
   }, []);
-  console.log(eventData);
 
+  console.log(eventData);
   return (
     <DashboardLayout rightDrawer={true}>
-      {eventData.length
-        ? eventData.map((text, index) => <WalkCard event={text} key={index} />)
+      {eventData.data.length
+        ? eventData.data.map((text, index) => (
+            <WalkCard event={text} key={index} />
+          ))
         : ""}
     </DashboardLayout>
   );
