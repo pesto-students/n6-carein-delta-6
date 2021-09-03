@@ -12,6 +12,7 @@ const Events = React.lazy(() => import('./views/components/Homepage/Events'));
 const Services = React.lazy(() => import('./views/components/Homepage/Services'));
 const Subscription = React.lazy(() => import('./views/components/Homepage/Subscription'));
 const ServiceDetails = React.lazy(() => import('./views/components/Homepage/ServiceDetails'));
+const Profile = React.lazy(() => import('./views/components/Homepage/Profile'));
 
 const routes = [
      { path: '/login', name: 'Login', component: Login },
@@ -24,6 +25,7 @@ const routes = [
      { path: '/Services', name: 'Services', component: Services },
      { path: '/Subscription', name: 'Subscription', component: Subscription },
      { path: '/Servicedetails', name: 'Servicedetails', component: ServiceDetails },
+     { path: '/Profile', name: 'Profile', component: Profile },
 ];
 
 export default routes;

@@ -32,6 +32,7 @@ const Events = React.lazy(() => import("./views/components/Homepage/Events"));
 const Services = React.lazy(() => import("./views/components/Homepage/Services"));
 const Subscription = React.lazy(() => import("./views/components/Homepage/Subscription"));
 const ServiceDetails = React.lazy(() => import("./views/components/Homepage/ServiceDetails"));
+const Profile = React.lazy(() => import("./views/components/Homepage/Profile"));
 
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken;
@@ -124,6 +125,14 @@ class App extends Component {
             name="Servicedetails"
             component={ServiceDetails}
             render={(props) => <ServiceDetails {...props} />}
+            />
+
+            <PrivateRoute
+            exact
+            path="/Profile"
+            name="Profile"
+            component={Profile}
+            render={(props) => <Profile {...props} />}
             />
 
             

@@ -1,10 +1,13 @@
 import React from 'react'
+import ProfilePage from '../../common/ProfilePage'
 
 const Profile = () => {
     return (
-        <div>
-            
-        </div>
+        <DashboardLayout rightDrawer={true}>
+      {data.map((text, index) => (
+        <ProfilePage />
+      ))}
+    </DashboardLayout>
     )
 }
 
