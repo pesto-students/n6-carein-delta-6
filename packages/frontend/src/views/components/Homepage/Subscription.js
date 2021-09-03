@@ -6,12 +6,7 @@ import SubscriptionHead from "../../common/SubscriptionHead";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import WalkCard from "../../common/WalkCard";
 const Subscription = () => {
-  return (
-    <DashboardLayout rightDrawer={true}>
-      <SubscriptionCard />
-       
-    </DashboardLayout>
-  );
+  return <SubscriptionCard />;
 };
 
 export default Subscription;

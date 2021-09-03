@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
     width: "calc(100% - 10px) !important",
     margin: "10px 5px !important",
   },
-  card : {
-    margin :'5px 5px '
+  card: {
+    margin: "5px 5px ",
   },
   text: {
     margin: theme.spacing(-2, 0, 0),
@@ -36,7 +36,7 @@ function FriendCard() {
   const classes = useStyles();
 
   return (
-    <Grid xs={12} md={4} lg={3} sm={6}>
+    <Grid item xs={12} md={4} lg={4} sm={6}>
       <Card className={classes.card}>
         <CardMedia component="img" image="./assets/media/bg/profile.jpg" />
         <CardContent>
@@ -50,7 +50,6 @@ function FriendCard() {
           </Typography>
           <Typography
             className={classes.text}
-            variant="p"
             color="textSecondary"
             component="p"
           >

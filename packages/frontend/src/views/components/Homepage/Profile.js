@@ -4,9 +4,9 @@ import DashboardLayout from "../../../containers/TheLayout";
 
 const Profile = () => {
     return (
-        <DashboardLayout rightDrawer={true}>
+         
         <ProfilePage />
-    </DashboardLayout>
+    
     )
 }
 

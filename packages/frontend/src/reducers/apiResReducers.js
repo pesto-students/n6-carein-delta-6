@@ -3,6 +3,10 @@ import {
   FEEDS_GET_SUCCESS,
   FEEDS_GET_ERRORS,
   EVENTS_GET_SUCCESS,
+  FRIENDS_GET_SUCCESS,
+  FRIENDS_N_GET_SUCCESS,
+  FRIENDS_GET_ERRORS,
+  FRIENDS_N_GET_ERRORS,
 } from "../actions/types";
 const initialState = {
   feeds: {
@@ -17,9 +21,18 @@ const initialState = {
     data: [],
     _error: "",
   },
+  friends: {
+    data: {},
+    _error: "",
+  },
+  friendsN: {
+    data: {},
+    _error: "",
+  },
 };
 
 export default function (state = initialState, action) {
+  console.log(action.type)
   switch (action.type) {
     case FEEDS_GET_SUCCESS:
       console.log("action FEEDS_GET_SUCCESS", action.payload);
@@ -61,7 +74,44 @@ export default function (state = initialState, action) {
         events: {
           _start: action.payload._start,
           _limit: action.payload._limit,
-          data: [...state.events.data, ...action.payload.data],
+          data: action.payload.data,
+          _error: action.payload._error,
+        },
+      };
+    case FRIENDS_GET_SUCCESS:
+      console.log("action FRIENDS_GET_SUCCESS", action.payload);
+      return {
+        ...state,
+        friends: {
+          data: action.payload.data,
+          _error: "",
+        },
+      };
+    case FRIENDS_GET_ERRORS:
+      console.log("reducer FRIENDS_GET_ERRORS", action.payload);
+      return {
+        ...state,
+        friends: {
+          data: action.payload.data,
+          _error: action.payload._error,
+        },
+      };
+    case FRIENDS_N_GET_SUCCESS:
+      console.log("action FRIENDS_N_GET_SUCCESS", action.payload);
+       
+      return {
+        ...state,
+        friendsN: {
+          data: action.payload.data,
+          _error: "",
+        },
+      };
+    case FRIENDS_N_GET_ERRORS:
+      console.log("reducer FRIENDS_N_GET_ERRORS", action.payload);
+      return {
+        ...state,
+        friendsN: {
+          data: action.payload.data,
           _error: action.payload._error,
         },
       };

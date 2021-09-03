@@ -21,8 +21,7 @@ const Homepage = (props) => {
   console.log(feedData);
 
   return (
-    <DashboardLayout rightDrawer={true}>
-      <Grid md={12} xs={12} lg={12}>
+    <Grid md={12} xs={12} lg={12}>
         <PostCard />
         {feedData.data.length
           ? feedData.data.map((data, id) => (
@@ -31,7 +30,6 @@ const Homepage = (props) => {
           : ""}
           <button onClick={() => dispatch(listFeed(feedData._start + feedData._limit))}>Load More</button>
       </Grid>
-    </DashboardLayout>
   );
 };
 

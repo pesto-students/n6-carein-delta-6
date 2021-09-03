@@ -15,15 +15,9 @@ const Events = () => {
   }, []);
 
   console.log(eventData);
-  return (
-    <DashboardLayout rightDrawer={true}>
-      {eventData.data.length
-        ? eventData.data.map((text, index) => (
-            <WalkCard event={text} key={index} />
-          ))
-        : ""}
-    </DashboardLayout>
-  );
+  return eventData.data.length
+    ? eventData.data.map((text, index) => <WalkCard event={text} key={index} />)
+    : "";
 };
 
 export default Events;
