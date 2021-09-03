@@ -120,8 +120,8 @@ export default function NavBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to='/Profile'>Profile</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
     </Menu>
   );
 
@@ -145,7 +145,9 @@ export default function NavBar(props) {
         >
           <AccountCircle />
         </IconButton>
+        <Link to='/Profile'>
         <p>Profile</p>
+        </Link>
       </MenuItem>
     </Menu>
   );
