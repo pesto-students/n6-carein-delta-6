@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FeedCard() {
+function FeedCard(feed) {
   const classes = useStyles();
 
   return (
@@ -47,7 +47,7 @@ function FeedCard() {
       <CardContent>
           <Grid container spacing={3} className={classes.main}>
           <Grid item md={1.5} className={classes.profile}>
-            <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
+            <Avatar alt="Remy Sharp" src={feed.url} />
           </Grid>
           <Grid item md={5} className={classes.text}>
           <Typography
