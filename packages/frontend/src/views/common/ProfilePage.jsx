@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
     maxHeight:"100%",
-    marginLeft: 310,
+    //marginLeft: 310,
   margin: theme.spacing(0, 3, 0),
   //backgroundColor:"#add8e6",
   },
