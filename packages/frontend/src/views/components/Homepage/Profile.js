@@ -5,9 +5,7 @@ import DashboardLayout from "../../../containers/TheLayout";
 const Profile = () => {
     return (
         <DashboardLayout rightDrawer={true}>
-      {data.map((text, index) => (
         <ProfilePage />
-      ))}
     </DashboardLayout>
     )
 }
