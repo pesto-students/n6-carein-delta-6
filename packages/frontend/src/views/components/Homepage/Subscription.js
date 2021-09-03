@@ -7,7 +7,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import WalkCard from "../../common/WalkCard";
 const Subscription = () => {
   return (
-    <DashboardLayout rightDrawer={false}>
+    <DashboardLayout rightDrawer={true}>
       <SubscriptionCard />
        
     </DashboardLayout>

@@ -18,5 +18,8 @@
     "hooks": {
       "pre-commit": "npx lerna run --concurrency 1 --stream precommit"
     }
+  },
+  "dependencies": {
+    "date-fns": "^2.23.0"
   }
 }

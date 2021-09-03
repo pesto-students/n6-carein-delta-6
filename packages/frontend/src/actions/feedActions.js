@@ -14,8 +14,6 @@ const api = new Api();
 
 export const listFeed = (userData) => (dispatch) => {
     let token = localStorage.jwtToken;
-
-	console.log('HEREEEEEE', token);
 	let config = {
 		method: 'GET',
 		url: api.getCurrentHost() + 'feeds',

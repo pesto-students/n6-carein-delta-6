@@ -96,14 +96,7 @@ export default function SideNav() {
       </List>
 
       <Divider />
-      <Typography
-        component="h5"
-        variant="h6"
-        sx={{ color: "text.secondary", mt: 3 }}
-        className={classes.activity}
-      >
-        Activities you Like
-      </Typography>
+       <p className="yml">Your Events</p>
       <List className={classes.contentmargin}>
         {["Dance Club", "Morning Walk", "Temple Buddies"].map((text, index) => (
           <ListItem button key={text}>

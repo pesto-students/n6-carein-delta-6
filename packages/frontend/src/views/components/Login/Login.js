@@ -11,10 +11,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import { useFormik, Form, FormikProvider } from "formik";
-import { loginUser  } from '../../../actions/authActions';
-import { useDispatch } from 'react-redux';
+import { loginUser } from "../../../actions/authActions";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
 
 const Copyright = () => {
   return (
@@ -27,15 +26,16 @@ const Copyright = () => {
       {"."}
     </Typography>
   );
-}
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
   },
   image: {
-    backgroundImage: 'url(https://images.unsplash.com/photo-1504004030892-d06adf9ffbcf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80)',
-    backgroundRepeat: 'no-repeat',
+    backgroundImage:
+      "url(https://images.unsplash.com/photo-1504004030892-d06adf9ffbcf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80)",
+    backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
         ? theme.palette.grey[100]
@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     margin: theme.spacing(-21, 0, -17),
-	
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -66,28 +65,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Login = () => {
-
   const classes = useStyles();
   const dispatch = useDispatch();
-  
+
   // const handleSubmit = (e) => {
-	// 	e.preventDefault();
-	// 	const userData = {
-	// 		identifier: email,
-	// 		password: password
-	// 	};
-	// 	// this.props.loginUser(userData);
+  // 	e.preventDefault();
+  // 	const userData = {
+  // 		identifier: email,
+  // 		password: password
+  // 	};
+  // 	// this.props.loginUser(userData);
   //   if (email && password) {
   //     // get return url from location state or default to home page
   //     // const { from } = location.state || { from: { pathname: "/" } };
   //     dispatch(loginUser(userData));
   // }
-		
-	// };    
+
+  // };
 
   const LoginSchema = Yup.object().shape({
-    identifier: Yup.string()
-      .required("Email is required"),
+    identifier: Yup.string().required("Email is required"),
     password: Yup.string()
       .min(4, "Too short")
       .max(15, "Too Long")
@@ -100,14 +97,14 @@ const Login = () => {
       password: "",
       remember: true,
     },
-    
+
     validationSchema: LoginSchema,
     onSubmit: (values) => {
       dispatch(loginUser(values));
-    }
+    },
   });
 
-  const { errors, touched, values, isSubmitting, getFieldProps,handleSubmit } =
+  const { errors, touched, values, isSubmitting, getFieldProps, handleSubmit } =
     formik;
 
   return (
@@ -118,79 +115,82 @@ const Login = () => {
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Typography component="h1" variant="h2">
-          <div>
-          <img className={classes.logo} src="./assets/media/bg/carelogo2.png" alt="logo" />
-          </div>
+            <div>
+              <img
+                className={classes.logo}
+                src="./assets/media/bg/carelogo2.png"
+                alt="logo"
+              />
+            </div>
           </Typography>
           <FormikProvider value={formik}>
-          <Form className={classes.form} noValidate onSubmit={handleSubmit}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="identifier"
-            autoComplete="email"
-            type="email"
-            {...getFieldProps("identifier")}
-            error={Boolean(touched.identifier && errors.identifier)}
-            helperText={touched.identifier && errors.identifier}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            {...getFieldProps("password")}
-            error={Boolean(touched.password && errors.password)}
-            helperText={touched.password && errors.password}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                {...getFieldProps("remember")}
-                checked={values.remember}
-                color="primary"
+            <Form className={classes.form} noValidate onSubmit={handleSubmit}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="identifier"
+                autoComplete="email"
+                type="email"
+                {...getFieldProps("identifier")}
+                error={Boolean(touched.identifier && errors.identifier)}
+                helperText={touched.identifier && errors.identifier}
               />
-            }
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            loading={isSubmitting}
-            className={classes.submit}
-          >
-            SIGN IN
-          </Button>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                {...getFieldProps("password")}
+                error={Boolean(touched.password && errors.password)}
+                helperText={touched.password && errors.password}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    {...getFieldProps("remember")}
+                    checked={values.remember}
+                    color="primary"
+                  />
+                }
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                loading={isSubmitting}
+                className={classes.submit}
+              >
+                SIGN IN
+              </Button>
 
-          <Grid container>
-            </Grid>
-            <Grid container>
-              <Grid item xs>
-                <Link to="/Forgotpassword" variant="body2">
-                  Forgot password?
-                </Link>
+              <Grid container></Grid>
+              <Grid container>
+                <Grid item xs>
+                  <Link to="/Forgotpassword" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link to="/Signup" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Link to="/Signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
             </Form>
-          </FormikProvider>      
+          </FormikProvider>
         </div>
-    </Grid>
+      </Grid>
     </Grid>
   );
 };

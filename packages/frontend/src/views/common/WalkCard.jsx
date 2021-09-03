@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import CardActions from '@material-ui/core/CardActions';
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import CardActions from "@material-ui/core/CardActions";
 import { Grid } from "@material-ui/core";
+import { fDate, fTime } from "../../utils/formatTime";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,29 +18,30 @@ const useStyles = makeStyles((theme) => ({
     width: "calc(100% - 10px) !important",
     margin: "10px 5px !important",
   },
-  card : {
-    margin :'5px 5px'
+  card: {
+    margin: "5px 5px",
   },
   text: {
     margin: theme.spacing(0, 0, 0),
+    fontSize: "14px",
   },
   main: {
-    margin: theme.spacing(0, 0, 2),
+    margin: theme.spacing(0, 0, 1),
+    fontSize: "18px",
   },
   buttoninterested: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(0, 0, 0),
   },
   buttonregister: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(0, 0, 0),
   },
 }));
 
 function WalkCard(props) {
   const classes = useStyles();
- 
-  
+
   return (
-    <Grid xs={12} md={4} lg={3} sm={6}>
+    <Grid xs={12} md={4} lg={4} sm={6}>
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia component="img" image={props.event.media.url} />
@@ -50,7 +52,7 @@ function WalkCard(props) {
               variant="h5"
               component="h6"
             >
-              {props.event.startDate}
+              {fDate(props.event.startDate)}
             </Typography>
             <Typography
               className={classes.text}
@@ -66,7 +68,7 @@ function WalkCard(props) {
               color="textSecondary"
               component="p"
             >
-              {props.event.startDate} to {props.event.endDate}
+              {fTime(props.event.startDate)} to {fTime(props.event.endDate)}
             </Typography>
             <Typography
               className={classes.text}
@@ -76,30 +78,29 @@ function WalkCard(props) {
             >
               {props.event.addressLine1}
             </Typography>
-
-            <CardActions>
-              <Button
-                size="small"
-                className={classes.buttoninterested}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Interested
-              </Button>
-              <Button
-                size="small"
-                className={classes.buttonregister}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Register
-              </Button>
-            </CardActions>
           </CardContent>
+          <CardActions>
+            <Button
+              size="small"
+              className={classes.buttoninterested}
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+            >
+              Interested
+            </Button>
+            <Button
+              size="small"
+              className={classes.buttoninterested}
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+            >
+              Register
+            </Button>
+          </CardActions>
         </CardActionArea>
       </Card>
     </Grid>

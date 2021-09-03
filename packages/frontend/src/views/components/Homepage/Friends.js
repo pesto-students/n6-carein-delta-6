@@ -9,7 +9,7 @@ import DashboardLayout from "../../../containers/TheLayout";
 const Friends = () => {
   let data = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   return (
-    <DashboardLayout rightDrawer={false}>
+    <DashboardLayout rightDrawer={true}>
       {data.map((text, index) => (
         <FriendCard key={index} />
       ))}

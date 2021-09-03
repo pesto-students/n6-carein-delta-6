@@ -29,7 +29,7 @@ export const loginUser = (userData) => (dispatch) => {
       const token = jwt.encode(payload, secret);
 
       localStorage.setItem("jwtToken", res.data.jwt);
-      localStorage.setItem("user", res.data.user);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
 
       window.open("/homepage", "_self");
       // const decoded = jwt_decode(token);

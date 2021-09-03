@@ -7,21 +7,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { listFeed } from "../../../actions/feedActions";
 
 const Homepage = () => {
-  let feedData = []
+  let feedData = [];
   feedData = useSelector((state) => state.apiRes);
   const dispatch = useDispatch();
+  const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {}
   useEffect(() => {
     dispatch(listFeed());
   }, []);
-  console.log(typeof feedData)
+  console.log(feedData);
+
   return (
     <DashboardLayout rightDrawer={true}>
-      <Grid>
-        
+      <Grid md={12} xs={12} lg={12}>
         <PostCard />
-        {feedData.map((data, id) => (
-          <FeedCard key={id} feed={data} />
-        ))}
+        {feedData.length
+          ? feedData.map((data, id) => <FeedCard user={user} key={id} feed={data} />)
+          : ""}
       </Grid>
     </DashboardLayout>
   );

@@ -7,8 +7,13 @@ import RightNav from "../views/common/RightNav";
 import Hidden from "@material-ui/core/Hidden";
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    // display: "flex",
     marginTop: "50px",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft : 240,
+      marginRight : 220
+    } 
+     
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
