@@ -34,6 +34,86 @@ html body {
     background-color: transparent;
     border-color: none;
 } */
+
+.cardInner {
+  margin: 0px 10px;
+  border: 1px solid #0000003d;
+  background: white;
+  border-radius: 14px;
+}
+.cardheader {
+  margin-bottom: 45px;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-align: center;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.cardProfileimg {
+  margin: auto;
+  width: 80px;
+  border: solid white 4px;
+  border-radius: 50%;
+  margin-top: 60px;
+  margin-bottom: -36px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.cbold-text {
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 10px 20px 0px 20px;
+  text-transform: capitalize;
+}
+.card-container {
+  margin-bottom: 17px;
+}
+.cnormal-text {
+  font-weight: normal;
+  font-size: 0.95rem;
+  color: hsl(0, 0%, 50%);
+  text-align: center;
+  padding-bottom: 10px;
+  text-transform: capitalize;
+}
+
+/* SOCIAL STATS */
+.csmaller-text {
+  font-weight: normal;
+  font-size: 0.7rem;
+  color: hsl(0, 0%, 50%);
+  text-align: center;
+  letter-spacing: 1px;
+  padding: 5px 0px;
+  line-height: 5px;
+}
+
+.csocial-container {
+  display: flex;
+  border-top: solid rgb(206, 206, 206) 1px;
+  text-align: center;
+}
+
+.cfollowers {
+  flex: 1;
+}
+.pcardbtn{
+  border-radius: 5px ​5px 14px 5px;
+}
+.clikes {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.cphotos {
+  flex: 1;
+}
 .btn:focus,
 .btn:active {
   box-shadow: none !important;

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FriendCard() {
+function FriendCard(props) {
   const classes = useStyles();
 
   return (
@@ -46,7 +46,7 @@ function FriendCard() {
             variant="h5"
             component="h6"
           >
-            Sakshi Verma
+            {props.user.firstName} {props.user.lastName}
           </Typography>
           <Typography
             className={classes.text}

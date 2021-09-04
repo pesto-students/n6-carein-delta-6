@@ -7,6 +7,7 @@ import { listFriend } from "../../../actions/friendsActions";
 import { listNFriend } from "../../../actions/friendsNActions";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import ProfileCard from "../../common/ProfileCard";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,10 +25,23 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.spacing(1.605),
     marginBottom: "0px",
   },
+  header: {
+    height: theme.spacing(4),
+    background: "white",
+    lineHeight: "30px",
+    padding: "0px 10px",
+    fontWeight: "500",
+    borderRadius: "5px",
+    "box-shadow": "4px 3px 6px 0px #0000003b",
+  },
+  friendFlex: {
+    display: "flex",
+    margin: "16px 0px",
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
 }));
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
+
 const Friends = () => {
   const classes = useStyles();
   const friendsData = useSelector((state) => state.apiRes.friends);
@@ -47,22 +61,61 @@ const Friends = () => {
   const renderSwitch = () => {
     switch (page) {
       case "myFriends":
-        return friendsData.data?.friendList?.map((text, index) => (
-          <FriendCard key={index} />
-        ));
+        return (
+          <>
+            <Grid item xl={12} md={12} lg={12}>
+              <div className={classes.header}>My Team</div>
+              <Grid className={classes.friendFlex}>
+                {friendsData.data?.friendList?.map((user, index) => (
+                  // <FriendCard user={user} key={index} />
+                  <ProfileCard approval={false} user={user} key={index}></ProfileCard>
+                ))}
+              </Grid>
+            </Grid>
+          </>
+        );
+
       case "approval":
-        return friendsData.data?.openRequest?.map((text, index) => (
-          <FriendCard key={index} />
-        ));
+        return (
+          <>
+            <Grid item xl={12} md={12} lg={12}>
+              <div className={classes.header}>Team Requests</div>
+              <Grid className={classes.friendFlex}>
+                {friendsData.data?.openRequest?.map((user, index) => (
+                  <ProfileCard approval={true} user={user} key={index}></ProfileCard>
+                ))}
+              </Grid>
+            </Grid>
+          </>
+        );
+
       case "findFriends":
-        return "bar";
+        return (
+          <>
+            <Grid item xl={12} md={12} lg={12}>
+              <div className={classes.header}>People Nearby</div>
+              <Grid className={classes.friendFlex}>
+                {friendsNData.data?.nearby?.map((user, index) => (
+                  <ProfileCard  approval={false} user={user} key={index}></ProfileCard>
+                ))}
+              </Grid>
+            </Grid>
+            {/* <Grid item xl={12} md={12} lg={12}>
+              <div className={classes.header}>People you may know</div>
+              <Grid className={classes.friendFlex}>
+                {friendsNData.data?.fof?.map((user, index) => (
+                  <ProfileCard user={user} key={index}></ProfileCard>
+                ))}
+              </Grid>
+            </Grid> */}
+          </>
+        );
       default:
         return friendsData.data?.friendList?.map((text, index) => (
           <FriendCard key={index} />
         ));
     }
   };
-  let data = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   return (
     <>
       <Grid className={classes.leftCont} container lg={2} md={2} xs={12}>
