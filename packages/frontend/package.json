@@ -50,7 +50,7 @@
 		"web-vitals": "^1.0.1",
 		"yup": "^0.32.9"
 	},
-	"homepage": "./",
+	"homepage": "https://master.d3jkmg959k8ms4.amplifyapp.com/",
 	"scripts": {
 		"start": "react-scripts start",
 		"build:dev": "cross-env REACT_APP_URL=sandbox BUILD_ENV=dev react-scripts build",
