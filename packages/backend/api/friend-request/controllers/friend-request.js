@@ -1,4 +1,5 @@
 "use strict";
+const { nextSaturday } = require("date-fns");
 const _ = require("lodash");
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
@@ -83,6 +84,71 @@ module.exports = {
     return {
       openRequest: response,
       friendList: myList,
+    };
+  },
+
+  async near(ctx) {
+    let myList = [];
+    console.log(ctx.state.user);
+    let friends = await strapi
+      .query("user", "users-permissions")
+      .find({ city: ctx.state.user.city });
+
+    friends.map((entity) => {
+      if (entity.id !== ctx.state.user.id) {
+        let f = [];
+        entity.friends.map((g) => {
+          f.push(g.id);
+        });
+
+        let friend = {
+          firstName: entity.firstName,
+          lastName: entity.lastName,
+          infoStatus: entity.infoStatus,
+          id: entity.id,
+          friends: f,
+        };
+        if (_.includes(friend.friends, ctx.state.user.id)) {
+        } else {
+          myList.push(friend);
+        }
+      }
+    });
+
+    let myfriends = [];
+    let fof = [];
+    let friendsOfFriends = await strapi
+      .query("user", "users-permissions")
+      .findOne({ id: ctx.state.user.id }, [
+        {
+          path: "friends",
+          populate: {
+            path: "friends",
+          },
+        },
+      ]);
+
+    friendsOfFriends.friends.map((entity) => {
+      myfriends.push(entity);
+    });
+    friendsOfFriends.friends.map((entity) => {
+      entity.friends.forEach((f) => {
+        if (_.includes(f.friends, ctx.state.user.id) || f.id == ctx.state.id) {
+        } else {
+          fof.push({
+            firstName: f.firstName,
+            lastName: f.lastName,
+            infoStatus: f.infoStatus,
+            id: f.id,
+            friends: f.friends,
+          });
+        }
+      });
+    });
+
+    return {
+      nearby: myList,
+      fof: fof,
     };
   },
 

@@ -110,6 +110,9 @@
     },
     "infoStatus": {
       "type": "string"
+    },
+    "dob": {
+      "type": "datetime"
     }
   }
 }

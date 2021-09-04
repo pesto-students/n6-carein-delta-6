@@ -6,6 +6,23 @@ const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
  */
 
 module.exports = {
+  async find(ctx) {
+    let entity;
+
+    entity = await strapi.query("feed").find(ctx.query, [
+      {
+        path: "comments",
+        populate: {
+          path: "user",
+        },
+      },
+      {
+        path: "postedBy",
+      },
+    ]);
+
+    return sanitizeEntity(entity, { model: strapi.models.feed });
+  },
   async create(ctx) {
     let response = {
       success: false,

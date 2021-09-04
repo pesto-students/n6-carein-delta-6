@@ -41,7 +41,7 @@ function WalkCard(props) {
   const classes = useStyles();
 
   return (
-    <Grid xs={12} md={4} lg={4} sm={6}>
+    <Grid item xs={12} md={4} lg={4} sm={6}>
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia component="img" image={props.event.media.url} />
@@ -52,7 +52,7 @@ function WalkCard(props) {
               variant="h5"
               component="h6"
             >
-              {fDate(props.event.startDate)}
+              {props.event.startDate ? fDate(props.event.startDate) : ""}
             </Typography>
             <Typography
               className={classes.text}
@@ -68,7 +68,8 @@ function WalkCard(props) {
               color="textSecondary"
               component="p"
             >
-              {fTime(props.event.startDate)} to {fTime(props.event.endDate)}
+              {props.event.startDate ? fTime(props.event.startDate) : ""} to{" "}
+              {props.event.endDate ? fTime(props.event.endDate) : ""}
             </Typography>
             <Typography
               className={classes.text}

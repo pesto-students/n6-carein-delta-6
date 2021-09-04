@@ -10,33 +10,35 @@ const useStyles = makeStyles((theme) => ({
     // display: "flex",
     marginTop: "50px",
     [theme.breakpoints.up("sm")]: {
-      marginLeft : 240,
-      marginRight : 220
-    } 
-     
+      marginLeft: 240,
+      marginRight: 220,
+    },
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(1),
+    marginTop:theme.spacing(12)
   },
 }));
 
 const DashboardLayout = (props) => {
   const classes = useStyles();
-  console.log(props)
+  console.log(props);
   return (
     <div className={classes.root}>
       <SideNav></SideNav>
+      <div className={classes.toolbar} />
       <div className={classes.content}>
-        <div className={classes.toolbar} />
         <Grid container className={useStyles.root}>
           {props.children}
         </Grid>
       </div>
-      {props.rightDrawer ? (<Hidden smDown implementation="css"><RightNav  /></Hidden>) : ""}
+      <Hidden smDown implementation="css">
+        <RightNav />
+      </Hidden>
     </div>
   );
 };

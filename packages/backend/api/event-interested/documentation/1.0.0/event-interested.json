@@ -617,6 +617,9 @@
               "infoStatus": {
                 "type": "string"
               },
+              "dob": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },

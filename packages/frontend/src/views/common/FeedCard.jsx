@@ -92,7 +92,8 @@ function FeedCard(props) {
               variant="h6"
               component="h6"
             >
-              {props.feed.postedBy.firstName} {props.feed.postedBy.lastName}
+              {props?.feed?.postedBy?.firstName}{" "}
+              {props?.feed?.postedBy?.lastName}
             </Typography>
             <Typography
               className={classes.date}
@@ -100,7 +101,7 @@ function FeedCard(props) {
               variant="p"
               component="p"
             >
-              {fToNow(props.feed.postedBy.createdAt)}
+              {props.feed.postedBy.createdAt ? fToNow(props.feed.postedBy.createdAt) : ""}
             </Typography>
           </Grid>
           <Grid item md={1} className={classes.icon}></Grid>
@@ -113,7 +114,7 @@ function FeedCard(props) {
               variant="p"
               component="p"
             >
-              {props.feed.description}
+              {props?.feed?.description}
             </Typography>
           </Grid>
         </Grid>
@@ -122,7 +123,7 @@ function FeedCard(props) {
             <CardMedia
               component="img"
               className={classes.media}
-              image={props.feed.media[0].url}
+              image={props?.feed?.media[0]?.url}
             />
           </Grid>
         </Grid>
@@ -135,7 +136,7 @@ function FeedCard(props) {
                   <ChatBubbleOutlineIcon />
                 </ListItemIcon>
                 <p className={classes.textBox}>
-                  Comments ({props.feed.comments.length})
+                  Comments ({props?.feed?.comments?.length})
                 </p>
               </ListItem>
             </List>
@@ -154,8 +155,8 @@ function FeedCard(props) {
         <Grid container>
           <Grid className={classes.avatar} item md={1}>
             <Avatar
-              alt={props.user.firstName}
-              src={props.user.profilePic.url}
+              alt={props?.user?.firstName}
+              src={props?.user?.profilePic.url}
             />
           </Grid>
           <Grid item md={11}>
@@ -175,13 +176,13 @@ function FeedCard(props) {
                   <Grid key={index} container className={classes.comments}>
                     <Grid className={classes.avatar} item md={1}>
                       <Avatar
-                        alt={props.user.firstName}
-                        src={props.user.profilePic.url}
+                        alt={props?.user?.firstName}
+                        src={props?.user?.profilePic?.url}
                       />
                     </Grid>
                     <Grid item md={11}>
                       <p className={classes.commentsTextBox}>
-                        {comment.comment}
+                        {comment?.comment}
                       </p>
                     </Grid>
                   </Grid>

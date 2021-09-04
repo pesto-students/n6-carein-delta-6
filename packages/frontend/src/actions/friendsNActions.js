@@ -1,24 +1,16 @@
 import axios from "axios";
-import setAuthToken from "../utils/setAuthToken";
-// import jwt from "jwt-decode";
-import jwt from "jwt-simple";
-import { EVENTS_GET_SUCCESS, EVENTS_GET_ERRORS } from "./types";
+import { FRIENDS_N_GET_SUCCESS, FRIENDS_N_GET_ERRORS } from "./types";
 import Api from "../constants/index";
+
 const api = new Api();
 
-// const decoded = jwt_decode(token);
-// this.setState({ token: decoded.token });
-// console.log(token)
-
-export const listEvents =
-  (userData = 0) =>
+export const listNFriend =
+  () =>
   (dispatch) => {
     let token = localStorage.jwtToken;
-
     let config = {
       method: "GET",
-      url: api.getCurrentHost() + "events",
-      data: userData,
+      url: `${api.getCurrentHost()}friend-nearby`,
       headers: {
         Authorization: "Bearer " + token,
         Accept: "application/json",
@@ -27,12 +19,11 @@ export const listEvents =
     };
     axios(config).then(
       (success) => {
-        console.log("fetch data success");
+        console.log("fetch data success FRIENDS_N_GET_SUCCESS");
+    
         dispatch({
-          type: EVENTS_GET_SUCCESS,
+          type: FRIENDS_N_GET_SUCCESS,
           payload: {
-            _start: userData,
-            _limit: 10,
             data: success.data,
             _error: "",
           },
@@ -41,10 +32,8 @@ export const listEvents =
       (error) => {
         console.log("fetch data error");
         dispatch({
-          type: EVENTS_GET_ERRORS,
+          type: FRIENDS_N_GET_ERRORS,
           payload: {
-            _start: userData,
-            _limit: 10,
             data: {},
             _error: error.data,
           },
