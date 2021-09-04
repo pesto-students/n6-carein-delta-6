@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Grid } from "@material-ui/core";
 import randomColor from "randomcolor";
+import { Link } from "react-router-dom";
 function ProfileCard(props) {
   let color = randomColor();
   return (
@@ -12,11 +13,27 @@ function ProfileCard(props) {
             background: `linear-gradient(45deg, ${color}, transparent)`,
           }}
         >
-          <img
-            className="cardProfileimg"
-            src="./assets/media/bg/profile.jpg"
-            alt={props.name}
-          />
+          {props.user.media ? (
+            <img
+              className="cardProfileimg"
+              src={
+                props.user.media
+                  ? props.user.media.url
+                  : `./assets/media/bg/profile.jpg`
+              }
+              alt={props.name}
+            />
+          ) : (
+            <img
+              className="cardProfileimg"
+              src={
+                props.user.profilePic
+                  ? props.user.profilePic.url
+                  : `./assets/media/bg/profile.jpg`
+              }
+              alt={props.name}
+            />
+          )}
         </div>
         <h1 className="cbold-text">
           {props.user.firstName} {props.user.lastName}{" "}
@@ -35,11 +52,13 @@ function ProfileCard(props) {
               size="small"
               type="submit"
               fullWidth
-              variant="outlined"
+              variant="contained"
               color="primary"
               style={{ borderRadius: "5px 5px 14px 5px" }}
             >
-              Profile
+              <Link style={{ color: "white" }} to={`/profile/${props.user.id}`}>
+                Profile
+              </Link>
             </Button>
           </div>
         </div>

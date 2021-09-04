@@ -7,6 +7,8 @@ import {
   FRIENDS_N_GET_SUCCESS,
   FRIENDS_GET_ERRORS,
   FRIENDS_N_GET_ERRORS,
+  PROFILE_GET_SUCCESS,
+  PROFILE_GET_ERRORS,
 } from "../actions/types";
 const initialState = {
   feeds: {
@@ -29,10 +31,14 @@ const initialState = {
     data: {},
     _error: "",
   },
+  profile: {
+    data: {},
+    _error: "",
+  },
 };
 
 export default function (state = initialState, action) {
-  console.log(action.type)
+  console.log(action.type);
   switch (action.type) {
     case FEEDS_GET_SUCCESS:
       console.log("action FEEDS_GET_SUCCESS", action.payload);
@@ -98,7 +104,7 @@ export default function (state = initialState, action) {
       };
     case FRIENDS_N_GET_SUCCESS:
       console.log("action FRIENDS_N_GET_SUCCESS", action.payload);
-       
+
       return {
         ...state,
         friendsN: {
@@ -111,6 +117,25 @@ export default function (state = initialState, action) {
       return {
         ...state,
         friendsN: {
+          data: action.payload.data,
+          _error: action.payload._error,
+        },
+      };
+    case PROFILE_GET_SUCCESS:
+      console.log("action FRIENDS_N_GET_SUCCESS", action.payload);
+
+      return {
+        ...state,
+        profile: {
+          data: action.payload.data,
+          _error: "",
+        },
+      };
+    case PROFILE_GET_ERRORS:
+      console.log("reducer FRIENDS_N_GET_ERRORS", action.payload);
+      return {
+        ...state,
+        profile: {
           data: action.payload.data,
           _error: action.payload._error,
         },
