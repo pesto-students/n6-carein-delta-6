@@ -26,6 +26,7 @@ const routes = [
      { path: '/Subscription', name: 'Subscription', component: Subscription },
      { path: '/Servicedetails', name: 'Servicedetails', component: ServiceDetails },
      { path: '/Profile', name: 'Profile', component: Profile },
+     { path: '/Profile/:id', name: 'Profile', component: Profile },
 ];
 
 export default routes;

@@ -153,6 +153,14 @@ class App extends Component {
               component={Profile}
               render={(props) => <Profile {...props} />}
             />
+            <PrivateRoute
+              exact
+              path="/Profile/:id"
+              name="Profile"
+              layout={DashboardLayout}
+              component={Profile}
+              render={(props) => <Profile {...props} />}
+            />
 
             <Route component={NoMatchPage} />
           </Switch>

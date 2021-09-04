@@ -8,6 +8,7 @@ import { listNFriend } from "../../../actions/friendsNActions";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ProfileCard from "../../common/ProfileCard";
+import FriendRequestCard from "../../common/FriendRequestCard";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,8 +57,7 @@ const Friends = () => {
     dispatch(listFriend());
     dispatch(listNFriend());
   }, []);
-  console.log(friendsData);
-  console.log(friendsNData);
+ 
   const renderSwitch = () => {
     switch (page) {
       case "myFriends":
@@ -68,7 +68,7 @@ const Friends = () => {
               <Grid className={classes.friendFlex}>
                 {friendsData.data?.friendList?.map((user, index) => (
                   // <FriendCard user={user} key={index} />
-                  <ProfileCard approval={false} user={user} key={index}></ProfileCard>
+                  <ProfileCard user={user} key={index}></ProfileCard>
                 ))}
               </Grid>
             </Grid>
@@ -82,7 +82,10 @@ const Friends = () => {
               <div className={classes.header}>Team Requests</div>
               <Grid className={classes.friendFlex}>
                 {friendsData.data?.openRequest?.map((user, index) => (
-                  <ProfileCard approval={true} user={user} key={index}></ProfileCard>
+                  <FriendRequestCard
+                    request={user}
+                    key={index}
+                  ></FriendRequestCard>
                 ))}
               </Grid>
             </Grid>
@@ -96,7 +99,7 @@ const Friends = () => {
               <div className={classes.header}>People Nearby</div>
               <Grid className={classes.friendFlex}>
                 {friendsNData.data?.nearby?.map((user, index) => (
-                  <ProfileCard  approval={false} user={user} key={index}></ProfileCard>
+                  <ProfileCard user={user} key={index}></ProfileCard>
                 ))}
               </Grid>
             </Grid>

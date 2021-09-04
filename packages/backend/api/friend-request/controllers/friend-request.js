@@ -48,6 +48,7 @@ module.exports = {
         lastName: entity.from.lastName,
         media : entity.from.profilePic,
         friends : entity.from.friends,
+        city: entity.city,
         id: entity.from.id,
       };
       let to = {
@@ -82,6 +83,7 @@ module.exports = {
         infoStatus: entity.infoStatus,
         media : entity.profilePic,
         friends : entity.friends,
+        city: entity.city,
         id: entity.id,
       };
 
@@ -95,11 +97,11 @@ module.exports = {
 
   async near(ctx) {
     let myList = [];
-    console.log(ctx.state.user);
+    
     let friends = await strapi
       .query("user", "users-permissions")
       .find({ city: ctx.state.user.city });
-
+      console.log(friends);
     friends.map((entity) => {
       if (entity.id !== ctx.state.user.id) {
         let f = [];
@@ -112,6 +114,7 @@ module.exports = {
           lastName: entity.lastName,
           infoStatus: entity.infoStatus,
           id: entity.id,
+          city: entity.city,
           media : entity.profilePic,
           friends: f,
         };
