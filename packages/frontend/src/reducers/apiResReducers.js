@@ -7,6 +7,8 @@ import {
   FRIENDS_N_GET_SUCCESS,
   FRIENDS_GET_ERRORS,
   FRIENDS_N_GET_ERRORS,
+  FEEDS_ADD_ERROR,
+  FEEDS_ADD_SUCCESS
 } from "../actions/types";
 const initialState = {
   feeds: {
@@ -29,6 +31,10 @@ const initialState = {
     data: {},
     _error: "",
   },
+  posts: {
+    data: {},
+    _error: ""
+  }
 };
 
 export default function (state = initialState, action) {
@@ -56,6 +62,24 @@ export default function (state = initialState, action) {
           _error: action.payload._error,
         },
       };
+    case FEEDS_ADD_SUCCESS:
+      console.log("reducer FEEDS_ADD_SUCCESS", action.payload);
+      return {
+        ...state,
+        posts: {
+          data: action.payload.data,
+          _error:""
+        }
+      };  
+    case FEEDS_ADD_ERROR:
+      console.log("reducer FEED_ADD_ERROR", FEEDS_ADD_ERROR);
+      return {
+        ...state,
+        posts: {
+          data: action.payload.data,
+          _error:action.payload._error
+        }
+      }  
     case EVENTS_GET_SUCCESS:
       console.log("action EVENTS_GET_SUCCESS", action.payload);
       return {

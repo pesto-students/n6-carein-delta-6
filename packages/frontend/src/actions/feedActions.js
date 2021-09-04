@@ -2,7 +2,7 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 // import jwt from "jwt-decode";
 import jwt from "jwt-simple";
-import { FEEDS_GET_SUCCESS, FEEDS_GET_ERRORS } from "./types";
+import { FEEDS_GET_SUCCESS, FEEDS_GET_ERRORS,FEEDS_ADD_ERROR, FEEDS_ADD_SUCCESS } from "./types";
 import Api from "../constants/index";
 
 const api = new Api();
@@ -47,3 +47,41 @@ export const listFeed =
       }
     );
   };
+
+  export const addFeeds = (userData) => (dispatch) => {
+    let token = localStorage.jwtToken;
+  
+    let config = {
+      method: "POST",
+      url: api.getCurrentHost() + "feeds",
+      data: userData,
+      headers: {
+        Authorization: "Bearer " + token,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+  
+    axios(config).then(
+      (success) => {
+        console.log("fetch data success");
+        dispatch({
+          type: FEEDS_ADD_SUCCESS,
+          payload: {
+            data: success.data,
+            _error: "",
+          },
+        });
+      },
+      (error) => {
+        console.log("fetch data error");
+        dispatch({
+          type: FEEDS_ADD_ERROR,
+          payload: {
+            _error: error.data,
+          },
+        });
+      }
+    );
+  };
+  
