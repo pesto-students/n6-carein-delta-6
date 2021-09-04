@@ -43,8 +43,9 @@ module.exports = {
         ...ctx.request.body,
         postedBy: ctx.state.user,
       });
+      response.success = true;
     }
-    return sanitizeEntity(entity, { model: strapi.models.feed });
+    return sanitizeEntity(response, { model: strapi.models.feed });
   },
 
   async update(ctx) {
