@@ -46,12 +46,16 @@ module.exports = {
       let from = {
         firstName: entity.from.firstName,
         lastName: entity.from.lastName,
+        media : entity.from.profilePic,
+        friends : entity.from.friends,
         id: entity.from.id,
       };
       let to = {
         firstName: entity.to.firstName,
         lastName: entity.to.lastName,
         id: entity.to.id,
+        media : entity.to.profilePic,
+        friends : entity.to.friends,
       };
       if (entity.from.id == user.id) {
         entity.fromMe = true;
@@ -76,6 +80,8 @@ module.exports = {
         firstName: entity.firstName,
         lastName: entity.lastName,
         infoStatus: entity.infoStatus,
+        media : entity.profilePic,
+        friends : entity.friends,
         id: entity.id,
       };
 
@@ -106,6 +112,7 @@ module.exports = {
           lastName: entity.lastName,
           infoStatus: entity.infoStatus,
           id: entity.id,
+          media : entity.profilePic,
           friends: f,
         };
         if (_.includes(friend.friends, ctx.state.user.id)) {
