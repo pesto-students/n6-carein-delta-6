@@ -167,12 +167,12 @@ const Profile = (props) => {
           fullWidth
           variant="contained"
           color="primary"
-          style={{ borderRadius: "14px",width : '180px' }}
+          style={{ borderRadius: "14px", width: "180px" }}
         >
           Add To Team
         </Button>
       </div>
-      <Grid className={classes.leftCont} container lg={2} md={2} xs={12}>
+      <Grid className={classes.leftCont} item lg={2} md={2} xs={12}>
         <List className={classes.root} style={{ width: "90%" }} component="nav">
           <ListItem
             className={classes.list}
@@ -197,7 +197,7 @@ const Profile = (props) => {
           </ListItem>
         </List>
       </Grid>
-      <Grid container lg={10} md={10} xs={12}>
+      <Grid item  lg={10} md={10} xs={12}>
         {renderSwitch()}
       </Grid>
     </>
