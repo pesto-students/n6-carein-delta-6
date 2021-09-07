@@ -14,12 +14,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
     maxHeight:"100%",
-    marginLeft: 310,
   margin: theme.spacing(0, 3, 0),
   backgroundColor:"#add8e6",
   },
   main: {
     margin: theme.spacing(0, 9, 0),
+    marginBottom:20,
   },
   second: {
 marginLeft:65,
@@ -31,7 +31,7 @@ text: {
 
 function AssistanceService() {
   const classes = useStyles();
-
+  var service = {};
   return (
     <Grid container spacing={5}>
     <Grid item md={12}>
@@ -40,14 +40,14 @@ function AssistanceService() {
             <Grid container spacing={3}>
             <Grid item md={12}>
             <Typography className={classes.main} gutterBottom variant="h5" component="h6">
-            ASSISTANCE
+            {service.name}
           </Typography>
             </Grid>
             </Grid>
             <Grid container spacing={3}>
             <Grid item md={12}>
             <Typography className={classes.main} gutterBottom variant="p" component="p">
-            We are providing assistance for your daily needs with or without cab. Please fill the form and pay the amount, our team will get back to you.!!
+            We are providing services for your daily needs. Please fill the form and pay the amount, our team will get back to you.!!
           </Typography>
             </Grid>
             </Grid>

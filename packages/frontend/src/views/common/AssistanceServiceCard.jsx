@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AssistanceServiceCard = () => {
   const classes = useStyles();
+  var service= {};
   return (
     <Grid xs={12} md={4} lg={3} sm={6}>
       <Card className={classes.card}>
@@ -45,7 +46,7 @@ const AssistanceServiceCard = () => {
             variant="h5"
             component="h6"
           >
-            Assistance
+            {service.name}
           </Typography>
           <Button
             size="small"
