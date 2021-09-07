@@ -37,8 +37,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 function WalkCard(props) {
   const classes = useStyles();
+  const [title, setTitle] = useState("Show Interest");
 
   return (
     <Grid item xs={12} md={4} lg={4} sm={6}>
@@ -88,8 +91,8 @@ function WalkCard(props) {
               fullWidth
               variant="contained"
               color="primary"
-            >
-              Interested
+              onClick={() => setTitle("Interested")}>
+              {title}
             </Button>
             <Button
               size="small"
