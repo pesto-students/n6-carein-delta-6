@@ -44,7 +44,10 @@ function AssistanceServiceCard(props) {
 
   return (
     <Grid item xs={12} md={4} lg={4} sm={6}>
-      <Card className={classes.card}>
+      <Card className={classes.card}
+      style={{
+        background: `linear-gradient(336deg, #C2E9F8, transparent)`,
+      }}>
         <CardActionArea>
           <CardMedia component="img" image="./assets/media/bg/assistance.jpg" />
           <CardContent>
