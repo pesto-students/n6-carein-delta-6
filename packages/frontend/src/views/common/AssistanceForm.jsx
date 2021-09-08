@@ -10,6 +10,9 @@ export default function AddressForm() {
       <Typography variant="h6" gutterBottom>
         Service Details
       </Typography>
+      <Typography variant="p" gutterBottom>
+        We are providing 24*7 custom service, Please fill the below details and pay the required amount and our team will get back to you.
+      </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
