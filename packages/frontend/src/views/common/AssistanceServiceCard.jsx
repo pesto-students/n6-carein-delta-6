@@ -37,6 +37,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const services = [
+  { title: 'Assistance with Outings', description: 'This Service aims for personal assistance for outside work', price: 'Charges: 499/day' },
+  { title: 'Doctor Assistance', description: 'This service will offer in-house doctor assistance', price: 'Charges: 299/visit' },
+  { title: 'Assistance without Outings', description: 'This Service aims for personal assistance for household work', price: 'Charges: 499/day' },
+  { title: 'Simple Outdoors', description: 'This service will provide you great travel packages', price: 'Charges: 999/day' },
+  { title: 'Meal Service', description: 'Need Homely Food, We offer custom meal service', price: 'Charges: 99/day' },
+  { title: 'Caretacker', description: 'Need help if you are not well, then opt this service', price: 'Charges: 499/day' },
+  { title: 'Easy Repairs', description: 'Carein assist you with fine technicians', price: 'Charges: 299/day' },
+];
+
 
 
 function AssistanceServiceCard(props) {
@@ -48,8 +58,9 @@ function AssistanceServiceCard(props) {
       style={{
         background: `linear-gradient(336deg, #C2E9F8, transparent)`,
       }}>
+      {services.map((service) => (
         <CardActionArea>
-          <CardMedia component="img" image={props.service.media.url} />
+          <CardMedia component="img" image={props.service.media.url} height="150" />
           <CardContent>
             <Typography
               className={classes.main}
@@ -58,7 +69,8 @@ function AssistanceServiceCard(props) {
               component="h6"
             >
             
-            {props.service.title}
+            {/*props.service.title*/}
+            {service.title}
             </Typography>
             <Typography
               className={classes.text}
@@ -67,7 +79,8 @@ function AssistanceServiceCard(props) {
               component="p"
             >
               
-            {props.service.description} 
+            {/*props.service.description*/} 
+            {service.description}
             </Typography>
             
             <Typography
@@ -77,7 +90,8 @@ function AssistanceServiceCard(props) {
               component="p"
             >
              
-              {props.service.price_per_day}
+              {/*props.service.price_per_day*/}
+              {service.price}
             </Typography>
           </CardContent>
           <CardActions>
@@ -94,6 +108,7 @@ function AssistanceServiceCard(props) {
             </Button>
           </CardActions>
         </CardActionArea>
+        ))}
       </Card>
     </Grid>
   );

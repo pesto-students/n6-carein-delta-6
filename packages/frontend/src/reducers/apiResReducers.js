@@ -25,6 +25,12 @@ const initialState = {
     data: [],
     _error: "",
   },
+  services: {
+    _start: 0,
+    _limit: 10,
+    data: [],
+    _error: "",
+  },
   friends: {
     data: {},
     _error: "",
@@ -37,12 +43,7 @@ const initialState = {
     data: {},
     _error: "",
   },
-  services: {
-    _start: 0,
-    _limit: 10,
-    data: [],
-    _error: "",
-  },
+  
 };
 
 export default function (state = initialState, action) {
@@ -152,7 +153,7 @@ export default function (state = initialState, action) {
         console.log("action SERVICES_GET_SUCCESS", action.payload);
         return {
           ...state,
-          events: {
+          services: {
             _start: action.payload._start,
             _limit: action.payload._limit,
             data: action.payload.data,
@@ -163,7 +164,7 @@ export default function (state = initialState, action) {
         console.log("reducer SERVICES_GET_ERRORS", action.payload);
         return {
           ...state,
-          events: {
+          services: {
             _start: action.payload._start,
             _limit: action.payload._limit,
             data: action.payload.data,
