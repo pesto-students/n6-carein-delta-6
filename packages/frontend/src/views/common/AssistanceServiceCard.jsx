@@ -49,7 +49,7 @@ function AssistanceServiceCard(props) {
         background: `linear-gradient(336deg, #C2E9F8, transparent)`,
       }}>
         <CardActionArea>
-          <CardMedia component="img" image="./assets/media/bg/assistance.jpg" />
+          <CardMedia component="img" image={props.service.media.url} />
           <CardContent>
             <Typography
               className={classes.main}
@@ -58,7 +58,7 @@ function AssistanceServiceCard(props) {
               component="h6"
             >
             
-             Assistance
+            {props.service.title}
             </Typography>
             <Typography
               className={classes.text}
@@ -67,7 +67,7 @@ function AssistanceServiceCard(props) {
               component="p"
             >
               
-              24*7 Custom Assistance 
+            {props.service.description} 
             </Typography>
             
             <Typography
@@ -77,7 +77,7 @@ function AssistanceServiceCard(props) {
               component="p"
             >
              
-              Rs. 499/day
+              {props.service.price_per_day}
             </Typography>
           </CardContent>
           <CardActions>

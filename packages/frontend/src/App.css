@@ -36,7 +36,7 @@ html body {
 } */
 
 .cardInner {
-  margin: 0px 10px;
+  margin: 0px 0px;
   border: 1px solid #0000003d;
   background: white;
   border-radius: 14px;
@@ -772,7 +772,7 @@ div.select__control {
   font-size: 20px;
   font-weight: 900;
   color: white;
-  background: #3f51b5;
+  background: #5C3D85;
 }
 .MuiListItemIcon-root {
   color: rgba(0, 0, 0, 0.54);

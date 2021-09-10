@@ -125,7 +125,7 @@ export default function SubscriptionCard() {
                   action={tier.title === 'PRO' ? <StarIcon /> : null}
                   className={classes.cardHeader}
                 />
-                <CardContent>
+                <CardContent >
                   <div className={classes.cardPricing}>
                     <Typography component="h2" variant="h4" color="textPrimary">
                       Rs.{tier.price}/-

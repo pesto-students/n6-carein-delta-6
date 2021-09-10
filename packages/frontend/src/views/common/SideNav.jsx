@@ -66,7 +66,7 @@ export default function SideNav() {
           <ListItemIcon>
             <DynamicFeedIcon />
           </ListItemIcon>
-          <ListItemText primary="Feed" />
+          <ListItemText primary="Feed"  />
         </ListItem>
         <ListItem button component={Link} to="/Friends">
           <ListItemIcon>
@@ -95,18 +95,7 @@ export default function SideNav() {
         </ListItem>
       </List>
 
-      <Divider />
-       <p className="yml">Your Events</p>
-      <List className={classes.contentmargin}>
-        {["Dance Club", "Morning Walk", "Temple Buddies"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      
     </div>
   );
   return (

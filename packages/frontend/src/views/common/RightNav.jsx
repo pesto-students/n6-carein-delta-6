@@ -9,7 +9,7 @@ import { ListItemText } from "@material-ui/core";
 import { Avatar } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 
-const drawerWidth = 220;
+const drawerWidth = 230;
 
 const useStyles = makeStyles((theme) => ({
   root: {
