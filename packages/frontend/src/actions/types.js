@@ -32,6 +32,9 @@ export const PROFILE_GET_ERRORS = "PROFILE_GET_ERRORS";
 export const USER_ADD = "USER_ADD";
 export const USER_UPDATE = "USER_UPDATE";
 
+export const SERVICES_GET_SUCCESS = "SERVICES_GET_SUCCESS";
+export const SERVICES_GET_ERRORS = "SERVICES_GET_ERRORS";
+
 
 
 

@@ -14,6 +14,7 @@ const Events = () => {
   return eventData.data.length
     ? eventData.data.map((text, index) => <WalkCard event={text} key={index} />)
     : "";
+  
 };
 
 export default Events;

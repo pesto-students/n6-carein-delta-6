@@ -1,155 +1,138 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import { Grid } from "@material-ui/core";
-import { spacing } from "@material-ui/system";
-import { Typography } from "@material-ui/core";
-import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
-import { Button } from "@material-ui/core";
-import { TextField } from "@material-ui/core";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Paper from '@material-ui/core/Paper';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
+import AssistanceForm from './AssistanceForm';
+import PaymentForm from './PaymentForm';
+import Review from './Review';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: "100%",
-    maxHeight:"100%",
-    marginLeft: 310,
-  margin: theme.spacing(0, 3, 0),
-  backgroundColor:"#add8e6",
-  },
-  main: {
-    margin: theme.spacing(0, 9, 0),
-  },
-  second: {
-marginLeft:65,
-  },
-text: {
-    marginBottom:20,
-}
-}));
-
-function AssistanceService() {
-  const classes = useStyles();
-
+function Copyright() {
   return (
-    <Grid container spacing={5}>
-    <Grid item md={12}>
-    <Card className={classes.root}>
-      <CardContent>
-            <Grid container spacing={3}>
-            <Grid item md={12}>
-            <Typography className={classes.main} gutterBottom variant="h5" component="h6">
-            ASSISTANCE
-          </Typography>
-            </Grid>
-            </Grid>
-            <Grid container spacing={3}>
-            <Grid item md={12}>
-            <Typography className={classes.main} gutterBottom variant="p" component="p">
-            We are providing assistance for your daily needs with or without cab. Please fill the form and pay the amount, our team will get back to you.!!
-          </Typography>
-            </Grid>
-            </Grid>
-          <Grid container spacing={2}>
-          <Grid item md={8}>
-          <Card className={classes.second}>
-          <CardContent>
-          <Grid item md={12} className={classes.text}>
-          <TextField
-                  autoComplete="name"
-                  name="Name"
-                  variant="filled"
-                  required
-                  fullWidth
-                  id="Name"
-                  label="Name"
-                  //{...getFieldProps('Name')}
-                  //error={Boolean(touched.Name && errors.Name)}
-                  //helperText={touched.Name && errors.Name}
-                />
-          </Grid>
-          <Grid item md={12} className={classes.text}>
-          <TextField
-                  autoComplete="number"
-                  name="mobileNumber"
-                  variant="filled"
-                  required
-                  fullWidth
-                  id="mobileNumber"
-                  label="Mobile Number"
-                  //{...getFieldProps('mobileNumber')}
-                  //error={Boolean(touched.mobileNumber && errors.mobileNumber)}
-                  //helperText={touched.mobileNumber && errors.mobileNumber}
-                />
-          </Grid>
-          <Grid item md={12} className={classes.text}>
-          <TextField
-                  autoComplete="address"
-                  name="address"
-                  variant="filled"
-                  required
-                  fullWidth
-                  id="address"
-                  label="Address"
-                  //{...getFieldProps('address')}
-                  //error={Boolean(touched.address && errors.address)}
-                  //helperText={touched.address && errors.address}
-                />
-          </Grid>
-          <Grid container spacing={2} className={classes.text}>
-          <Grid item md={6}>
-          <TextField
-                  autoComplete="startDate"
-                  name="startDate"
-                  variant="filled"
-                  required
-                  fullWidth
-                  id="startDate"
-                  type="date"
-                  //{...getFieldProps('startDate')}
-                  //error={Boolean(touched.startDate && errors.startDate)}
-                  //helperText={touched.startDate && errors.startDate}
-                />
-          </Grid>
-          <Grid item md={6}>
-          <TextField
-                  autoComplete="endDate"
-                  name="endDate"
-                  variant="filled"
-                  required
-                  fullWidth
-                  id="endDate"
-                  type="date"
-                  //{...getFieldProps('endDate')}
-                  //error={Boolean(touched.endDate && errors.endDate)}
-                  //helperText={touched.endDate && errors.endDate}
-                />
-          </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item md={12}>
-            <Typography className={classes.text} gutterBottom variant="p" component="p">
-            Total Amount:
-          </Typography>
-            </Grid>
-            </Grid>
-      <Button size="small" className={classes.text}
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="primary">
-          Pay Now
-        </Button>
-          </CardContent>
-          </Card>
-          </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
-    </Grid>
-    </Grid>
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Carein
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
 }
 
-export default AssistanceService;
+const useStyles = makeStyles((theme) => ({
+  layout: {
+    width: 'auto',
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 'auto',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    marginBottom: theme.spacing(3),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(3),
+    },
+  },
+  stepper: {
+    padding: theme.spacing(3, 0, 5),
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+  },
+}));
+
+const steps = ['Service Details', 'Payment details', 'Review Service'];
+
+function getStepContent(step) {
+  switch (step) {
+    case 0:
+      return <AssistanceForm />;
+    case 1:
+      return <PaymentForm />;
+    case 2:
+      return <Review />;
+    default:
+      throw new Error('Unknown step');
+  }
+}
+
+function AssistanceService() {
+  const classes = useStyles();
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const handleNext = () => {
+    setActiveStep(activeStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep(activeStep - 1);
+  };
+
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <main className={classes.layout}>
+        <Paper className={classes.paper}>
+          <Typography component="h1" variant="h4" align="center">
+            Assistance
+          </Typography>
+          <Stepper activeStep={activeStep} className={classes.stepper}>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          <React.Fragment>
+            {activeStep === steps.length ? (
+              <React.Fragment>
+                <Typography variant="h5" gutterBottom>
+                  Thank you.
+                </Typography>
+                <Typography variant="subtitle1">
+                  We have emailed your Service Details, and will
+                  reach out to you for further details.
+                </Typography>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                {getStepContent(activeStep)}
+                <div className={classes.buttons}>
+                  {activeStep !== 0 && (
+                    <Button onClick={handleBack} className={classes.button}>
+                      Back
+                    </Button>
+                  )}
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                  </Button>
+                </div>
+              </React.Fragment>
+            )}
+          </React.Fragment>
+        </Paper>
+        <Copyright />
+      </main>
+    </React.Fragment>
+  );
+}
+
+export default AssistanceService

@@ -26,8 +26,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
     height: 150,
-    width: "100%",
-    margin: "10px 0px",
+    width : '100%',
   },
   main: {
     margin: theme.spacing(0, 0, 0),

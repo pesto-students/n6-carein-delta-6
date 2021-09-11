@@ -11,6 +11,8 @@ import {
   FEEDS_ADD_SUCCESS,
   PROFILE_GET_SUCCESS,
   PROFILE_GET_ERRORS,
+  SERVICES_GET_ERRORS,
+  SERVICES_GET_SUCCESS,
 } from "../actions/types";
 const initialState = {
   feeds: {
@@ -20,6 +22,12 @@ const initialState = {
     _error: "",
   },
   events: {
+    _start: 0,
+    _limit: 10,
+    data: [],
+    _error: "",
+  },
+  services: {
     _start: 0,
     _limit: 10,
     data: [],
@@ -169,6 +177,28 @@ export default function (state = initialState, action) {
           _error: action.payload._error,
         },
       };
+      case SERVICES_GET_SUCCESS:
+        console.log("action SERVICES_GET_SUCCESS", action.payload);
+        return {
+          ...state,
+          services: {
+            _start: action.payload._start,
+            _limit: action.payload._limit,
+            data: action.payload.data,
+            _error: "",
+          },
+        };
+      case SERVICES_GET_ERRORS:
+        console.log("reducer SERVICES_GET_ERRORS", action.payload);
+        return {
+          ...state,
+          services: {
+            _start: action.payload._start,
+            _limit: action.payload._limit,
+            data: action.payload.data,
+            _error: action.payload._error,
+          },
+        };  
     default:
       return state;
   }
