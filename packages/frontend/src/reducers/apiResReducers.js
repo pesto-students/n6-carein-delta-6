@@ -41,6 +41,10 @@ const initialState = {
     data: {},
     _error: "",
   },
+  comment: {
+    data: {},
+    _error:""
+  }
 };
 
 export default function (state = initialState, action) {
@@ -69,11 +73,12 @@ export default function (state = initialState, action) {
         },
       };
     case FEEDS_ADD_SUCCESS:
-      console.log("reducer FEEDS_ADD_SUCCESS", action.payload);
+      console.log("reducer FEEDS_ADD_SUCCESS",state, action.payload);
       return {
         ...state,
-        posts: {
-          data: action.payload.data,
+        feeds: {
+          ...state.feeds,
+          data: state.feeds.data.push(action.payload.data.request), 
           _error:""
         }
       };  

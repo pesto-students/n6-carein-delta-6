@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -59,7 +59,6 @@ function PostCard() {
     : {};
 
   console.log(user);
-
   const handleSubmit = () => {
     const userData = {
       description: description,
