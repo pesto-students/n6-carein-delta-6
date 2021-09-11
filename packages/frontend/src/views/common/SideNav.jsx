@@ -23,6 +23,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import NavBar from "./NavBar";
 import { Link } from "react-router-dom";
+import { Button } from "@material-ui/core";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -45,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
   },
   closeMenuButton: {
     marginRight: "auto",
@@ -61,7 +61,7 @@ export default function SideNav() {
   }
   const drawer = (
     <div>
-      <List component="nav" className={classes.contentmargin}>
+      <List component="nav" className={classes.content}>
         <ListItem button component={Link} to="/homepage">
           <ListItemIcon>
             <DynamicFeedIcon />
@@ -92,6 +92,9 @@ export default function SideNav() {
             <SubscriptionsIcon />
           </ListItemIcon>
           <ListItemText primary="Subscription" />
+        </ListItem>
+        <ListItem button component={Link} to="">
+            <Button color="secondary" variant="contained" fullWidth>SOS</Button>
         </ListItem>
       </List>
 

@@ -193,9 +193,6 @@ export default function NavBar(props) {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-          <IconButton  aria-label="Emergency">
-          <Button color="secondary" variant="contained">SOS</Button>
-          </IconButton>
             <IconButton
               edge="end"
               aria-label="account of current user"

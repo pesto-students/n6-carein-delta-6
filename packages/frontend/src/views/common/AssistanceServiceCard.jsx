@@ -51,6 +51,7 @@ const services = [
 
 function AssistanceServiceCard(props) {
   const classes = useStyles();
+  console.log(props)
 
   return (
     <Grid item xs={12} md={4} lg={4} sm={6}>
@@ -103,7 +104,7 @@ function AssistanceServiceCard(props) {
               variant="contained"
               color="primary"
               component={Link}
-              to="/ServiceDetails">
+              to={`/ServiceDetails/${props.service.id}`}>
               More Details
             </Button>
           </CardActions>

@@ -11,6 +11,8 @@ import {
   PROFILE_GET_ERRORS,
   SERVICES_GET_ERRORS,
   SERVICES_GET_SUCCESS,
+  SERVICEDETAIL_GET_SUCCESS,
+  SERVICEDETAIL_GET_ERRORS,
 } from "../actions/types";
 const initialState = {
   feeds: {
@@ -41,6 +43,10 @@ const initialState = {
   },
   profile: {
     data: {},
+    _error: "",
+  },
+  serviceDetails: {
+    data: [],
     _error: "",
   },
   
@@ -113,7 +119,6 @@ export default function (state = initialState, action) {
       };
     case FRIENDS_N_GET_SUCCESS:
       console.log("action FRIENDS_N_GET_SUCCESS", action.payload);
-
       return {
         ...state,
         friendsN: {
@@ -171,6 +176,26 @@ export default function (state = initialState, action) {
             _error: action.payload._error,
           },
         };  
+
+      case SERVICEDETAIL_GET_SUCCESS:
+                console.log("action SERVICEDETAIL_GET_SUCCESS", action.payload);
+          
+                return {
+                  ...state,
+                  serviceDetails: {
+                    data: action.payload.data,
+                    _error: "",
+                  },
+                };
+      case SERVICEDETAIL_GET_ERRORS:
+                console.log("reducer SERVICEDETAIL_GET_ERRORS", action.payload);
+                return {
+                  ...state,
+                  serviceDetails: {
+                    data: action.payload.data,
+                    _error: action.payload._error,
+                  },
+                };
     default:
       return state;
   }

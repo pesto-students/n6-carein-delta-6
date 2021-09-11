@@ -55,7 +55,7 @@ function PostCard() {
         <Divider />
 
         <Grid container spacing={3} className={classes.main}>
-          <Grid item md={1} className={classes.profile}>
+          <Grid item md={0.5} className={classes.profile}>
             <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
           </Grid>
           <Grid item md={11} className={classes.text}>

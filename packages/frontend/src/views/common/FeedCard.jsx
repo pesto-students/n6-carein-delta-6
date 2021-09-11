@@ -79,7 +79,7 @@ function FeedCard(props) {
     <Card className={classes.root}>
       <CardContent>
         <Grid container spacing={3} className={classes.main}>
-          <Grid item md={1} className={classes.profile}>
+          <Grid item md={0.5} className={classes.profile}>
             <Avatar
               alt={props.feed.postedBy.firstName}
               src={props.feed.postedBy.profilePic.url}

@@ -138,7 +138,7 @@ class App extends Component {
 
             <PrivateRoute
               exact
-              path="/Servicedetails"
+              path="/Servicedetails/:id"
               name="Servicedetails"
               layout={DashboardLayout}
               component={ServiceDetails}
