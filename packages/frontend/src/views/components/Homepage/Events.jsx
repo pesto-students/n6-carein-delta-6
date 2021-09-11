@@ -12,7 +12,7 @@ const Events = () => {
 
   console.log(eventData);
   return eventData.data.length
-    ? eventData.data.map((text, index) => <WalkCard event={text} key={index} />)
+    ? eventData.data.map((text, index) => <WalkCard key={index} event={text}  />)
     : "";
   
 };
