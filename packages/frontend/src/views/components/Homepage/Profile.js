@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { profileData } from "../../../actions/profileAction";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-
 import randomColor from "randomcolor";
 import FeedCard from "../../common/FeedCard";
 import PostCard from "../../common/PostCard";
@@ -69,6 +68,7 @@ const Profile = (props) => {
     profile = { data: {}, _error: "" };
     if (id) {
       dispatch(profileData(id));
+      setPage("about");
     }
   }, [id]);
 
@@ -87,7 +87,6 @@ const Profile = (props) => {
         return (
           <>
             <Grid item xl={12} md={12} lg={12}>
-              <PostCard />
               {feedData.data.length
                 ? feedData.data.map((data, id) => (
                     <FeedCard user={me} key={id} feed={data} />
@@ -125,7 +124,7 @@ const Profile = (props) => {
         setPage("about");
         return;
       case "feeds":
-        dispatch(listFeed());
+        dispatch(listFeed(0, profile.data.id));
         setPage("feeds");
         return;
       case "team":
@@ -197,7 +196,7 @@ const Profile = (props) => {
           </ListItem>
         </List>
       </Grid>
-      <Grid item  lg={10} md={10} xs={12}>
+      <Grid item lg={10} md={10} xs={12}>
         {renderSwitch()}
       </Grid>
     </>

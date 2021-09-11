@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PROFILE_GET_SUCCESS, PROFILE_GET_ERRORS } from "./types";
+import { PROFILE_GET_SUCCESS, PROFILE_GET_ERRORS , PROFILE_CLEAR} from "./types";
 import Api from "../constants/index";
 
 const api = new Api();
@@ -7,6 +7,13 @@ const api = new Api();
 export const profileData =
   (id = null) =>
   (dispatch) => {
+    dispatch({
+      type: PROFILE_CLEAR,
+      payload: {
+        data: {},
+        _error: "",
+      },
+    });
     let token = localStorage.jwtToken;
     let config = {
       method: "GET",

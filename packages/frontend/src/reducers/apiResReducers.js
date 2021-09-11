@@ -11,6 +11,7 @@ import {
   PROFILE_GET_ERRORS,
   SERVICES_GET_ERRORS,
   SERVICES_GET_SUCCESS,
+  PROFILE_CLEAR,
 } from "../actions/types";
 const initialState = {
   feeds: {
@@ -43,7 +44,6 @@ const initialState = {
     data: {},
     _error: "",
   },
-  
 };
 
 export default function (state = initialState, action) {
@@ -140,6 +140,16 @@ export default function (state = initialState, action) {
           _error: "",
         },
       };
+    case PROFILE_CLEAR:
+      console.log("action PROFILE_CLEAR", action.payload);
+
+      return {
+        ...state,
+        profile: {
+          data: action.payload.data,
+          _error: "",
+        },
+      };
     case PROFILE_GET_ERRORS:
       console.log("reducer FRIENDS_N_GET_ERRORS", action.payload);
       return {
@@ -149,28 +159,28 @@ export default function (state = initialState, action) {
           _error: action.payload._error,
         },
       };
-      case SERVICES_GET_SUCCESS:
-        console.log("action SERVICES_GET_SUCCESS", action.payload);
-        return {
-          ...state,
-          services: {
-            _start: action.payload._start,
-            _limit: action.payload._limit,
-            data: action.payload.data,
-            _error: "",
-          },
-        };
-      case SERVICES_GET_ERRORS:
-        console.log("reducer SERVICES_GET_ERRORS", action.payload);
-        return {
-          ...state,
-          services: {
-            _start: action.payload._start,
-            _limit: action.payload._limit,
-            data: action.payload.data,
-            _error: action.payload._error,
-          },
-        };  
+    case SERVICES_GET_SUCCESS:
+      console.log("action SERVICES_GET_SUCCESS", action.payload);
+      return {
+        ...state,
+        services: {
+          _start: action.payload._start,
+          _limit: action.payload._limit,
+          data: action.payload.data,
+          _error: "",
+        },
+      };
+    case SERVICES_GET_ERRORS:
+      console.log("reducer SERVICES_GET_ERRORS", action.payload);
+      return {
+        ...state,
+        services: {
+          _start: action.payload._start,
+          _limit: action.payload._limit,
+          data: action.payload.data,
+          _error: action.payload._error,
+        },
+      };
     default:
       return state;
   }
