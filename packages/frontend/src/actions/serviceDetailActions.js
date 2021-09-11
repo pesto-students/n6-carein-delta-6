@@ -1,17 +1,17 @@
 import axios from "axios";
-import { EVENTS_GET_SUCCESS, EVENTS_GET_ERRORS } from "./types";
+import { SERVICEDETAIL_GET_SUCCESS,
+   SERVICEDETAIL_GET_ERRORS, } from "./types";
 import Api from "../constants/index";
+
 const api = new Api();
 
-export const listEvents =
-  (userData = 0) =>
+export const serviceData =
+  (id = null) =>
   (dispatch) => {
     let token = localStorage.jwtToken;
-
     let config = {
       method: "GET",
-      url: api.getCurrentHost() + "events",
-      data: userData,
+      url: `${api.getCurrentHost()}services/${id}`,
       headers: {
         Authorization: "Bearer " + token,
         Accept: "application/json",
@@ -22,10 +22,8 @@ export const listEvents =
       (success) => {
         console.log("fetch data success");
         dispatch({
-          type: EVENTS_GET_SUCCESS,
+          type: SERVICEDETAIL_GET_SUCCESS,
           payload: {
-            _start: userData,
-            _limit: 10,
             data: success.data,
             _error: "",
           },
@@ -34,10 +32,8 @@ export const listEvents =
       (error) => {
         console.log("fetch data error");
         dispatch({
-          type: EVENTS_GET_ERRORS,
+          type: SERVICEDETAIL_GET_ERRORS,
           payload: {
-            _start: userData,
-            _limit: 10,
             data: {},
             _error: error.data,
           },
@@ -45,4 +41,3 @@ export const listEvents =
       }
     );
   };
-
