@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
     height: 150,
-    width : '100%',
+    width: "100%",
   },
   main: {
     margin: theme.spacing(0, 0, 0),
@@ -66,7 +66,9 @@ function PostCard() {
 
     const formData = new FormData();
 
-    formData.append(`files.media`, file, filename);
+    if (file) {
+      formData.append(`files.media`, file, filename);
+    }
     formData.append("data", JSON.stringify(userData));
     dispatch(addFeeds(formData));
     setOpen(false);

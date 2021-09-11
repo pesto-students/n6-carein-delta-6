@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import { Grid } from "@material-ui/core";
 import { fDate, fTime } from "../../utils/formatTime";
-import StarIcon from '@material-ui/icons/StarBorder';
+import StarIcon from "@material-ui/icons/StarBorder";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,12 +18,10 @@ const useStyles = makeStyles((theme) => ({
     },
     width: "calc(100% - 10px) !important",
     margin: "0px 0px !important",
-    
   },
   card: {
     margin: "4px 6px",
-    marginBottom: "10"
-    
+    marginBottom: "10",
   },
   text: {
     margin: theme.spacing(0, 0, 0),
@@ -33,16 +31,11 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0, 0, 1),
     fontSize: "18px",
   },
-
 }));
-
-
 
 function WalkCard(props) {
   const classes = useStyles();
   const [reg, setReg] = useState("Register");
-
-  
 
   return (
     <Grid item xs={12} md={4} lg={4} sm={6}>
