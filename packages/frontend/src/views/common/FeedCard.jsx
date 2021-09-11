@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -14,6 +14,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { List } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
+import { useDispatch, useSelector } from "react-redux";
+import { addComment } from "../../actions/feedActions";
 import { TextField } from "@material-ui/core";
 import { fToNow } from "../../utils/formatTime";
 
@@ -74,6 +76,27 @@ const useStyles = makeStyles((theme) => ({
 
 function FeedCard(props) {
   const classes = useStyles();
+  const [comment, setComment] = useState("");
+  const dispatch = useDispatch();
+
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : {};
+
+  const userSubmit = (e) => {
+    const userData = {
+      comment: comment,
+      user: user.id,
+      feed: props.feed.id,
+    };
+    dispatch(addComment(userData));
+  };
+
+  const _handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      userSubmit()
+    }
+  };
 
   return (
     <Card className={classes.root}>
@@ -101,7 +124,9 @@ function FeedCard(props) {
               variant="p"
               component="p"
             >
-              {props.feed.postedBy.createdAt ? fToNow(props.feed.postedBy.createdAt) : ""}
+              {props.feed.postedBy.createdAt
+                ? fToNow(props.feed.postedBy.createdAt)
+                : ""}
             </Typography>
           </Grid>
           <Grid item md={1} className={classes.icon}></Grid>
@@ -163,11 +188,14 @@ function FeedCard(props) {
             <TextField
               variant="outlined"
               fullWidth
+              name="comment"
+              onChange={(e) => setComment(e.target.value)}
               id="postfield"
               label="What you say on this..."
-              name="postfield"
+              onKeyPress={_handleKeyDown}
             />
           </Grid>
+          {/* <button onClick={userSubmit}>send</button> */}
         </Grid>
         {props.feed.comments.length
           ? props.feed.comments.map((comment, index) => (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -20,6 +20,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { addFeeds } from "../../actions/feedActions";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
@@ -43,9 +45,37 @@ const useStyles = makeStyles((theme) => ({
 function PostCard() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [description, setDescription] = useState("");
+  const [file, setFile] = useState();
+  const [filename, setFilename] = useState("");
+  const dispatch = useDispatch();
+  const selectFileref = useRef();
   const handleClose = () => {
     setOpen(false);
   };
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : {};
+
+  console.log(user);
+  const handleSubmit = () => {
+    const userData = {
+      description: description,
+      postedBy: user.id,
+    };
+
+    const formData = new FormData();
+
+    formData.append(`files.media`, file, filename);
+    formData.append("data", JSON.stringify(userData));
+    dispatch(addFeeds(formData));
+    setOpen(false);
+  };
+
+  const selectFile = (e) => {
+    selectFileref.current.click();
+  };
+
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -55,8 +85,8 @@ function PostCard() {
         <Divider />
 
         <Grid container spacing={3} className={classes.main}>
-          <Grid item md={0.5} className={classes.profile}>
-            <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
+          <Grid item md={1} className={classes.profile}>
+            <Avatar alt="Remy Sharp" src={user.profilePic.url} />
           </Grid>
           <Grid item md={11} className={classes.text}>
             <TextField
@@ -68,7 +98,6 @@ function PostCard() {
               label="What's on your mind?"
               name="postfield"
               onClick={() => setOpen(true)}
-              
             />
           </Grid>
           {/* <Grid item md={1} className={classes.icon}>
@@ -88,7 +117,7 @@ function PostCard() {
             over it.
           </DialogContentText>
           <OutlinedInput
-             variant="outlined"
+            variant="outlined"
             required
             fullWidth
             multiline
@@ -96,13 +125,14 @@ function PostCard() {
             placeholder="What's on your mind?"
             id="postfield"
             label="What's on your mind?"
-            name="postfield"
+            name="description"
+            onChange={(e) => setDescription(e.target.value)}
             onClick={() => setOpen(true)}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
-                  // onClick={handleClickShowPassword}
+                  onClick={(e) => selectFile(e)}
                   // onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
@@ -112,11 +142,19 @@ function PostCard() {
             }
           />
         </DialogContent>
+        <input
+          type="file"
+          name={file}
+          ref={selectFileref}
+          onChange={(e) => setFile(e.target.files[0])}
+          id="fileUpload"
+          style={{ display: "none" }}
+        />
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleSubmit} color="primary">
             Post
           </Button>
         </DialogActions>

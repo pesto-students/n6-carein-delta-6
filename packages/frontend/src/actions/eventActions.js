@@ -1,14 +1,7 @@
 import axios from "axios";
-import setAuthToken from "../utils/setAuthToken";
-// import jwt from "jwt-decode";
-import jwt from "jwt-simple";
 import { EVENTS_GET_SUCCESS, EVENTS_GET_ERRORS } from "./types";
 import Api from "../constants/index";
 const api = new Api();
-
-// const decoded = jwt_decode(token);
-// this.setState({ token: decoded.token });
-// console.log(token)
 
 export const listEvents =
   (userData = 0) =>
@@ -52,3 +45,4 @@ export const listEvents =
       }
     );
   };
+
