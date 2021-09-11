@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import PostCard from "../../common/PostCard";
 import FeedCard from "../../common/FeedCard";
 import { Grid } from "@material-ui/core";
-import DashboardLayout from "../../../containers/TheLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { listFeed } from "../../../actions/feedActions";
 import { FixedSizeList } from "react-window";

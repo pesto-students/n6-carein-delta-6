@@ -10,10 +10,8 @@ import { CardMedia } from "@material-ui/core";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import { List } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import BookmarkIcon from "@material-ui/icons/Bookmark";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../../actions/feedActions";
 import { TextField } from "@material-ui/core";
@@ -178,7 +176,7 @@ function FeedCard(props) {
           </Grid>
         </Grid>
         <Grid container>
-          <Grid className={classes.avatar} item md={1}>
+          <Grid className={classes.avatar} item md={0.5}>
             <Avatar
               alt={props?.user?.firstName}
               src={props?.user?.profilePic.url}

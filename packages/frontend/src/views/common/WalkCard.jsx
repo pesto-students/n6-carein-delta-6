@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -35,18 +35,11 @@ const useStyles = makeStyles((theme) => ({
   },
 
 }));
-const events = [
-  { description: 'Yoga Classes', date: 'Sep, 15 2021', time: '8:00 AM to 9:00 AM', address: 'Pashchim Vihar, New Delhi', price: 'Rs.50/day', seats: 'Max:20 members' },
-  { description: 'Morning Walk', date: 'Sep, 15 2021', time: '6:00 AM to 7:00 AM', address: 'Vasant Kunj, New Delhi', price: 'Free of Cost', seats: 'Max:20 members' },
-  { description: 'Shopping', date: 'Sep, 18 2021', time: '4:00 PM to 7:00 PM', address: 'Lajpat Nagar, New Delhi', price: 'Free of Cost', seats: 'Max:5 members' },
-  { description: 'Temple Buddies', date: 'Sep, 25 2021', time: '6:00 AM', address: 'Akshardham, New Delhi', price: 'Rs.400/entry', seats: 'Max:20 members' },
-  { description: 'Buffet', date: 'Oct, 10 2021', time: '2:00 PM to 3:00 PM', address: 'Barbeque Nation, New Delhi', price: 'Rs. 499/person', seats: 'Max:20 members' },
-];
+
 
 
 function WalkCard(props) {
   const classes = useStyles();
-  const [title, setTitle] = useState("Interest");
   const [reg, setReg] = useState("Register");
 
   
@@ -54,7 +47,6 @@ function WalkCard(props) {
   return (
     <Grid item xs={12} md={4} lg={4} sm={6}>
       <Card className={classes.card}>
-      {events.map((event) => (
         <CardActionArea>
         
           <CardMedia component="img" image={props.event.media.url} height="150"/>
@@ -64,10 +56,10 @@ function WalkCard(props) {
               className={classes.main}
               gutterBottom
               variant="h5"
-              component="h6"
+              component="h4"
+              width="50ch"
             >
-              {/*props.event.startDate ? fDate(props.event.startDate) : ""*/}
-              {event.description}
+              {props.event.title}
             </Typography>
             <Typography
               className={classes.text}
@@ -75,8 +67,7 @@ function WalkCard(props) {
               color="textSecondary"
               component="p"
             >
-              {/*props.event.description*/}
-              {event.date}
+              {props.event.startDate ? fDate(props.event.startDate) : ""}
             </Typography>
             <Typography
               className={classes.text}
@@ -84,9 +75,8 @@ function WalkCard(props) {
               color="textSecondary"
               component="p"
             >
-              {/*props.event.startDate ? fTime(props.event.startDate) : ""} to{" "}
-      {props.event.endDate ? fTime(props.event.endDate) : ""*/}
-      {event.time}
+              {props.event.startDate ? fTime(props.event.startDate) : ""} to{" "}
+      {props.event.endDate ? fTime(props.event.endDate) : ""}
             </Typography>
             <Typography
               className={classes.text}
@@ -94,8 +84,7 @@ function WalkCard(props) {
               color="textSecondary"
               component="p"
             >
-              {/*props.event.addressLine1*/}
-              {event.address}
+              {props.event.addressLine1}
             </Typography>
             <Typography
               className={classes.text}
@@ -103,8 +92,7 @@ function WalkCard(props) {
               color="textSecondary"
               component="p"
             >
-              {/*props.event.addressLine1*/}
-              {event.price}
+              {props.event.fee}
             </Typography>
             <Typography
               className={classes.text}
@@ -112,8 +100,7 @@ function WalkCard(props) {
               color="textSecondary"
               component="p"
             >
-              {/*props.event.addressLine1*/}
-              {event.seats}
+              {props.event.capacity} Max
             </Typography>
           </CardContent>
           <CardActions>
@@ -129,7 +116,6 @@ function WalkCard(props) {
             </Button>
           </CardActions>
         </CardActionArea>
-        ))}
       </Card>
     </Grid>
   );

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   main: {
     margin: theme.spacing(0, 0, 1),
-    fontSize: "18px",
+    fontSize: "14px",
   },
   buttoninterested: {
     margin: theme.spacing(0, 0, 0),
@@ -37,18 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const services = [
-  { title: 'Assistance with Outings', description: 'This Service aims for personal assistance for outside work', price: 'Charges: 499/day' },
-  { title: 'Doctor Assistance', description: 'This service will offer in-house doctor assistance', price: 'Charges: 299/visit' },
-  { title: 'Assistance without Outings', description: 'This Service aims for personal assistance for household work', price: 'Charges: 499/day' },
-  { title: 'Simple Outdoors', description: 'This service will provide you great travel packages', price: 'Charges: 999/day' },
-  { title: 'Meal Service', description: 'Need Homely Food, We offer custom meal service', price: 'Charges: 99/day' },
-  { title: 'Caretacker', description: 'Need help if you are not well, then opt this service', price: 'Charges: 499/day' },
-  { title: 'Easy Repairs', description: 'Carein assist you with fine technicians', price: 'Charges: 299/day' },
-];
-
-
-
 function AssistanceServiceCard(props) {
   const classes = useStyles();
   console.log(props)
@@ -57,9 +45,8 @@ function AssistanceServiceCard(props) {
     <Grid item xs={12} md={4} lg={4} sm={6}>
       <Card className={classes.card}
       style={{
-        background: `linear-gradient(336deg, #C2E9F8, transparent)`,
+        background: `linear-gradient(336deg, #C4D09E, transparent)`,
       }}>
-      {services.map((service) => (
         <CardActionArea>
           <CardMedia component="img" image={props.service.media.url} height="150" />
           <CardContent>
@@ -67,11 +54,10 @@ function AssistanceServiceCard(props) {
               className={classes.main}
               gutterBottom
               variant="h5"
-              component="h6"
+              component="h5"
+              color="primary"
             >
-            
-            {/*props.service.title*/}
-            {service.title}
+            {props.service.title}
             </Typography>
             <Typography
               className={classes.text}
@@ -81,18 +67,15 @@ function AssistanceServiceCard(props) {
             >
               
             {/*props.service.description*/} 
-            {service.description}
             </Typography>
             
             <Typography
               className={classes.text}
-              variant="p"
+              variant="h6"
               color="textSecondary"
-              component="p"
+              component="h6"
             >
-             
-              {/*props.service.price_per_day*/}
-              {service.price}
+              Charges: Rs.{props.service.price_per_day}/day
             </Typography>
           </CardContent>
           <CardActions>
@@ -109,7 +92,6 @@ function AssistanceServiceCard(props) {
             </Button>
           </CardActions>
         </CardActionArea>
-        ))}
       </Card>
     </Grid>
   );
