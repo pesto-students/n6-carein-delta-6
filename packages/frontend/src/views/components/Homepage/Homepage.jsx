@@ -24,7 +24,7 @@ const Homepage = (props) => {
     </div>
   );
   return (
-    <Grid md={12} xs={12} lg={12}>
+    <Grid item md={12} xs={12} lg={12}>
       <PostCard />
       {feedData.data.length
         ? feedData.data.map((data, id) => (

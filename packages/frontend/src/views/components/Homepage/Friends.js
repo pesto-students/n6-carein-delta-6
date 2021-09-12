@@ -57,14 +57,14 @@ const Friends = () => {
     dispatch(listFriend());
     dispatch(listNFriend());
   }, []);
- 
+
   const renderSwitch = () => {
     switch (page) {
       case "myFriends":
         return (
           <>
             <Grid item xl={12} md={12} lg={12}>
-              <div className={classes.header}>My Team</div>
+              <div className={classes.header}>My Friends</div>
               <Grid className={classes.friendFlex}>
                 {friendsData.data?.friendList?.map((user, index) => (
                   // <FriendCard user={user} key={index} />
@@ -79,7 +79,7 @@ const Friends = () => {
         return (
           <>
             <Grid item xl={12} md={12} lg={12}>
-              <div className={classes.header}>Team Requests</div>
+              <div className={classes.header}>Friend Requests</div>
               <Grid className={classes.friendFlex}>
                 {friendsData.data?.openRequest?.map((user, index) => (
                   <FriendRequestCard
@@ -121,7 +121,7 @@ const Friends = () => {
   };
   return (
     <>
-      <Grid className={classes.leftCont} container lg={2} md={2} xs={12}>
+      <Grid className={classes.leftCont} item lg={2} md={2} xs={12}>
         <List
           className={classes.root}
           style={{ position: "fixed" }}
@@ -150,7 +150,7 @@ const Friends = () => {
           </ListItem>
         </List>
       </Grid>
-      <Grid container lg={10} md={10} xs={12}>
+      <Grid item lg={10} md={10} xs={12}>
         {renderSwitch()}
       </Grid>
     </>

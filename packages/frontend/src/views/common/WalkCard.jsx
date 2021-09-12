@@ -29,7 +29,25 @@ const useStyles = makeStyles((theme) => ({
   },
   main: {
     margin: theme.spacing(0, 0, 1),
-    fontSize: "18px",
+    fontSize: "15px",
+    fontWeight: 800,
+    color: "gray",
+  },
+  content: {
+    padding: theme.spacing(1),
+  },
+  datetime: {
+    display: "flex",
+    flexDirection: "row",
+    alignContent: "center",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  location: {
+    textAlign: "center",
+    margin: "10px 0px",
+    fontWeight: 600,
+    color: "#5c3d85",
   },
 }));
 
@@ -40,23 +58,22 @@ function WalkCard(props) {
   return (
     <Grid item xs={12} md={4} lg={4} sm={6}>
       <Card className={classes.card}>
-        <CardActionArea>
-        
-          <CardMedia component="img" image={props.event.media.url} height="150"/>
-          <CardContent>
-          
-            <Typography
-              className={classes.main}
-              gutterBottom
-              variant="h5"
-              component="h4"
-              width="50ch"
-            >
-              {props.event.title}
-            </Typography>
+        {/* <CardActionArea> */}
+        <CardMedia component="img" image={props.event.media.url} height="150" />
+        <CardContent className={classes.content}>
+          <Typography
+            className={classes.main}
+            gutterBottom
+            variant="h5"
+            component="h4"
+            width="50ch"
+          >
+            {props.event.title}
+          </Typography>
+          <div className={classes.datetime}>
             <Typography
               className={classes.text}
-              variant="p"
+              variant="body1"
               color="textSecondary"
               component="p"
             >
@@ -64,51 +81,56 @@ function WalkCard(props) {
             </Typography>
             <Typography
               className={classes.text}
-              variant="p"
+              variant="body1"
               color="textSecondary"
               component="p"
             >
               {props.event.startDate ? fTime(props.event.startDate) : ""} to{" "}
-      {props.event.endDate ? fTime(props.event.endDate) : ""}
+              {props.event.endDate ? fTime(props.event.endDate) : ""}
             </Typography>
+          </div>
+
+          <div className={classes.datetime}>
             <Typography
               className={classes.text}
-              variant="p"
+              variant="body1"
               color="textSecondary"
               component="p"
             >
-              {props.event.addressLine1}
+              Price : INR {props.event.fee}
             </Typography>
             <Typography
               className={classes.text}
-              variant="p"
+              variant="body1"
               color="textSecondary"
               component="p"
             >
-              {props.event.fee}
+              {props.event.capacity} Seats
             </Typography>
-            <Typography
-              className={classes.text}
-              variant="p"
-              color="textSecondary"
-              component="p"
-            >
-              {props.event.capacity} Max
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button
-              size="small"
-              className={classes.buttoninterested}
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={() => setReg("Registered")}>
-              {reg}
-            </Button>
-          </CardActions>
-        </CardActionArea>
+          </div>
+
+          <Typography
+            className={classes.location}
+            variant="body1"
+            color="textSecondary"
+            component="p"
+          >
+            {props.event.addressLine1}
+          </Typography>
+        </CardContent>
+        {/* </CardActionArea> */}
+        <CardActions>
+          <Button
+            size="small"
+            className={classes.buttoninterested}
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={() => setReg("Registered")}
+          >
+            {reg}
+          </Button>
+        </CardActions>
       </Card>
     </Grid>
   );

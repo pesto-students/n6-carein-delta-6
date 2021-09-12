@@ -59,7 +59,7 @@ export default function SideNav() {
           <ListItemIcon>
             <DynamicFeedIcon />
           </ListItemIcon>
-          <ListItemText primary="Feed"  />
+          <ListItemText primary="Feed" />
         </ListItem>
         <ListItem button component={Link} to="/Friends">
           <ListItemIcon>
@@ -86,12 +86,12 @@ export default function SideNav() {
           </ListItemIcon>
           <ListItemText primary="Subscription" />
         </ListItem>
-        <ListItem button component={Link}>
-            <Button color="secondary" variant="contained" fullWidth>SOS</Button>
+        <ListItem button>
+          <Button color="secondary" variant="contained" fullWidth>
+            SOS
+          </Button>
         </ListItem>
       </List>
-
-      
     </div>
   );
   return (

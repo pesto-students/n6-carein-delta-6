@@ -1,20 +1,25 @@
-import React from 'react'
-import AssistanceService from '../../common/AssistanceService'
+import React, { useState } from "react";
+import AssistanceService from "../../common/AssistanceService";
 import { useDispatch, useSelector } from "react-redux";
 import { listServices } from "../../../actions/serviceActions";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-const ServiceDetails = () => {
-    const serviceData = useSelector((state) => state.apiRes.services);
+const ServiceDetails = (props) => {
+  const serviceData = useSelector((state) => state.apiRes.services);
   const dispatch = useDispatch();
+  const [service, setService] = useState(null);
+  const id = props.match.params.id;
+
   useEffect(() => {
     dispatch(listServices());
-  }, []);
+    let service_index = serviceData.data.findIndex((service) => {
+      return service.id == id;
+    });
+    setService(serviceData.data[service_index]);
+  }, [id]);
 
-  console.log(serviceData);
-    return serviceData.data.length
-    ? serviceData.data.map((text, index) => <AssistanceService service={text} key={index} />)
-    : "";
-}
+  console.log(service);
+  return service ? <AssistanceService service={service} /> : '';
+};
 
-export default ServiceDetails
+export default ServiceDetails;

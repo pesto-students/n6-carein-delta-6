@@ -102,7 +102,7 @@ module.exports = {
     let friends = await strapi
       .query("user", "users-permissions")
       .find({ city: ctx.state.user.city });
-    console.log(friends);
+    console.log(friends.length);
     friends.map((entity) => {
       if (entity.id !== ctx.state.user.id) {
         let f = [];
@@ -119,13 +119,14 @@ module.exports = {
           media: entity.profilePic,
           friends: f,
         };
+        
         if (_.includes(friend.friends, ctx.state.user.id)) {
         } else {
           myList.push(friend);
         }
       }
     });
-
+    console.log(myList);
     let myfriends = [];
     let fof = [];
     let friendsOfFriends = await strapi

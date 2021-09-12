@@ -39,16 +39,22 @@ const useStyles = makeStyles((theme) => ({
 
 function AssistanceServiceCard(props) {
   const classes = useStyles();
-  console.log(props)
+  console.log(props);
 
   return (
     <Grid item xs={12} md={4} lg={4} sm={6}>
-      <Card className={classes.card}
-      style={{
-        background: `linear-gradient(336deg, #C4D09E, transparent)`,
-      }}>
+      <Card
+        className={classes.card}
+        style={{
+          background: `white`,
+        }}
+      >
         <CardActionArea>
-          <CardMedia component="img" image={props.service.media.url} height="150" />
+          <CardMedia
+            component="img"
+            image={props.service.media.url}
+            height="150"
+          />
           <CardContent>
             <Typography
               className={classes.main}
@@ -57,18 +63,17 @@ function AssistanceServiceCard(props) {
               component="h5"
               color="primary"
             >
-            {props.service.title}
+              {props.service.title}
             </Typography>
             <Typography
               className={classes.text}
-              variant="p"
+              variant="body1"
               color="textSecondary"
               component="p"
             >
-              
-            {/*props.service.description*/} 
+              {/*props.service.description*/}
             </Typography>
-            
+
             <Typography
               className={classes.text}
               variant="h6"
@@ -87,7 +92,8 @@ function AssistanceServiceCard(props) {
               variant="contained"
               color="primary"
               component={Link}
-              to={`/ServiceDetails/${props.service.id}`}>
+              to={`/ServiceDetails/${props.service.id}`}
+            >
               More Details
             </Button>
           </CardActions>
