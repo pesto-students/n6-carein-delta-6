@@ -1,7 +1,4 @@
 import axios from "axios";
-import setAuthToken from "../utils/setAuthToken";
-// import jwt from "jwt-decode";
-import jwt from "jwt-simple";
 import {
   FEEDS_GET_SUCCESS,
   FEEDS_GET_ERRORS,
@@ -9,14 +6,16 @@ import {
   FEEDS_ADD_SUCCESS,
   COMMENT_ADD_SUCCESS,
   COMMENT_ADD_ERROR,
+  LIKES_ADD_ERROR,
+  LIKES_ADD_SUCCESS,
 } from "./types";
 import Api from "../constants/index";
 
 const api = new Api();
 
 export const listFeed =
-(userData = 0) =>
-(dispatch) => {
+  (userData = 0) =>
+  (dispatch) => {
     let token = localStorage.jwtToken;
     let config = {
       method: "GET",
@@ -92,6 +91,7 @@ export const addFeeds = (userData) => (dispatch) => {
     }
   );
 };
+
 export const addComment = (userData) => (dispatch) => {
   let token = localStorage.jwtToken;
 
@@ -121,6 +121,43 @@ export const addComment = (userData) => (dispatch) => {
       console.log("fetch data error");
       dispatch({
         type: COMMENT_ADD_ERROR,
+        payload: {
+          _error: error.data,
+        },
+      });
+    }
+  );
+};
+
+export const addLikes = (userData) => (dispatch) => {
+  let token = localStorage.jwtToken;
+
+  let config = {
+    method: "POST",
+    url: api.getCurrentHost() + "feed-likes",
+    data: userData,
+    headers: {
+      Authorization: "Bearer " + token,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  };
+
+  axios(config).then(
+    (success) => {
+      console.log("fetch data success");
+      dispatch({
+        type: LIKES_ADD_SUCCESS,
+        payload: {
+          data: success.data,
+          _error: "",
+        },
+      });
+    },
+    (error) => {
+      console.log("fetch data error");
+      dispatch({
+        type: LIKES_ADD_ERROR,
         payload: {
           _error: error.data,
         },

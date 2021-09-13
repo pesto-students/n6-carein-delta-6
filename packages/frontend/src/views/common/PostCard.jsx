@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import {
   Divider,
-  FilledInput,
   IconButton,
   InputAdornment,
   OutlinedInput,
@@ -20,13 +19,13 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addFeeds } from "../../actions/feedActions";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
     height: 150,
-    width : '100%',
+    width: "100%",
   },
   main: {
     margin: theme.spacing(0, 0, 0),

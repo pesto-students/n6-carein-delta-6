@@ -2,6 +2,10 @@ import {
   EVENTS_GET_ERRORS,
   FEEDS_GET_SUCCESS,
   FEEDS_GET_ERRORS,
+  COMMENT_ADD_ERROR,
+  COMMENT_ADD_SUCCESS,
+  LIKES_ADD_SUCCESS,
+  LIKES_ADD_ERROR,
   EVENTS_GET_SUCCESS,
   FRIENDS_GET_SUCCESS,
   FRIENDS_N_GET_SUCCESS,
@@ -45,7 +49,7 @@ const initialState = {
   },
   posts: {
     data: {},
-    _error: ""
+    _error: "",
   },
   profile: {
     data: {},
@@ -55,14 +59,17 @@ const initialState = {
     data: [],
     _error: "",
   },
-  
   comment: {
     data: {},
-    _error:""
-  }
+    _error: "",
+  },
+  likes: {
+    data: {},
+    _error: "",
+  },
 };
 
-export default function (state = initialState, action) {
+export default function apiResReducer(state = initialState, action) {
   console.log(action.type);
   switch (action.type) {
     case FEEDS_GET_SUCCESS:
@@ -88,24 +95,58 @@ export default function (state = initialState, action) {
         },
       };
     case FEEDS_ADD_SUCCESS:
-      console.log("reducer FEEDS_ADD_SUCCESS",state, action.payload);
+      console.log("reducer FEEDS_ADD_SUCCESS", state, action.payload);
       return {
         ...state,
         feeds: {
           ...state.feeds,
-          data: state.feeds.data.push(action.payload.data.request), 
-          _error:""
-        }
-      };  
+          data: state.feeds.data.push(action.payload.data.request),
+          _error: "",
+        },
+      };
     case FEEDS_ADD_ERROR:
       console.log("reducer FEED_ADD_ERROR", FEEDS_ADD_ERROR);
       return {
         ...state,
         posts: {
           data: action.payload.data,
-          _error:action.payload._error
-        }
-      }  
+          _error: action.payload._error,
+        },
+      };
+    case COMMENT_ADD_SUCCESS:
+      console.log("reducer COMMENT_ADD_SUCCESS", COMMENT_ADD_SUCCESS);
+      return {
+        ...state,
+        comment: {
+          ...state.comment,
+          data: action.payload.data,
+          _error: action.payload._error,
+        },
+      };
+    case COMMENT_ADD_ERROR:
+      console.log("reducer COMMENT_ADD_ERROR", COMMENT_ADD_ERROR);
+      return {
+        ...state,
+        comment: {
+          _error: action.payload._error,
+        },
+      };
+    case LIKES_ADD_ERROR:
+      console.log("reducer LIKEs_ADD_ERROR", LIKES_ADD_ERROR);
+      return {
+        ...state,
+        likes: {
+          _error: action.payload._error,
+        },
+      };
+    case LIKES_ADD_SUCCESS:
+      console.log("reducer COMMENT_ADD_ERROR", LIKES_ADD_SUCCESS);
+      return {
+        ...state,
+        likes: {
+          data: action.payload.data,
+        },
+      };
     case EVENTS_GET_SUCCESS:
       console.log("action EVENTS_GET_SUCCESS", action.payload);
       return {
@@ -183,48 +224,48 @@ export default function (state = initialState, action) {
           _error: action.payload._error,
         },
       };
-      case SERVICES_GET_SUCCESS:
-        console.log("action SERVICES_GET_SUCCESS", action.payload);
-        return {
-          ...state,
-          services: {
-            _start: action.payload._start,
-            _limit: action.payload._limit,
-            data: action.payload.data,
-            _error: "",
-          },
-        };
-      case SERVICES_GET_ERRORS:
-        console.log("reducer SERVICES_GET_ERRORS", action.payload);
-        return {
-          ...state,
-          services: {
-            _start: action.payload._start,
-            _limit: action.payload._limit,
-            data: action.payload.data,
-            _error: action.payload._error,
-          },
-        };  
+    case SERVICES_GET_SUCCESS:
+      console.log("action SERVICES_GET_SUCCESS", action.payload);
+      return {
+        ...state,
+        services: {
+          _start: action.payload._start,
+          _limit: action.payload._limit,
+          data: action.payload.data,
+          _error: "",
+        },
+      };
+    case SERVICES_GET_ERRORS:
+      console.log("reducer SERVICES_GET_ERRORS", action.payload);
+      return {
+        ...state,
+        services: {
+          _start: action.payload._start,
+          _limit: action.payload._limit,
+          data: action.payload.data,
+          _error: action.payload._error,
+        },
+      };
 
-      case SERVICEDETAIL_GET_SUCCESS:
-                console.log("action SERVICEDETAIL_GET_SUCCESS", action.payload);
-          
-                return {
-                  ...state,
-                  serviceDetails: {
-                    data: action.payload.data,
-                    _error: "",
-                  },
-                };
-      case SERVICEDETAIL_GET_ERRORS:
-                console.log("reducer SERVICEDETAIL_GET_ERRORS", action.payload);
-                return {
-                  ...state,
-                  serviceDetails: {
-                    data: action.payload.data,
-                    _error: action.payload._error,
-                  },
-                };
+    case SERVICEDETAIL_GET_SUCCESS:
+      console.log("action SERVICEDETAIL_GET_SUCCESS", action.payload);
+
+      return {
+        ...state,
+        serviceDetails: {
+          data: action.payload.data,
+          _error: "",
+        },
+      };
+    case SERVICEDETAIL_GET_ERRORS:
+      console.log("reducer SERVICEDETAIL_GET_ERRORS", action.payload);
+      return {
+        ...state,
+        serviceDetails: {
+          data: action.payload.data,
+          _error: action.payload._error,
+        },
+      };
     default:
       return state;
   }
