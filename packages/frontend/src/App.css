@@ -34,13 +34,19 @@ html body {
     background-color: transparent;
     border-color: none;
 } */
-
+.MuiTypography-colorTextSecondary {
+  color: rgb(255 255 255 / 88%);
+}
 .cardInner {
-  margin: 0px 0px;
+  margin: 5px 16px;
   border: 1px solid #0000003d;
   background: white;
   border-radius: 14px;
   box-shadow: -2px 4px 19px #00000038;
+}
+.MuiFilledInput-input {
+  background-color: white !important;
+  background: white !important;
 }
 .cardheader {
   margin-bottom: 45px;
@@ -67,7 +73,7 @@ html body {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  
+
   align-content: space-around;
   justify-content: space-between;
   align-items: center;
@@ -772,7 +778,7 @@ div.select__control {
   font-size: 20px;
   font-weight: 900;
   color: white;
-  background: #5C3D85;
+  background: #5c3d85;
 }
 .MuiListItemIcon-root {
   color: rgba(0, 0, 0, 0.54);

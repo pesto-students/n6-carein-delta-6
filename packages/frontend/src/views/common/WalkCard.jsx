@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import { Grid } from "@material-ui/core";
 import { fDate, fTime } from "../../utils/formatTime";
-import StarIcon from '@material-ui/icons/StarBorder';
+import StarIcon from "@material-ui/icons/StarBorder";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,12 +18,10 @@ const useStyles = makeStyles((theme) => ({
     },
     width: "calc(100% - 10px) !important",
     margin: "0px 0px !important",
-    
   },
   card: {
     margin: "4px 6px",
-    marginBottom: "10"
-    
+    marginBottom: "10",
   },
   text: {
     margin: theme.spacing(0, 0, 0),
@@ -31,105 +29,108 @@ const useStyles = makeStyles((theme) => ({
   },
   main: {
     margin: theme.spacing(0, 0, 1),
-    fontSize: "18px",
+    fontSize: "15px",
+    fontWeight: 800,
+    color: "gray",
   },
-
+  content: {
+    padding: theme.spacing(1),
+  },
+  datetime: {
+    display: "flex",
+    flexDirection: "row",
+    alignContent: "center",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  location: {
+    textAlign: "center",
+    margin: "10px 0px",
+    fontWeight: 600,
+    color: "#5c3d85",
+  },
 }));
-const events = [
-  { description: 'Yoga Classes', date: 'Sep, 15 2021', time: '8:00 AM to 9:00 AM', address: 'Pashchim Vihar, New Delhi', price: 'Rs.50/day', seats: 'Max:20 members' },
-  { description: 'Morning Walk', date: 'Sep, 15 2021', time: '6:00 AM to 7:00 AM', address: 'Vasant Kunj, New Delhi', price: 'Free of Cost', seats: 'Max:20 members' },
-  { description: 'Shopping', date: 'Sep, 18 2021', time: '4:00 PM to 7:00 PM', address: 'Lajpat Nagar, New Delhi', price: 'Free of Cost', seats: 'Max:5 members' },
-  { description: 'Temple Buddies', date: 'Sep, 25 2021', time: '6:00 AM', address: 'Akshardham, New Delhi', price: 'Rs.400/entry', seats: 'Max:20 members' },
-  { description: 'Buffet', date: 'Oct, 10 2021', time: '2:00 PM to 3:00 PM', address: 'Barbeque Nation, New Delhi', price: 'Rs. 499/person', seats: 'Max:20 members' },
-];
-
 
 function WalkCard(props) {
   const classes = useStyles();
-  const [title, setTitle] = useState("Interest");
   const [reg, setReg] = useState("Register");
-
-  
 
   return (
     <Grid item xs={12} md={4} lg={4} sm={6}>
       <Card className={classes.card}>
-      {events.map((event) => (
-        <CardActionArea>
-        
-          <CardMedia component="img" image={props.event.media.url} height="150"/>
-          <CardContent>
-          
-            <Typography
-              className={classes.main}
-              gutterBottom
-              variant="h5"
-              component="h6"
-            >
-              {/*props.event.startDate ? fDate(props.event.startDate) : ""*/}
-              {event.description}
-            </Typography>
+        {/* <CardActionArea> */}
+        <CardMedia component="img" image={props.event.media.url} height="150" />
+        <CardContent className={classes.content}>
+          <Typography
+            className={classes.main}
+            gutterBottom
+            variant="h5"
+            component="h4"
+            width="50ch"
+          >
+            {props.event.title}
+          </Typography>
+          <div className={classes.datetime}>
             <Typography
               className={classes.text}
-              variant="p"
+              variant="body1"
               color="textSecondary"
               component="p"
             >
-              {/*props.event.description*/}
-              {event.date}
+              {props.event.startDate ? fDate(props.event.startDate) : ""}
             </Typography>
             <Typography
               className={classes.text}
-              variant="p"
+              variant="body1"
               color="textSecondary"
               component="p"
             >
-              {/*props.event.startDate ? fTime(props.event.startDate) : ""} to{" "}
-      {props.event.endDate ? fTime(props.event.endDate) : ""*/}
-      {event.time}
+              {props.event.startDate ? fTime(props.event.startDate) : ""} to{" "}
+              {props.event.endDate ? fTime(props.event.endDate) : ""}
+            </Typography>
+          </div>
+
+          <div className={classes.datetime}>
+            <Typography
+              className={classes.text}
+              variant="body1"
+              color="textSecondary"
+              component="p"
+            >
+              Price : INR {props.event.fee}
             </Typography>
             <Typography
               className={classes.text}
-              variant="p"
+              variant="body1"
               color="textSecondary"
               component="p"
             >
-              {/*props.event.addressLine1*/}
-              {event.address}
+              {props.event.capacity} Seats
             </Typography>
-            <Typography
-              className={classes.text}
-              variant="p"
-              color="textSecondary"
-              component="p"
-            >
-              {/*props.event.addressLine1*/}
-              {event.price}
-            </Typography>
-            <Typography
-              className={classes.text}
-              variant="p"
-              color="textSecondary"
-              component="p"
-            >
-              {/*props.event.addressLine1*/}
-              {event.seats}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button
-              size="small"
-              className={classes.buttoninterested}
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={() => setReg("Registered")}>
-              {reg}
-            </Button>
-          </CardActions>
-        </CardActionArea>
-        ))}
+          </div>
+
+          <Typography
+            className={classes.location}
+            variant="body1"
+            color="textSecondary"
+            component="p"
+          >
+            {props.event.addressLine1}
+          </Typography>
+        </CardContent>
+        {/* </CardActionArea> */}
+        <CardActions>
+          <Button
+            size="small"
+            className={classes.buttoninterested}
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={() => setReg("Registered")}
+          >
+            {reg}
+          </Button>
+        </CardActions>
       </Card>
     </Grid>
   );

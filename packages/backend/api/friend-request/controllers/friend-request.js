@@ -42,12 +42,13 @@ module.exports = {
       marked: false,
     });
     let response = [];
+    console.log(pending);
     pending.map((entity) => {
       let from = {
         firstName: entity.from.firstName,
         lastName: entity.from.lastName,
-        media : entity.from.profilePic,
-        friends : entity.from.friends,
+        media: entity.from.profilePic,
+        friends: entity.from.friends,
         city: entity.city,
         id: entity.from.id,
       };
@@ -55,8 +56,8 @@ module.exports = {
         firstName: entity.to.firstName,
         lastName: entity.to.lastName,
         id: entity.to.id,
-        media : entity.to.profilePic,
-        friends : entity.to.friends,
+        media: entity.to.profilePic,
+        friends: entity.to.friends,
       };
       if (entity.from.id == user.id) {
         entity.fromMe = true;
@@ -81,8 +82,8 @@ module.exports = {
         firstName: entity.firstName,
         lastName: entity.lastName,
         infoStatus: entity.infoStatus,
-        media : entity.profilePic,
-        friends : entity.friends,
+        media: entity.profilePic,
+        friends: entity.friends,
         city: entity.city,
         id: entity.id,
       };
@@ -97,11 +98,11 @@ module.exports = {
 
   async near(ctx) {
     let myList = [];
-    
+
     let friends = await strapi
       .query("user", "users-permissions")
       .find({ city: ctx.state.user.city });
-      console.log(friends);
+    console.log(friends.length);
     friends.map((entity) => {
       if (entity.id !== ctx.state.user.id) {
         let f = [];
@@ -115,16 +116,17 @@ module.exports = {
           infoStatus: entity.infoStatus,
           id: entity.id,
           city: entity.city,
-          media : entity.profilePic,
+          media: entity.profilePic,
           friends: f,
         };
+        
         if (_.includes(friend.friends, ctx.state.user.id)) {
         } else {
           myList.push(friend);
         }
       }
     });
-
+    console.log(myList);
     let myfriends = [];
     let fof = [];
     let friendsOfFriends = await strapi

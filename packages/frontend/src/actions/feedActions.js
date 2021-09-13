@@ -14,12 +14,14 @@ import Api from "../constants/index";
 const api = new Api();
 
 export const listFeed =
-  (userData = 0) =>
+  (userData = 0, id = null) =>
   (dispatch) => {
+    let postedBy = id ? `&postedBy=${id}` : "";
+
     let token = localStorage.jwtToken;
     let config = {
       method: "GET",
-      url: `${api.getCurrentHost()}feeds?_start=${userData}&_limit=10&_sort=createdAt:DESC`,
+      url: `${api.getCurrentHost()}feeds?_start=${userData}&_limit=10&_sort=createdAt:DESC${postedBy}`,
       headers: {
         Authorization: "Bearer " + token,
         Accept: "application/json",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import WalkCard from "../../common/WalkCard";
 import { useDispatch, useSelector } from "react-redux";
 import { listEvents } from "../../../actions/eventActions";
@@ -12,7 +12,7 @@ const Events = () => {
 
   console.log(eventData);
   return eventData.data.length
-    ? eventData.data.map((text, index) => <WalkCard event={text} key={index} />)
+    ? eventData.data.map((text, index) => <WalkCard key={index} event={text}  />)
     : "";
   
 };

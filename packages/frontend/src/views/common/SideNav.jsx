@@ -1,17 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import DynamicFeedIcon from "@material-ui/icons/DynamicFeed";
 import GroupIcon from "@material-ui/icons/Group";
 import DateRangeIcon from "@material-ui/icons/DateRange";
@@ -19,7 +13,6 @@ import SettingsApplicationsIcon from "@material-ui/icons/SettingsApplications";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import NavBar from "./NavBar";
 import { Link } from "react-router-dom";
@@ -66,7 +59,7 @@ export default function SideNav() {
           <ListItemIcon>
             <DynamicFeedIcon />
           </ListItemIcon>
-          <ListItemText primary="Feed"  />
+          <ListItemText primary="Feed" />
         </ListItem>
         <ListItem button component={Link} to="/Friends">
           <ListItemIcon>
@@ -93,12 +86,12 @@ export default function SideNav() {
           </ListItemIcon>
           <ListItemText primary="Subscription" />
         </ListItem>
-        <ListItem button component={Link} to="">
-            <Button color="secondary" variant="contained" fullWidth>SOS</Button>
+        <ListItem button>
+          <Button color="secondary" variant="contained" fullWidth>
+            SOS
+          </Button>
         </ListItem>
       </List>
-
-      
     </div>
   );
   return (

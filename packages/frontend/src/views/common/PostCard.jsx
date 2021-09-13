@@ -65,7 +65,9 @@ function PostCard() {
 
     const formData = new FormData();
 
-    formData.append(`files.media`, file, filename);
+    if (file) {
+      formData.append(`files.media`, file, filename);
+    }
     formData.append("data", JSON.stringify(userData));
     dispatch(addFeeds(formData));
     setOpen(false);

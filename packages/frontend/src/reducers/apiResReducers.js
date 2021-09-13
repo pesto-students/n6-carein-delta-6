@@ -17,6 +17,7 @@ import {
   PROFILE_GET_ERRORS,
   SERVICES_GET_ERRORS,
   SERVICES_GET_SUCCESS,
+  PROFILE_CLEAR,
   SERVICEDETAIL_GET_SUCCESS,
   SERVICEDETAIL_GET_ERRORS,
 } from "../actions/types";
@@ -99,9 +100,9 @@ export default function apiResReducer(state = initialState, action) {
       return {
         ...state,
         feeds: {
+          _error: "",
           ...state.feeds,
           data: state.feeds.data.push(action.payload.data.request),
-          _error: "",
         },
       };
     case FEEDS_ADD_ERROR:
@@ -207,6 +208,16 @@ export default function apiResReducer(state = initialState, action) {
       };
     case PROFILE_GET_SUCCESS:
       console.log("action FRIENDS_N_GET_SUCCESS", action.payload);
+
+      return {
+        ...state,
+        profile: {
+          data: action.payload.data,
+          _error: "",
+        },
+      };
+    case PROFILE_CLEAR:
+      console.log("action PROFILE_CLEAR", action.payload);
 
       return {
         ...state,

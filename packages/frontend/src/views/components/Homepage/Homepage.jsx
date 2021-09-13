@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PostCard from "../../common/PostCard";
 import FeedCard from "../../common/FeedCard";
 import { Grid } from "@material-ui/core";
-import DashboardLayout from "../../../containers/TheLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { listFeed } from "../../../actions/feedActions";
 import { FixedSizeList } from "react-window";
@@ -25,16 +24,13 @@ const Homepage = (props) => {
     </div>
   );
   return (
-    <Grid md={12} xs={12} lg={12}>
+    <Grid item md={12} xs={12} lg={12}>
       <PostCard />
-      {feedData.data.length ? (
-        feedData.data.map((data, id) => (
+      {feedData.data.length
+        ? feedData.data.map((data, id) => (
             <FeedCard user={user} key={id} feed={data} />
           ))
-
-      ) : (
-        ""
-      )}
+        : ""}
       <button
         onClick={() => dispatch(listFeed(feedData._start + feedData._limit))}
       >

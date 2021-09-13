@@ -10,10 +10,8 @@ import { CardMedia } from "@material-ui/core";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import { List } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import BookmarkIcon from "@material-ui/icons/Bookmark";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../../actions/feedActions";
 import { TextField } from "@material-ui/core";
@@ -94,7 +92,7 @@ function FeedCard(props) {
 
   const _handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      userSubmit()
+      userSubmit();
     }
   };
 
@@ -102,7 +100,7 @@ function FeedCard(props) {
     <Card className={classes.root}>
       <CardContent>
         <Grid container spacing={3} className={classes.main}>
-          <Grid item md={0.5} className={classes.profile}>
+          <Grid item md={1} className={classes.profile}>
             <Avatar
               alt={props.feed.postedBy.firstName}
               src={props.feed.postedBy.profilePic.url}
@@ -121,7 +119,7 @@ function FeedCard(props) {
             <Typography
               className={classes.date}
               gutterBottom
-              variant="p"
+              variant="body1"
               component="p"
             >
               {props.feed.postedBy.createdAt
@@ -136,7 +134,7 @@ function FeedCard(props) {
             <Typography
               className={classes.main}
               gutterBottom
-              variant="p"
+              variant="body1"
               component="p"
             >
               {props?.feed?.description}
@@ -199,7 +197,7 @@ function FeedCard(props) {
         </Grid>
         {props.feed.comments.length
           ? props.feed.comments.map((comment, index) => (
-              <>
+              <span key={index}>
                 {comment["comment"] ? (
                   <Grid key={index} container className={classes.comments}>
                     <Grid className={classes.avatar} item md={1}>
@@ -217,7 +215,7 @@ function FeedCard(props) {
                 ) : (
                   ""
                 )}
-              </>
+              </span>
             ))
           : ""}
       </CardContent>

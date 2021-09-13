@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -8,27 +8,28 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import { ListItemText } from "@material-ui/core";
 import { Avatar } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
-
+import { useDispatch, useSelector } from "react-redux";
+import { listFriend } from "../../actions/friendsActions";
+import { Link } from "react-router-dom";
 const drawerWidth = 230;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-  'drawer::-webkit-scrollbar' :  {
-    width: '5px'
+  "drawer::-webkit-scrollbar": {
+    width: "5px",
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    
   },
   activity: {
     margin: theme.spacing(1, 1, 1),
   },
 
-  name : {
-    fontSize : '14px'
+  name: {
+    fontSize: "14px",
   },
   seemore: {
     margin: theme.spacing(-6, 20, 4),
@@ -37,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-  'MuiListItemText-primary' : {
-    fontSize : '14px'
+  "MuiListItemText-primary": {
+    fontSize: "14px",
   },
   drawerContainer: {
     overflow: "auto",
@@ -62,7 +63,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RightNav() {
   const classes = useStyles();
-
+  const friendsData = useSelector((state) => state.apiRes.friends);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(listFriend());
+  }, []);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -85,120 +90,30 @@ export default function RightNav() {
           >
             Friends
           </Typography>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
-            </ListItemIcon>
-            <ListItemText style={{fontSize:'14px'}} primary="Rakesh Kumar" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="M" src="./assets/media/bg/pp1.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Manish Singh" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="M" src="./assets/media/bg/pp2.png" />
-            </ListItemIcon>
-            <ListItemText primary="Megha Sharma" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="V" src="./assets/media/bg/pp3.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Vimla Gupta" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="A" src="./assets/media/bg/pp4.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Anish Kumar" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="S" src="./assets/media/bg/pp5.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Shubham Bhatia" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="V" src="./assets/media/bg/pp6.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Vinit Borole" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="T" src="./assets/media/bg/pp7.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Tanu Grover" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="M" src="./assets/media/bg/pp8.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Mahesh Bhatia" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="S" src="./assets/media/bg/pp9.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Simran Kapoor" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Rakesh Kumar" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Rakesh Kumar" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Rakesh Kumar" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Rakesh Kumar" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Rakesh Kumar" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Rakesh Kumar" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Rakesh Kumar" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Rakesh Kumar" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar alt="Remy Sharp" src="./assets/media/bg/pp.jpg" />
-            </ListItemIcon>
-            <ListItemText primary="Rakesh Kumar" />
-          </ListItem>
+          {friendsData.data?.friendList?.map((user, index) => (
+            <ListItem
+              button
+              key={index}
+              component={Link}
+              to={`/profile/${user.id}`}
+            >
+              <ListItemIcon>
+                <Avatar
+                  alt="M"
+                  src={
+                    user.media
+                      ? user.media.url
+                      : `./assets/media/bg/profile.jpg`
+                  }
+                />
+              </ListItemIcon>
+              <ListItemText
+                primary={`${user.firstName ? user.firstName : ""} ${
+                  user.lastName ? user.lastName : ""
+                }`}
+              />
+            </ListItem>
+          ))}
         </List>
       </Drawer>
     </div>
