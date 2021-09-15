@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import PostCard from "../../common/PostCard";
 import FeedCard from "../../common/FeedCard";
 import { Grid } from "@material-ui/core";
@@ -16,7 +16,7 @@ const Homepage = (props) => {
 
   useEffect(() => {
     dispatch(listFeed());
-  }, []);
+  }, [feedData]);
 
   const Row = ({ index, style }) => (
     <div style={style}>
