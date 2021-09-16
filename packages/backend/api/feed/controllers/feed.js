@@ -19,6 +19,9 @@ module.exports = {
       {
         path: "postedBy",
       },
+      {
+        path: "likes",
+      },
     ]);
 
     return sanitizeEntity(entity, { model: strapi.models.feed });
