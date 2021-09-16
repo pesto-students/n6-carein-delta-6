@@ -15,7 +15,9 @@ import {
   SERVICES_GET_SUCCESS,
   PROFILE_CLEAR,
   SERVICEDETAIL_GET_SUCCESS,
-  SERVICEDETAIL_GET_ERRORS
+  SERVICEDETAIL_GET_ERRORS,
+  SEARCH_GET_SUCCESS,
+  SEARCH_GET_ERRORS,
 } from "../actions/types";
 const initialState = {
   feeds: {
@@ -56,9 +58,18 @@ const initialState = {
     data: [],
     _error: "",
   },
+  search: {
+    data: [],
+    _error: "",
+  },
   
   comment: {
     data: {},
+    _error:""
+  },
+
+  addService: {
+    data: [],
     _error:""
   }
 };
@@ -217,6 +228,7 @@ export default function (state = initialState, action) {
           },
         };  
 
+        
       case SERVICEDETAIL_GET_SUCCESS:
                 console.log("action SERVICEDETAIL_GET_SUCCESS", action.payload);
           
@@ -236,6 +248,26 @@ export default function (state = initialState, action) {
                     _error: action.payload._error,
                   },
                 };
+
+                case SEARCH_GET_SUCCESS:
+                  console.log("action SEARCH_GET_SUCCESS", action.payload);
+                  return {
+                    ...state,
+                    search: {
+                      data: action.payload.data,
+                      _error: "",
+                    },
+                  };
+                case SEARCH_GET_ERRORS:
+                  console.log("reducer SEARCH_GET_ERRORS", action.payload);
+                  return {
+                    ...state,
+                    search: {
+                      data: action.payload.data,
+                      _error: action.payload._error,
+                    },
+                  };
+               
     default:
       return state;
   }

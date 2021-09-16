@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ERRORS, GET_SUCCESS } from './types';
+import { GET_ERRORS, GET_SUCCESS, SEARCH_GET_SUCCESS, SEARCH_GET_ERRORS } from './types';
 import Api from '../constants/index';
 
 const api = new Api();
@@ -90,3 +90,33 @@ export const userSkills = (userData, token) => (dispatch) => {
 		}
 	);
 };
+
+export const searchUsers = (userData) => (dispatch) => {
+	let config = {
+		method: 'GET',
+		url: api.getCurrentHost() + "users?q=" + search_parameters,
+		data: userData,
+		headers: {
+			Authorization: 'Bearer ' + userData.token,
+			Accept: 'application/json',
+			'Content-Type': 'application/json'
+		}
+	};
+	axios(config).then(
+		(success) => {
+			console.log('fetch data success');
+			dispatch({
+				type: SEARCH_GET_SUCCESS,
+				payload: success
+			});
+		},
+		(error) => {
+			console.log('fetch data error');
+			dispatch({
+				type: SEARCH_GET_ERRORS,
+				payload: error
+			});
+		}
+	);
+};
+

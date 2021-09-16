@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -90,6 +91,8 @@ export default function NavBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [searchTerm, setSearchTerm] = useState('')
+
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -153,6 +156,7 @@ export default function NavBar(props) {
       </MenuItem>
     </Menu>
   );
+  console.log(searchTerm)
 
   return (
     <div className={classes.grow}>
@@ -189,6 +193,9 @@ export default function NavBar(props) {
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
             />
           </div>
           <div className={classes.grow} />

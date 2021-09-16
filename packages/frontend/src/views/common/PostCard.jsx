@@ -87,7 +87,7 @@ function PostCard() {
         <Divider />
 
         <Grid container spacing={3} className={classes.main}>
-          <Grid item md={1} className={classes.profile}>
+          <Grid item md={0.5} className={classes.profile}>
             <Avatar alt="Remy Sharp" src={user.profilePic.url} />
           </Grid>
           <Grid item md={11} className={classes.text}>
@@ -119,14 +119,14 @@ function PostCard() {
             over it.
           </DialogContentText>
           <OutlinedInput
-            variant="outlined"
+            variant="filled"
             required
             fullWidth
-            multiline
-            labelWidth={700}
+            //multiline
+            //labelWidth={700}
             placeholder="What's on your mind?"
             id="postfield"
-            label="What's on your mind?"
+            label="Pst"
             name="description"
             onChange={(e) => setDescription(e.target.value)}
             onClick={() => setOpen(true)}

@@ -31,11 +31,7 @@ const Homepage = (props) => {
             <FeedCard user={user} key={id} feed={data} />
           ))
         : ""}
-      <button
-        onClick={() => dispatch(listFeed(feedData._start + feedData._limit))}
-      >
-        Load More
-      </button>
+     
     </Grid>
   );
 };

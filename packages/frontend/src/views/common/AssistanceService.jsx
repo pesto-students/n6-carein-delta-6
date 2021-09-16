@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import { CardHeader, Grid } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
-import * as Yup from "yup";
-import { useFormik, Form, FormikProvider } from "formik";
 import { useDispatch } from "react-redux";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,54 +29,66 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function loadScript(src) {
+  return new Promise((resolve) => {
+    const script = document.createElement('script')
+    script.src = src
+    script.onload = () => {
+      resolve(true)
+    }
+    script.onerror = () => {
+      resolve(false)
+    }
+    document.body.appendChild(script)
+  })
+
+}
+
+const __DEV__ = document.domain === 'localhost'
+
 function AssistanceService(props) {
+  const dispatch = useDispatch();
   const classes = useStyles();
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [addressLine1, setAddressLine1] = useState("")
+  const [addressLine2, setAddressLine2] = useState("")
+  const [city, setCity] = useState("")
+  const [state, setState] = useState("")
+  const [pincode, setPincode] = useState("")
+  const [from, setFrom] = useState("")
+  const [to, setTo] = useState("")
+  console.log(firstName)
 
-  const serviceSchema = Yup.object().shape({
-    firstName: Yup.string().required("First name required"),
-    lastName: Yup.string().required("Last name required"),
-    addressLine1: Yup.string().required("Address Line1 is required"),
-    city: Yup.string().required("City is required"),
-    state: Yup.string().required("State is required"),
-    pincode: Yup.string()
-      .matches(/^[0-9]+$/, "Must be only digits")
-      .required("Pincode is required"),
-    startDate: Yup.string().required("Start date is required"),
-    endDate: Yup.string().required("End Date is required"),
-  });
+    async function displayRazorpay() {
 
-  const formik = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      addressLine1: "",
-      addressLine2: "",
-      city: "",
-      state: "",
-      pincode: "",
-      from: "",
-      to: "",
-    },
-    validationSchema: serviceSchema,
-    onSubmit: (values) => {
-      let body = {
-        firstName: values.firstName,
-        lastName: values.lastName,
-        addressLine1: values.addressLine1,
-        addressLine2: values.addressLine2,
-        city: values.city,
-        state: values.state,
-        pincode: values.pincode,
-        from: values.from,
-        to: values.to,
-      };
-      console.log(body);
-    },
-  });
+      const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+      if(!res){
+        alert('Razorpay SDK failed to load')
+        return
+      }
 
-  const { errors, touched, values, isSubmitting, getFieldProps, handleSubmit } =
-    formik;
+      const options = {
+        "key": __DEV__ ? "rzp_test_7tOAQOJbQxdBNt" : "rzp_test_7tOAQOJbQxdBNt", // Enter the Key ID generated from the Dashboard
+        "amount": "50000", // Rs.500
+        "currency": "INR",
+        "name": "Carein",
+        "description": "Test Transaction",
+        //"image": "https://example.com/your_logo",
+        //"order_id": 'order_Hx323PZJBFKPQS', //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "handler": function (response){
+            alert(response.razorpay_payment_id);
 
+        },
+        "prefill": {
+            firstName
+        },
+        
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+    }
+ 
   return (
     <Grid container spacing={5}>
       <Grid item md={12}>
@@ -115,8 +125,7 @@ function AssistanceService(props) {
             <Typography gutterBottom variant="p" component="p">
               Quick Registration
             </Typography>
-            <FormikProvider value={formik}>
-              <Form className={classes.form} noValidate onSubmit={handleSubmit}>
+              <form className={classes.form}>
                 <Grid container spacing={2} className={classes.text}>
                   <Grid item md={6}>
                     <TextField
@@ -128,9 +137,7 @@ function AssistanceService(props) {
                       fullWidth
                       id="firstName"
                       label="First Name"
-                      {...getFieldProps("firstName")}
-                      error={Boolean(touched.firstName && errors.firstName)}
-                      helperText={touched.firstName && errors.firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
                     />
                   </Grid>
                   <Grid item md={6}>
@@ -143,9 +150,7 @@ function AssistanceService(props) {
                       fullWidth
                       id="lastName"
                       label="Last Name"
-                      {...getFieldProps("lastName")}
-                      error={Boolean(touched.lastName && errors.lastName)}
-                      helperText={touched.lastName && errors.lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                     />
                   </Grid>
                 </Grid>
@@ -159,9 +164,7 @@ function AssistanceService(props) {
                     className="inputText"
                     id="addressLine1"
                     label="Address Line1"
-                    {...getFieldProps("addressLine1")}
-                    error={Boolean(touched.addressLine1 && errors.addressLine1)}
-                    helperText={touched.addressLine1 && errors.addressLine1}
+                    onChange={(e) => setAddressLine1(e.target.value)}
                   />
                 </Grid>
                 <Grid item md={12} className={classes.text}>
@@ -169,14 +172,11 @@ function AssistanceService(props) {
                     autoComplete="addressLine2"
                     name="addressLine2"
                     variant="filled"
-                    required
                     className="inputText"
                     fullWidth
                     id="addressLine2"
                     label="Address Line2"
-                    {...getFieldProps("addressLine2")}
-                    error={Boolean(touched.addressLine2 && errors.addressLine2)}
-                    helperText={touched.addressLine2 && errors.addressLine2}
+                    onChange={(e) => setAddressLine2(e.target.value)}
                   />
                 </Grid>
                 <Grid container spacing={2} className={classes.text}>
@@ -190,9 +190,7 @@ function AssistanceService(props) {
                       fullWidth
                       id="city"
                       label="City"
-                      {...getFieldProps("city")}
-                      error={Boolean(touched.city && errors.city)}
-                      helperText={touched.city && errors.city}
+                      onChange={(e) => setCity(e.target.value)}
                     />
                   </Grid>
                   <Grid item md={4}>
@@ -205,9 +203,7 @@ function AssistanceService(props) {
                       className="inputText"
                       id="state"
                       label="State"
-                      {...getFieldProps("state")}
-                      error={Boolean(touched.state && errors.state)}
-                      helperText={touched.state && errors.state}
+                      onChange={(e) => setState(e.target.value)}
                     />
                   </Grid>
                   <Grid item md={4}>
@@ -220,9 +216,7 @@ function AssistanceService(props) {
                       className="inputText"
                       id="pincode"
                       label="Pincode"
-                      {...getFieldProps("pincode")}
-                      error={Boolean(touched.pincode && errors.pincode)}
-                      helperText={touched.pincode && errors.pincode}
+                      onChange={(e) => setPincode(e.target.value)}
                     />
                   </Grid>
                 </Grid>
@@ -237,9 +231,7 @@ function AssistanceService(props) {
                       fullWidth
                       id="from"
                       type="date"
-                      {...getFieldProps("from")}
-                      error={Boolean(touched.from && errors.from)}
-                      helperText={touched.from && errors.from}
+                      onChange={(e) => setFrom(e.target.value)}
                     />
                   </Grid>
                   <Grid item md={6}>
@@ -252,9 +244,7 @@ function AssistanceService(props) {
                       fullWidth
                       id="to"
                       type="date"
-                      {...getFieldProps("to")}
-                      error={Boolean(touched.to && errors.to)}
-                      helperText={touched.to && errors.to}
+                      onChange={(e) => setTo(e.target.value)}
                     />
                   </Grid>
                 </Grid>
@@ -266,22 +256,22 @@ function AssistanceService(props) {
                       variant="body1"
                       component="p"
                     >
-                      Total Amount:
+                      Total Amount: Rs{props.service.price_per_day}/-
                     </Typography>
                   </Grid>
                 </Grid>
                 <Button
                   size="small"
                   className={classes.text}
-                  type="submit"
                   fullWidth
                   variant="contained"
                   color="primary"
+                  disabled={!firstName || !lastName || !addressLine1 || !city || !state || !pincode || !from || !to}
+                  onClick={displayRazorpay}
                 >
                   Pay Now
                 </Button>
-              </Form>
-            </FormikProvider>
+              </form>
           </CardContent>
         </Card>
       </Grid>

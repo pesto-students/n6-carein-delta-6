@@ -60,15 +60,18 @@ const useStyles = makeStyles((theme) => ({
   textBox: {
     cursor: "pointer",
     marginBottom: 0,
+    color: "#5c3d85",
   },
   comments: {
     "align-items": "center",
     margin: "10px 0px",
   },
   commentsTextBox: {
-    background: "#a2cbff",
     padding: "7px 8px",
-    "border-radius": "20px 20px 20px 1px",
+    background: "#e2ccfe87",
+    borderRadius: "4px",
+    color: "#5c3d85",
+    fontWeight: 600,
   },
 }));
 
@@ -100,7 +103,7 @@ function FeedCard(props) {
     <Card className={classes.root}>
       <CardContent>
         <Grid container spacing={3} className={classes.main}>
-          <Grid item md={1} className={classes.profile}>
+          <Grid item md={0.5} className={classes.profile}>
             <Avatar
               alt={props.feed.postedBy.firstName}
               src={props.feed.postedBy.profilePic.url}
@@ -206,7 +209,7 @@ function FeedCard(props) {
                         src={props?.user?.profilePic?.url}
                       />
                     </Grid>
-                    <Grid item md={11}>
+                    <Grid item md={11} spacing={2}>
                       <p className={classes.commentsTextBox}>
                         {comment?.comment}
                       </p>

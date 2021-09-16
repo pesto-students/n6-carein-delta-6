@@ -2,7 +2,11 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 // import jwt from "jwt-decode";
 import jwt from "jwt-simple";
-import { SERVICES_GET_SUCCESS, SERVICES_GET_ERRORS } from "./types";
+import { SERVICES_GET_SUCCESS, 
+         SERVICES_GET_ERRORS,
+         SERVICES_ADD_SUCCESS,
+         SERVICES_ADD_ERRORS } 
+from "./types";
 import Api from "../constants/index";
 const api = new Api();
 
@@ -49,3 +53,42 @@ export const listServices =
       }
     );
   };
+
+  export const addService = (userData) => (dispatch) => {
+    let token = localStorage.jwtToken;
+  
+    let config = {
+      method: "POST",
+      url: api.getCurrentHost() + "service-registrations",
+      data: userData,
+      headers: {
+        Authorization: "Bearer " + token,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+  
+    axios(config).then(
+      (success) => {
+        console.log("fetch data success");
+        dispatch({
+          type: SERVICES_ADD_SUCCESS,
+          payload: {
+            data: success.data,
+            _error: "",
+          },
+        });
+      },
+  
+      (error) => {
+        console.log("fetch data error");
+        dispatch({
+          type: SERVICES_ADD_ERRORS,
+          payload: {
+            _error: error.data,
+          },
+        });
+      }
+    );
+  };
+  

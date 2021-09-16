@@ -72,7 +72,7 @@ const Login = () => {
   // };
 
   const LoginSchema = Yup.object().shape({
-    identifier: Yup.string().required("Email is required"),
+    identifier: Yup.string().required("Email or Mobile Number is required"),
     password: Yup.string()
       .min(4, "Too short")
       .max(15, "Too Long")
@@ -119,10 +119,9 @@ const Login = () => {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="Email Address or Mobile Number"
                 name="identifier"
                 autoComplete="email"
-                type="email"
                 {...getFieldProps("identifier")}
                 error={Boolean(touched.identifier && errors.identifier)}
                 helperText={touched.identifier && errors.identifier}
