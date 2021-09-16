@@ -22,6 +22,8 @@ import {
   SERVICEDETAIL_GET_ERRORS,
   SEARCH_GET_SUCCESS,
   SEARCH_GET_ERRORS,
+  FEEDS_COUNT_SUCCESS,
+  FEEDS_COUNT_ERRORS,
 } from "../actions/types";
 const initialState = {
   feeds: {
@@ -81,6 +83,9 @@ const initialState = {
     data: {},
     _error: "",
   },
+  feedCount: {
+    data: 0,
+  },
 };
 
 export default function apiResReducer(state = initialState, action) {
@@ -88,15 +93,28 @@ export default function apiResReducer(state = initialState, action) {
   switch (action.type) {
     case FEEDS_GET_SUCCESS:
       console.log("action FEEDS_GET_SUCCESS", action.payload);
-      return {
-        ...state,
-        feeds: {
-          _start: action.payload._start,
-          _limit: action.payload._limit,
-          data: action.payload.data,
-          _error: "",
-        },
-      };
+      if (action.payload._start == 0) {
+        return {
+          ...state,
+          feeds: {
+            _start: action.payload._start,
+            _limit: action.payload._limit,
+            data: action.payload.data,
+            _error: "",
+          },
+        };
+      } else {
+        return {
+          ...state,
+          feeds: {
+            _start: action.payload._start,
+            _limit: action.payload._limit,
+            data: [...state.feeds.data, ...action.payload.data],
+            _error: "",
+          },
+        };
+      }
+
     case FEEDS_GET_ERRORS:
       console.log("reducer FEEDS_GET_ERRORS", action.payload);
       return {
@@ -106,6 +124,22 @@ export default function apiResReducer(state = initialState, action) {
           _limit: action.payload._limit,
           data: action.payload.data,
           _error: action.payload._error,
+        },
+      };
+    case FEEDS_COUNT_SUCCESS:
+      console.log("action FEEDS_COUNT_SUCCESS", action.payload);
+      return {
+        ...state,
+        feedCount: {
+          data: action.payload.data,
+        },
+      };
+    case FEEDS_COUNT_ERRORS:
+      console.log("reducer FEEDS_COUNT_ERRORS", action.payload);
+      return {
+        ...state,
+        feedCount: {
+          data: action.payload.data,
         },
       };
     case FEEDS_ADD_SUCCESS:
@@ -133,9 +167,9 @@ export default function apiResReducer(state = initialState, action) {
       let feedIndex = state.feeds.data.findIndex((e) => {
         return e.id == action.payload.data.feed;
       });
-      let newStateComment = [action.payload.data].concat(
-        state.feeds.data[feedIndex].comments
-      );
+      let newStateComment = [].concat(state.feeds.data[feedIndex].comments, [
+        action.payload.data,
+      ]);
       state.feeds.data[feedIndex].comments = newStateComment;
       console.log(state.feeds.data[feedIndex]);
       return {
@@ -167,10 +201,11 @@ export default function apiResReducer(state = initialState, action) {
       let feedLikeIndex = state.feeds.data.findIndex((e) => {
         return e.id == action.payload.data.feed;
       });
+
       let newStateLikes = [action.payload.data].concat(
         state.feeds.data[feedLikeIndex].likes
       );
-      state.feeds.data[feedLikeIndex].comments = newStateLikes;
+      state.feeds.data[feedLikeIndex].likes = newStateLikes;
       console.log(state.feeds.data[feedLikeIndex]);
       return {
         ...state,

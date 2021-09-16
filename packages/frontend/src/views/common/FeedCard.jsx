@@ -17,6 +17,7 @@ import { addComment } from "../../actions/feedActions";
 import { addLikes } from "../../actions/feedActions";
 import { TextField } from "@material-ui/core";
 import { fToNow } from "../../utils/formatTime";
+import { LIKES_ADD_ERROR } from "../../actions/types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,29 +73,45 @@ const useStyles = makeStyles((theme) => ({
     padding: "7px 8px",
     color: "#5c3d85",
     fontWeight: 600,
-    marginBottom : 0
+    marginBottom: 0,
   },
-  comentBox : {
-    display: 'flex',
-    background: '#f0e4fe',
-    borderRadius: '20px 6px 6px 6px',
+  comentBox: {
+    display: "flex",
+    background: "#f0e4fe",
+    borderRadius: "20px 6px 6px 6px",
   },
-  commentInnerAvatar : {
-    justifyContent: 'flex-start',
-    position: 'relative',
-    left: '-4px',
-    top: '0px'
-  }
+  commentInnerAvatar: {
+    justifyContent: "flex-start",
+    position: "relative",
+    left: "-4px",
+    top: "0px",
+  },
+  liked: {
+    color: "rgb(255 0 0 / 54%)",
+  },
+  Notliked: {
+    color: "rgba(0, 0, 0, 0.54)",
+  },
+  loadMore: {
+    marginBottom: "0px",
+    color: "#5c3d85",
+    cursor: "pointer",
+    fontSize: "12px",
+    marginTop: "5px",
+  },
 }));
 
 function FeedCard(props) {
   const classes = useStyles();
   const [comment, setComment] = useState("");
+  const [showComment, setShowComment] = useState(3);
   const dispatch = useDispatch();
 
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : {};
+
+  let commentsLength = props.feed.comments.length;
 
   const userSubmit = (e) => {
     setComment("");
@@ -106,6 +123,29 @@ function FeedCard(props) {
     dispatch(addComment(userData));
   };
 
+  const likedTest = () => {
+    let liked = {
+      isLiked: false,
+      class: classes.Notliked,
+    };
+    let index = props.feed.likes.findIndex((e) => {
+      return e.user == user.id;
+    });
+
+    if (index >= 0) {
+      liked = {
+        isLiked: true,
+        class: classes.liked,
+      };
+      // setLikedClass(classes.liked)
+    }
+
+    return liked.isLiked;
+  };
+
+  const submitLike = (id) => {
+    dispatch(addLikes(id));
+  };
   const _handleKeyDown = (e) => {
     if (e.key === "Enter") {
       userSubmit();
@@ -180,11 +220,21 @@ function FeedCard(props) {
           </Grid>
           <Grid item>
             <List>
-              <ListItem onClick={() => dispatch(addLikes(props?.feed?.id))}>
-                <ListItemIcon>
+              <ListItem
+                onClick={() =>
+                  likedTest()
+                    ? console.log("already liked")
+                    : submitLike(props?.feed?.id)
+                }
+              >
+                <ListItemIcon
+                  className={likedTest() ? classes.liked : classes.Notliked}
+                >
                   <FavoriteIcon />
                 </ListItemIcon>
-                <p className={classes.textBox}>Likes ({props?.feed?.likes?.length})</p>
+                <p className={classes.textBox}>
+                  Likes ({props?.feed?.likes?.length})
+                </p>
               </ListItem>
             </List>
           </Grid>
@@ -207,35 +257,51 @@ function FeedCard(props) {
               placeholder="What you say on this..."
               onKeyPress={_handleKeyDown}
             />
+            {props.feed.comments.length > 3 ? (
+              <p
+                className={classes.loadMore}
+                onClick={() => setShowComment(showComment + 3)}
+              >
+                Load Previous Comments
+              </p>
+            ) : (
+              ""
+            )}
           </Grid>
           {/* <button onClick={userSubmit}>send</button> */}
         </Grid>
+
         {props.feed.comments.length
-          ? props.feed.comments.map((comment, index) => (
-              <span key={index}>
-                {comment["comment"] ? (
-                  <Grid key={index} container className={classes.comments}>
-                    <Grid className={classes.avatar} item md={1}></Grid>
-                    <Grid item className={classes.comentBox} md={11}  >
-                      <Grid className={classes.commentInnerAvatar} item md={1}>
-                        <Avatar
-                          alt={props?.user?.firstName}
-                          src={props?.user?.profilePic?.url}
-                        />
+          ? props.feed.comments
+              .slice(Math.max(props.feed.comments.length - showComment, 0))
+              .map((comment, index) => (
+                <span key={index}>
+                  {comment["comment"] ? (
+                    <Grid key={index} container className={classes.comments}>
+                      <Grid className={classes.avatar} item md={1}></Grid>
+                      <Grid item className={classes.comentBox} md={11}>
+                        <Grid
+                          className={classes.commentInnerAvatar}
+                          item
+                          md={1}
+                        >
+                          <Avatar
+                            alt={props?.user?.firstName}
+                            src={props?.user?.profilePic?.url}
+                          />
+                        </Grid>
+                        <Grid item md={12}>
+                          <p className={classes.commentsTextBox}>
+                            {comment?.comment}
+                          </p>
+                        </Grid>
                       </Grid>
-                      <Grid   item md={12}>
-                      <p className={classes.commentsTextBox}>
-                        {comment?.comment}
-                      </p>
-                      </Grid>
-                      
                     </Grid>
-                  </Grid>
-                ) : (
-                  ""
-                )}
-              </span>
-            ))
+                  ) : (
+                    ""
+                  )}
+                </span>
+              ))
           : ""}
       </CardContent>
     </Card>

@@ -8,6 +8,8 @@ import {
   COMMENT_ADD_ERROR,
   LIKES_ADD_ERROR,
   LIKES_ADD_SUCCESS,
+  FEEDS_COUNT_SUCCESS,
+  FEEDS_COUNT_ERRORS,
 } from "./types";
 import Api from "../constants/index";
 
@@ -17,7 +19,7 @@ export const listFeed =
   (userData = 0, id = null) =>
   (dispatch) => {
     let postedBy = id ? `&postedBy=${id}` : "";
-
+    
     let token = localStorage.jwtToken;
     let config = {
       method: "GET",
@@ -30,7 +32,7 @@ export const listFeed =
     };
     axios(config).then(
       (success) => {
-        console.log("fetch data success");
+         
         dispatch({
           type: FEEDS_GET_SUCCESS,
           payload: {
@@ -51,6 +53,44 @@ export const listFeed =
             _limit: 10,
             data: [],
             _error: error.data,
+          },
+        });
+      }
+    );
+  };
+
+export const countFeed =
+  (userData = 0, id = null) =>
+  (dispatch) => {
+    let postedBy = id ? `&postedBy=${id}` : "";
+
+    let token = localStorage.jwtToken;
+    let config = {
+      method: "GET",
+      url: `${api.getCurrentHost()}feeds/count`,
+      headers: {
+        Authorization: "Bearer " + token,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    axios(config).then(
+      (success) => {
+        console.log("fetch data success");
+        dispatch({
+          type: FEEDS_COUNT_SUCCESS,
+          payload: {
+            data: success.data,
+          },
+        });
+      },
+      (error) => {
+        console.log("fetch data error");
+
+        dispatch({
+          type: FEEDS_COUNT_ERRORS,
+          payload: {
+            data: 0,
           },
         });
       }
@@ -102,7 +142,7 @@ export const addComment = (userData) => (dispatch) => {
     : {};
   let comment = {
     comment: userData.comment,
-    user : user,
+    user: user,
     feed: userData.feed,
   };
   dispatch({
@@ -127,7 +167,6 @@ export const addComment = (userData) => (dispatch) => {
   axios(config).then(
     (success) => {
       console.log("fetch data success");
-      
     },
     (error) => {
       console.log("fetch data error");
@@ -147,9 +186,9 @@ export const addLikes = (feedId) => (dispatch) => {
     ? JSON.parse(localStorage.getItem("user"))
     : {};
   let like = {
-    feed : feedId,
-    user : user.id
-  }
+    feed: feedId,
+    user: user.id,
+  };
   dispatch({
     type: LIKES_ADD_SUCCESS,
     payload: {
@@ -171,7 +210,6 @@ export const addLikes = (feedId) => (dispatch) => {
   axios(config).then(
     (success) => {
       console.log("fetch data success");
-      
     },
     (error) => {
       console.log("fetch data error");
