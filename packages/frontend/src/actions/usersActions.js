@@ -92,12 +92,13 @@ export const userSkills = (userData, token) => (dispatch) => {
 };
 
 export const searchUsers = (userData) => (dispatch) => {
+  let token = localStorage.jwtToken;
 	let config = {
 		method: 'GET',
-		url: api.getCurrentHost() + "users?q=" + search_parameters,
+		url: api.getCurrentHost() + "users?_q=" + userData,
 		data: userData,
 		headers: {
-			Authorization: 'Bearer ' + userData.token,
+			Authorization: 'Bearer ' + token,
 			Accept: 'application/json',
 			'Content-Type': 'application/json'
 		}

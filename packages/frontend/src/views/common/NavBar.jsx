@@ -14,6 +14,10 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
+import { searchUsers } from "../../actions/usersActions";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import "../../App.css"
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -89,9 +93,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavBar(props) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchParameters, setSearchParameters] = useState('')
+  const [filteredData, setFilteredData] = useState('')
+  //const path = `/Profile/${props.search.id}`
 
 
   const isMenuOpen = Boolean(anchorEl);
@@ -113,6 +121,24 @@ export default function NavBar(props) {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  const searchData = useSelector((state) => state.apiRes.search);
+  
+  const handleSearch = (e) => {
+    
+    const userData = {
+      searchParameters:searchParameters
+    }
+    dispatch(searchUsers(searchParameters));
+    //e.preventDefault()
+    
+  };
+  const _handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -156,7 +182,7 @@ export default function NavBar(props) {
       </MenuItem>
     </Menu>
   );
-  console.log(searchTerm)
+  
 
   return (
     <div className={classes.grow}>
@@ -194,9 +220,21 @@ export default function NavBar(props) {
               }}
               inputProps={{ "aria-label": "search" }}
               onChange={(e) => {
-                setSearchTerm(e.target.value);
+                setSearchParameters(e.target.value);
               }}
+              name="searchParameters"
+              onKeyPress={_handleKeyDown}
             />
+          
+          {searchParameters.length != 0 && (
+          <div className="dataResult">
+          {searchData.data.map((value, key) => {
+            return <a className="dataItem">
+            <p>{value.firstName}</p>
+            </a>
+          })}
+          </div>
+          )}
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
