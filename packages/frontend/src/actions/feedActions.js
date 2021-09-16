@@ -43,7 +43,7 @@ export const listFeed =
       },
       (error) => {
         console.log("fetch data error");
-        
+
         dispatch({
           type: FEEDS_GET_ERRORS,
           payload: {
@@ -97,6 +97,21 @@ export const addFeeds = (userData) => (dispatch) => {
 
 export const addComment = (userData) => (dispatch) => {
   let token = localStorage.jwtToken;
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : {};
+  let comment = {
+    comment: userData.comment,
+    user : user,
+    feed: userData.feed,
+  };
+  dispatch({
+    type: COMMENT_ADD_SUCCESS,
+    payload: {
+      data: comment,
+      _error: "",
+    },
+  });
 
   let config = {
     method: "POST",
@@ -112,13 +127,7 @@ export const addComment = (userData) => (dispatch) => {
   axios(config).then(
     (success) => {
       console.log("fetch data success");
-      dispatch({
-        type: COMMENT_ADD_SUCCESS,
-        payload: {
-          data: success.data,
-          _error: "",
-        },
-      });
+      
     },
     (error) => {
       console.log("fetch data error");
@@ -132,13 +141,26 @@ export const addComment = (userData) => (dispatch) => {
   );
 };
 
-export const addLikes = (userData) => (dispatch) => {
+export const addLikes = (feedId) => (dispatch) => {
   let token = localStorage.jwtToken;
-
+  let user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : {};
+  let like = {
+    feed : feedId,
+    user : user.id
+  }
+  dispatch({
+    type: LIKES_ADD_SUCCESS,
+    payload: {
+      data: like,
+      _error: "",
+    },
+  });
   let config = {
     method: "POST",
     url: api.getCurrentHost() + "feed-likes",
-    data: userData,
+    data: like,
     headers: {
       Authorization: "Bearer " + token,
       Accept: "application/json",
@@ -149,13 +171,7 @@ export const addLikes = (userData) => (dispatch) => {
   axios(config).then(
     (success) => {
       console.log("fetch data success");
-      dispatch({
-        type: LIKES_ADD_SUCCESS,
-        payload: {
-          data: success.data,
-          _error: "",
-        },
-      });
+      
     },
     (error) => {
       console.log("fetch data error");

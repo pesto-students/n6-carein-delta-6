@@ -89,7 +89,7 @@ class App extends Component {
               name="Homepage"
               component={Homepage}
               layout={DashboardLayout}
-              render={(props) => <Homepage {...props} />}
+              // render={(props) => <Homepage {...props} />}
             />
 
             <Route
@@ -106,7 +106,7 @@ class App extends Component {
               name="Friends"
               component={Friends}
               layout={DashboardLayout}
-              render={(props) => <Friends {...props} />}
+              // render={(props) => <Friends {...props} />}
             />
 
             <PrivateRoute
@@ -115,7 +115,7 @@ class App extends Component {
               name="Events"
               component={Events}
               layout={DashboardLayout}
-              render={(props) => <Events {...props} />}
+              // render={(props) => <Events {...props} />}
             />
 
             <PrivateRoute
@@ -124,7 +124,7 @@ class App extends Component {
               name="Services"
               component={Services}
               layout={DashboardLayout}
-              render={(props) => <Services {...props} />}
+              // render={(props) => <Services {...props} />}
             />
 
             <PrivateRoute
@@ -133,7 +133,7 @@ class App extends Component {
               name="Subscription"
               layout={DashboardLayout}
               component={Subscription}
-              render={(props) => <Subscription {...props} />}
+              // render={(props) => <Subscription {...props} />}
             />
 
             <PrivateRoute
@@ -142,7 +142,7 @@ class App extends Component {
               name="Servicedetails"
               layout={DashboardLayout}
               component={ServiceDetails}
-              render={(props) => <ServiceDetails {...props} />}
+              // render={(props) => <ServiceDetails {...props} />}
             />
 
             <PrivateRoute
@@ -151,7 +151,7 @@ class App extends Component {
               name="Profile"
               layout={DashboardLayout}
               component={Profile}
-              render={(props) => <Profile {...props} />}
+              // render={(props) => <Profile {...props} />}
             />
             <PrivateRoute
               exact
@@ -159,7 +159,7 @@ class App extends Component {
               name="Profile"
               layout={DashboardLayout}
               component={Profile}
-              render={(props) => <Profile {...props} />}
+              // render={(props) => <Profile {...props} />}
             />
 
             <Route component={NoMatchPage} />

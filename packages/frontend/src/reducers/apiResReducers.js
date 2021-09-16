@@ -66,17 +66,17 @@ const initialState = {
     data: [],
     _error: "",
   },
-  
+
   comment: {
     data: {},
-    _error:""
+    _error: "",
   },
 
   addService: {
     data: [],
-    _error:""
+    _error: "",
   },
-  
+
   likes: {
     data: {},
     _error: "",
@@ -129,13 +129,21 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case COMMENT_ADD_SUCCESS:
-      console.log("reducer COMMENT_ADD_SUCCESS", COMMENT_ADD_SUCCESS);
+      console.log("reducer COMMENT_ADD_SUCCESS", action.payload);
+      let feedIndex = state.feeds.data.findIndex((e) => {
+        return e.id == action.payload.data.feed;
+      });
+      let newStateComment = [action.payload.data].concat(
+        state.feeds.data[feedIndex].comments
+      );
+      state.feeds.data[feedIndex].comments = newStateComment;
+      console.log(state.feeds.data[feedIndex]);
       return {
         ...state,
-        comment: {
-          ...state.comment,
-          data: action.payload.data,
-          _error: action.payload._error,
+        feeds: {
+          _error: "",
+          ...state.feeds,
+          data: state.feeds.data,
         },
       };
     case COMMENT_ADD_ERROR:
@@ -156,10 +164,20 @@ export default function apiResReducer(state = initialState, action) {
       };
     case LIKES_ADD_SUCCESS:
       console.log("reducer COMMENT_ADD_ERROR", LIKES_ADD_SUCCESS);
+      let feedLikeIndex = state.feeds.data.findIndex((e) => {
+        return e.id == action.payload.data.feed;
+      });
+      let newStateLikes = [action.payload.data].concat(
+        state.feeds.data[feedLikeIndex].likes
+      );
+      state.feeds.data[feedLikeIndex].comments = newStateLikes;
+      console.log(state.feeds.data[feedLikeIndex]);
       return {
         ...state,
-        likes: {
-          data: action.payload.data,
+        feeds: {
+          _error: "",
+          ...state.feeds,
+          data: state.feeds.data,
         },
       };
     case EVENTS_GET_SUCCESS:
@@ -272,46 +290,45 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
 
-        
-      case SERVICEDETAIL_GET_SUCCESS:
-                console.log("action SERVICEDETAIL_GET_SUCCESS", action.payload);
-          
-                return {
-                  ...state,
-                  serviceDetails: {
-                    data: action.payload.data,
-                    _error: "",
-                  },
-                };
-      case SERVICEDETAIL_GET_ERRORS:
-                console.log("reducer SERVICEDETAIL_GET_ERRORS", action.payload);
-                return {
-                  ...state,
-                  serviceDetails: {
-                    data: action.payload.data,
-                    _error: action.payload._error,
-                  },
-                };
+    case SERVICEDETAIL_GET_SUCCESS:
+      console.log("action SERVICEDETAIL_GET_SUCCESS", action.payload);
 
-                case SEARCH_GET_SUCCESS:
-                  console.log("action SEARCH_GET_SUCCESS", action.payload);
-                  return {
-                    ...state,
-                    search: {
-                      data: action.payload.data,
-                      _error: "",
-                    },
-                  };
-                case SEARCH_GET_ERRORS:
-                  console.log("reducer SEARCH_GET_ERRORS", action.payload);
-                  return {
-                    ...state,
-                    search: {
-                      data: action.payload.data,
-                      _error: action.payload._error,
-                    },
-                  };
-               
+      return {
+        ...state,
+        serviceDetails: {
+          data: action.payload.data,
+          _error: "",
+        },
+      };
+    case SERVICEDETAIL_GET_ERRORS:
+      console.log("reducer SERVICEDETAIL_GET_ERRORS", action.payload);
+      return {
+        ...state,
+        serviceDetails: {
+          data: action.payload.data,
+          _error: action.payload._error,
+        },
+      };
+
+    case SEARCH_GET_SUCCESS:
+      console.log("action SEARCH_GET_SUCCESS", action.payload);
+      return {
+        ...state,
+        search: {
+          data: action.payload.data,
+          _error: "",
+        },
+      };
+    case SEARCH_GET_ERRORS:
+      console.log("reducer SEARCH_GET_ERRORS", action.payload);
+      return {
+        ...state,
+        search: {
+          data: action.payload.data,
+          _error: action.payload._error,
+        },
+      };
+
     default:
       return state;
   }

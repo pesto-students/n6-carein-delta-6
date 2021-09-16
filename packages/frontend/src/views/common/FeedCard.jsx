@@ -14,6 +14,7 @@ import { List } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../../actions/feedActions";
+import { addLikes } from "../../actions/feedActions";
 import { TextField } from "@material-ui/core";
 import { fToNow } from "../../utils/formatTime";
 
@@ -61,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     marginBottom: 0,
     color: "#5c3d85",
+    fontSize: "12px",
   },
   comments: {
     "align-items": "center",
@@ -68,11 +70,21 @@ const useStyles = makeStyles((theme) => ({
   },
   commentsTextBox: {
     padding: "7px 8px",
-    background: "#e2ccfe87",
-    borderRadius: "4px",
     color: "#5c3d85",
     fontWeight: 600,
+    marginBottom : 0
   },
+  comentBox : {
+    display: 'flex',
+    background: '#f0e4fe',
+    borderRadius: '20px 6px 6px 6px',
+  },
+  commentInnerAvatar : {
+    justifyContent: 'flex-start',
+    position: 'relative',
+    left: '-4px',
+    top: '0px'
+  }
 }));
 
 function FeedCard(props) {
@@ -85,6 +97,7 @@ function FeedCard(props) {
     : {};
 
   const userSubmit = (e) => {
+    setComment("");
     const userData = {
       comment: comment,
       user: user.id,
@@ -103,7 +116,7 @@ function FeedCard(props) {
     <Card className={classes.root}>
       <CardContent>
         <Grid container spacing={3} className={classes.main}>
-          <Grid item md={0.5} className={classes.profile}>
+          <Grid item md={1} className={classes.profile}>
             <Avatar
               alt={props.feed.postedBy.firstName}
               src={props.feed.postedBy.profilePic.url}
@@ -125,9 +138,7 @@ function FeedCard(props) {
               variant="body1"
               component="p"
             >
-              {props.feed.createdAt
-                ? fToNow(props.feed.createdAt)
-                : ""}
+              {props.feed.createdAt ? fToNow(props.feed.createdAt) : ""}
             </Typography>
           </Grid>
           <Grid item md={1} className={classes.icon}></Grid>
@@ -169,11 +180,11 @@ function FeedCard(props) {
           </Grid>
           <Grid item>
             <List>
-              <ListItem>
+              <ListItem onClick={() => dispatch(addLikes(props?.feed?.id))}>
                 <ListItemIcon>
                   <FavoriteIcon />
                 </ListItemIcon>
-                <p className={classes.textBox}>Likes</p>
+                <p className={classes.textBox}>Likes ({props?.feed?.likes?.length})</p>
               </ListItem>
             </List>
           </Grid>
@@ -190,6 +201,7 @@ function FeedCard(props) {
               variant="outlined"
               fullWidth
               name="comment"
+              value={comment}
               onChange={(e) => setComment(e.target.value)}
               id="postfield"
               placeholder="What you say on this..."
@@ -203,16 +215,20 @@ function FeedCard(props) {
               <span key={index}>
                 {comment["comment"] ? (
                   <Grid key={index} container className={classes.comments}>
-                    <Grid className={classes.avatar} item md={1}>
-                      <Avatar
-                        alt={props?.user?.firstName}
-                        src={props?.user?.profilePic?.url}
-                      />
-                    </Grid>
-                    <Grid item md={11} spacing={2}>
+                    <Grid className={classes.avatar} item md={1}></Grid>
+                    <Grid item className={classes.comentBox} md={11}  >
+                      <Grid className={classes.commentInnerAvatar} item md={1}>
+                        <Avatar
+                          alt={props?.user?.firstName}
+                          src={props?.user?.profilePic?.url}
+                        />
+                      </Grid>
+                      <Grid   item md={12}>
                       <p className={classes.commentsTextBox}>
                         {comment?.comment}
                       </p>
+                      </Grid>
+                      
                     </Grid>
                   </Grid>
                 ) : (
