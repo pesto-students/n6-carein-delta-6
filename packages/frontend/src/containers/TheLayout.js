@@ -5,6 +5,8 @@ import { Grid } from "@material-ui/core";
 import SideNav from "../views/common/SideNav";
 import RightNav from "../views/common/RightNav";
 import Hidden from "@material-ui/core/Hidden";
+import { TheContent, TheHeader, TheFooter } from "./index";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     // display: "flex",
@@ -20,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(1),
-    marginTop:theme.spacing(12)
+    marginTop: theme.spacing(12),
   },
 }));
 
@@ -33,7 +35,7 @@ const DashboardLayout = (props) => {
       <div className={classes.toolbar} />
       <div className={classes.content}>
         <Grid container className={useStyles.root}>
-          {props.children}
+          <TheContent />
         </Grid>
       </div>
       <Hidden smDown implementation="css">
