@@ -1,6 +1,5 @@
 import axios from "axios";
-import { SERVICEDETAIL_GET_SUCCESS,
-   SERVICEDETAIL_GET_ERRORS, } from "./types";
+import { SERVICEDETAIL_GET_SUCCESS, SERVICEDETAIL_GET_ERRORS } from "./types";
 import Api from "../constants/index";
 
 const api = new Api();

@@ -9,7 +9,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ProfileCard from "../../common/ProfileCard";
 import FriendRequestCard from "../../common/FriendRequestCard";
-
+import Skeleton from "@mui/material/Skeleton";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 360,
@@ -64,12 +64,25 @@ const Friends = () => {
         return (
           <>
             <Grid item xl={12} md={12} lg={12}>
-              <div className={classes.header}>My Friends</div>
               <Grid className={classes.friendFlex}>
-                {friendsData.data?.friendList?.map((user, index) => (
-                  // <FriendCard user={user} key={index} />
-                  <ProfileCard user={user} key={index}></ProfileCard>
-                ))}
+                {friendsData.data?.friendList
+                  ? friendsData.data?.friendList?.map((user, index) => (
+                      <ProfileCard user={user} key={index}></ProfileCard>
+                    ))
+                  : [1, 1, 1, 1, 1, 1, 1, 1, 1].map((u, index) => (
+                      <Skeleton
+                        animation="wave"
+                        style={{
+                          marginRight: 20,
+                          marginBottom: 20,
+                          borderRadius: 20,
+                        }}
+                        key={index}
+                        height={282}
+                        width={200}
+                        variant="rectangular"
+                      />
+                    ))}
               </Grid>
             </Grid>
           </>
@@ -79,7 +92,6 @@ const Friends = () => {
         return (
           <>
             <Grid item xl={12} md={12} lg={12}>
-              <div className={classes.header}>Friend Requests</div>
               <Grid className={classes.friendFlex}>
                 {friendsData.data?.openRequest?.map((user, index) => (
                   <FriendRequestCard
@@ -96,21 +108,12 @@ const Friends = () => {
         return (
           <>
             <Grid item xl={12} md={12} lg={12}>
-              <div className={classes.header}>People Nearby</div>
               <Grid className={classes.friendFlex}>
                 {friendsNData.data?.nearby?.map((user, index) => (
                   <ProfileCard user={user} key={index}></ProfileCard>
                 ))}
               </Grid>
             </Grid>
-            {/* <Grid item xl={12} md={12} lg={12}>
-              <div className={classes.header}>People you may know</div>
-              <Grid className={classes.friendFlex}>
-                {friendsNData.data?.fof?.map((user, index) => (
-                  <ProfileCard user={user} key={index}></ProfileCard>
-                ))}
-              </Grid>
-            </Grid> */}
           </>
         );
       default:
@@ -121,6 +124,9 @@ const Friends = () => {
   };
   return (
     <>
+      <Grid item lg={12} md={12} xs={12} className={classes.header}>
+        Friends
+      </Grid>
       <Grid className={classes.leftCont} item lg={2} md={2} xs={12}>
         <List
           className={classes.root}

@@ -125,8 +125,8 @@ function FeedCard(props) {
               variant="body1"
               component="p"
             >
-              {props.feed.postedBy.createdAt
-                ? fToNow(props.feed.postedBy.createdAt)
+              {props.feed.createdAt
+                ? fToNow(props.feed.createdAt)
                 : ""}
             </Typography>
           </Grid>
@@ -192,7 +192,7 @@ function FeedCard(props) {
               name="comment"
               onChange={(e) => setComment(e.target.value)}
               id="postfield"
-              label="What you say on this..."
+              placeholder="What you say on this..."
               onKeyPress={_handleKeyDown}
             />
           </Grid>

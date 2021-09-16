@@ -32,6 +32,7 @@ export const listEvents =
         });
       },
       (error) => {
+        
         console.log("fetch data error");
         dispatch({
           type: EVENTS_GET_ERRORS,
@@ -45,4 +46,3 @@ export const listEvents =
       }
     );
   };
-

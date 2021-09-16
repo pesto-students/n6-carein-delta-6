@@ -5,7 +5,7 @@
   "author": "team-pesto-n6-delta",
   "scripts": {
     "lint": "lerna run lint --stream",
-    "start": "lerna run start --scope 'foodly'",
+    "start": "lerna run start",
     "backend:develop": "lerna run develop --scope 'backend-carein'",
     "frontend:develop": "lerna run start --scope 'frontend-carein'",
     "boot": "lerna bootstrap"

@@ -1,5 +1,9 @@
 import axios from "axios";
-import { PROFILE_GET_SUCCESS, PROFILE_GET_ERRORS , PROFILE_CLEAR} from "./types";
+import {
+  PROFILE_GET_SUCCESS,
+  PROFILE_GET_ERRORS,
+  PROFILE_CLEAR,
+} from "./types";
 import Api from "../constants/index";
 
 const api = new Api();
@@ -37,6 +41,7 @@ export const profileData =
       },
       (error) => {
         console.log("fetch data error");
+        
         dispatch({
           type: PROFILE_GET_ERRORS,
           payload: {

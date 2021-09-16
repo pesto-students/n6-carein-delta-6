@@ -21,7 +21,6 @@ export const loginUser = (userData) => (dispatch) => {
       console.log(res, "res is");
       //const { token } = res.data;
       const secret = "FxUum76z";
-      const currentTime = Date.now() / 1000;
       const payload = {
         jwt: res.data.jwt,
       };

@@ -8,8 +8,8 @@ import { SERVICES_GET_SUCCESS,
          SERVICES_ADD_ERRORS } 
 from "./types";
 import Api from "../constants/index";
-const api = new Api();
 
+const api = new Api();
 
 export const listServices =
   (userData = 0) =>
@@ -40,6 +40,7 @@ export const listServices =
         });
       },
       (error) => {
+        
         console.log("fetch data error");
         dispatch({
           type: SERVICES_GET_ERRORS,
