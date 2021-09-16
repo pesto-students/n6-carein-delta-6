@@ -97,12 +97,13 @@ export default function apiResReducer(state = initialState, action) {
       };
     case FEEDS_ADD_SUCCESS:
       console.log("reducer FEEDS_ADD_SUCCESS", state, action.payload);
+      let newState = [action.payload.data.request].concat(state.feeds.data);
       return {
         ...state,
         feeds: {
           _error: "",
           ...state.feeds,
-          data: state.feeds.data.push(action.payload.data.request),
+          data: newState,
         },
       };
     case FEEDS_ADD_ERROR:

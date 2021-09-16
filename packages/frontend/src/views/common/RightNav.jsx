@@ -11,6 +11,7 @@ import { Typography } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { listFriend } from "../../actions/friendsActions";
 import { Link } from "react-router-dom";
+import Skeleton from "@mui/material/Skeleton";
 const drawerWidth = 230;
 
 const useStyles = makeStyles((theme) => ({
@@ -90,30 +91,48 @@ export default function RightNav() {
           >
             Friends
           </Typography>
-          {friendsData.data?.friendList?.map((user, index) => (
-            <ListItem
-              button
-              key={index}
-              component={Link}
-              to={`/profile/${user.id}`}
-            >
+          {friendsData.data?.friendList ? (
+            friendsData.data?.friendList?.map((user, index) => (
+              <ListItem
+                button
+                key={index}
+                component={Link}
+                to={`/profile/${user.id}`}
+              >
+                <ListItemIcon>
+                  <Avatar
+                    alt="M"
+                    src={
+                      user.media
+                        ? user.media.url
+                        : `./assets/media/bg/profile.jpg`
+                    }
+                  />
+                </ListItemIcon>
+                <ListItemText
+                  primary={`${user.firstName ? user.firstName : ""} ${
+                    user.lastName ? user.lastName : ""
+                  }`}
+                />
+              </ListItem>
+            ))
+          ) : (
+            [1,1,1,1,1,1,1,1,1,1,1].map((user, index) => (
+            <ListItem button key={index}>
               <ListItemIcon>
-                <Avatar
-                  alt="M"
-                  src={
-                    user.media
-                      ? user.media.url
-                      : `./assets/media/bg/profile.jpg`
-                  }
+                <Skeleton
+                  animation="wave"
+                  variant="circular"
+                  width={40}
+                  height={40}
                 />
               </ListItemIcon>
-              <ListItemText
-                primary={`${user.firstName ? user.firstName : ""} ${
-                  user.lastName ? user.lastName : ""
-                }`}
-              />
+              <ListItemText>
+                <Skeleton />{" "}
+              </ListItemText>
             </ListItem>
-          ))}
+            ))
+          )}
         </List>
       </Drawer>
     </div>

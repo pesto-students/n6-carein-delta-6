@@ -1,13 +1,11 @@
 import axios from "axios";
 import { EVENTS_GET_SUCCESS, EVENTS_GET_ERRORS } from "./types";
 import Api from "../constants/index";
-import { showLoader, hideLoader } from "../views/common/Loader";
 const api = new Api();
 
 export const listEvents =
   (userData = 0) =>
   (dispatch) => {
-    showLoader();
     let token = localStorage.jwtToken;
 
     let config = {
@@ -22,7 +20,6 @@ export const listEvents =
     };
     axios(config).then(
       (success) => {
-        hideLoader();
         console.log("fetch data success");
         dispatch({
           type: EVENTS_GET_SUCCESS,
@@ -35,7 +32,7 @@ export const listEvents =
         });
       },
       (error) => {
-        hideLoader();
+        
         console.log("fetch data error");
         dispatch({
           type: EVENTS_GET_ERRORS,

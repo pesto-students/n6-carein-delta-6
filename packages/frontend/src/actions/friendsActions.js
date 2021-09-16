@@ -1,12 +1,10 @@
 import axios from "axios";
 import { FRIENDS_GET_SUCCESS, FRIENDS_GET_ERRORS } from "./types";
 import Api from "../constants/index";
-import { showLoader, hideLoader } from "../views/common/Loader";
 
 const api = new Api();
 
 export const listFriend = () => (dispatch) => {
-  showLoader();
   let token = localStorage.jwtToken;
   let config = {
     method: "GET",
@@ -20,7 +18,6 @@ export const listFriend = () => (dispatch) => {
   axios(config).then(
     (success) => {
       console.log("fetch data success");
-      hideLoader();
       dispatch({
         type: FRIENDS_GET_SUCCESS,
         payload: {
@@ -31,7 +28,7 @@ export const listFriend = () => (dispatch) => {
     },
     (error) => {
       console.log("fetch data error");
-      hideLoader();
+      
       dispatch({
         type: FRIENDS_GET_ERRORS,
         payload: {

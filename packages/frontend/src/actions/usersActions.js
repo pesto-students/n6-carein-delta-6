@@ -1,12 +1,10 @@
 import axios from "axios";
 import { GET_ERRORS, GET_SUCCESS } from "./types";
 import Api from "../constants/index";
-import { showLoader, hideLoader } from "../views/common/Loader";
 
 const api = new Api();
 
 export const listUsers = (userData) => (dispatch) => {
-  showLoader();
   console.log("HEREEEEEE", userData.token);
   let config = {
     method: "GET",
@@ -20,7 +18,6 @@ export const listUsers = (userData) => (dispatch) => {
   };
   axios(config).then(
     (success) => {
-      hideLoader();
       console.log("fetch data success");
       dispatch({
         type: GET_SUCCESS,
@@ -28,7 +25,6 @@ export const listUsers = (userData) => (dispatch) => {
       });
     },
     (error) => {
-      hideLoader();
       console.log("fetch data error");
       dispatch({
         type: GET_ERRORS,

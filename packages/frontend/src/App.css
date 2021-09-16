@@ -44,6 +44,10 @@ html body {
   border-radius: 14px;
   box-shadow: -2px 4px 19px #00000038;
 }
+.PrivateNotchedOutline-legendNotched-411 {
+  max-width: 0px !important;
+  transition: max-width 100ms cubic-bezier(0.0, 0, 0.2, 1) 50ms;
+}
 .MuiFilledInput-input {
   background-color: white !important;
   background: white !important;

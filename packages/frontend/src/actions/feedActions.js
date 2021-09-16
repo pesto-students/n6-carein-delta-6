@@ -10,14 +10,12 @@ import {
   LIKES_ADD_SUCCESS,
 } from "./types";
 import Api from "../constants/index";
-import { showLoader, hideLoader } from "../views/common/Loader";
 
 const api = new Api();
 
 export const listFeed =
   (userData = 0, id = null) =>
   (dispatch) => {
-    showLoader();
     let postedBy = id ? `&postedBy=${id}` : "";
 
     let token = localStorage.jwtToken;
@@ -33,7 +31,6 @@ export const listFeed =
     axios(config).then(
       (success) => {
         console.log("fetch data success");
-        hideLoader();
         dispatch({
           type: FEEDS_GET_SUCCESS,
           payload: {
@@ -46,7 +43,7 @@ export const listFeed =
       },
       (error) => {
         console.log("fetch data error");
-        hideLoader();
+        
         dispatch({
           type: FEEDS_GET_ERRORS,
           payload: {

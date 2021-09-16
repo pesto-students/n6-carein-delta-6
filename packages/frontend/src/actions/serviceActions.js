@@ -4,14 +4,12 @@ import setAuthToken from "../utils/setAuthToken";
 import jwt from "jwt-simple";
 import { SERVICES_GET_SUCCESS, SERVICES_GET_ERRORS } from "./types";
 import Api from "../constants/index";
-import { showLoader, hideLoader } from "../views/common/Loader";
 
 const api = new Api();
 
 export const listServices =
   (userData = 0) =>
   (dispatch) => {
-    showLoader();
     let token = localStorage.jwtToken;
 
     let config = {
@@ -26,7 +24,6 @@ export const listServices =
     };
     axios(config).then(
       (success) => {
-        hideLoader();
         console.log("fetch data success");
         dispatch({
           type: SERVICES_GET_SUCCESS,
@@ -39,7 +36,7 @@ export const listServices =
         });
       },
       (error) => {
-        hideLoader();
+        
         console.log("fetch data error");
         dispatch({
           type: SERVICES_GET_ERRORS,

@@ -1,12 +1,10 @@
 import axios from "axios";
 import { FRIENDS_N_GET_SUCCESS, FRIENDS_N_GET_ERRORS } from "./types";
 import Api from "../constants/index";
-import { showLoader, hideLoader } from "../views/common/Loader";
 
 const api = new Api();
 
 export const listNFriend = () => (dispatch) => {
-  showLoader();
   let token = localStorage.jwtToken;
   let config = {
     method: "GET",
@@ -19,7 +17,6 @@ export const listNFriend = () => (dispatch) => {
   };
   axios(config).then(
     (success) => {
-      hideLoader();
       console.log("fetch data success FRIENDS_N_GET_SUCCESS");
       dispatch({
         type: FRIENDS_N_GET_SUCCESS,
@@ -30,7 +27,7 @@ export const listNFriend = () => (dispatch) => {
       });
     },
     (error) => {
-      hideLoader();
+      
       console.log("fetch data error");
       dispatch({
         type: FRIENDS_N_GET_ERRORS,
