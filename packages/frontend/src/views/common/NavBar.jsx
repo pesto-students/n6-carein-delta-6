@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
@@ -17,7 +17,13 @@ import { Button } from "@material-ui/core";
 import { searchUsers } from "../../actions/usersActions";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import "../../App.css"
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Divider from "@mui/material/Divider";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -40,7 +46,29 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(3),
-      width: "auto",
+      border: "1px solid white",
+      lineHeight: "44px",
+      width: "40%",
+    },
+  },
+  searchBoxSuggestion: {
+    marginTop: "5px",
+    width: "100%",
+    height: "auto",
+    backgroundColor: "white",
+    boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+    overflow: "hidden",
+    overflowY: "auto",
+    position: "absolute",
+    position: "absolute",
+    overflow: "scroll",
+    maxHeight: "300px",
+    [theme.breakpoints.up("sm")]: {
+      position: "fixed",
+      left: "0",
+      top: "50px",
+      height: "calc(100% - 50px)",
+      maxHeight: "100%",
     },
   },
   searchIcon: {
@@ -75,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: "#5C3D85"
+    backgroundColor: "#5C3D85",
   },
   sectionMobile: {
     display: "flex",
@@ -94,13 +122,12 @@ const useStyles = makeStyles((theme) => ({
 export default function NavBar(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [searchParameters, setSearchParameters] = useState('')
-  const [filteredData, setFilteredData] = useState('')
+  const [searchParameters, setSearchParameters] = useState("");
+  const [filteredData, setFilteredData] = useState("");
   //const path = `/Profile/${props.search.id}`
-
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -122,23 +149,17 @@ export default function NavBar(props) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
   const searchData = useSelector((state) => state.apiRes.search);
-  
+
   const handleSearch = (e) => {
-    
     const userData = {
-      searchParameters:searchParameters
-    }
+      searchParameters: searchParameters,
+    };
     dispatch(searchUsers(searchParameters));
     //e.preventDefault()
-    
   };
   const _handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
+    handleSearch();
   };
-
-  
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -151,7 +172,9 @@ export default function NavBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><Link to='/Profile'>Profile</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/Profile">Profile</Link>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
     </Menu>
   );
@@ -176,13 +199,12 @@ export default function NavBar(props) {
         >
           <AccountCircle />
         </IconButton>
-        <Link to='/Profile'>
-        <p>Profile</p>
+        <Link to="/Profile">
+          <p>Profile</p>
         </Link>
       </MenuItem>
     </Menu>
   );
-  
 
   return (
     <div className={classes.grow}>
@@ -225,16 +247,52 @@ export default function NavBar(props) {
               name="searchParameters"
               onKeyPress={_handleKeyDown}
             />
-          
-          {searchParameters.length != 0 && (
-          <div className="dataResult">
-          {searchData.data.map((value, key) => {
-            return <a className="dataItem">
-            <p>{value.firstName}</p>
-            </a>
-          })}
-          </div>
-          )}
+
+            {searchParameters.length != 0 && (
+              <div className="dataResult">
+                {searchData.data.map((value, key) => {
+                  return (
+                    // <a className="dataItem">
+                    //   <p>{value.firstName}</p>
+                    // </a>
+
+                    <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+                      <ListItem
+                        style={{ paddingTop: 0, paddingBottom: 0 }}
+                        alignItems="flex-start"
+                      >
+                        <ListItemAvatar>
+                          <Avatar
+                            alt={value.firstName}
+                            src={value.profilePic ? value.profilePic.url : ``}
+                          />
+                        </ListItemAvatar>
+                        <ListItemText
+                          primary={`${value.firstName} ${value.lastName}`}
+                          primaryTypographyProps={{
+                            color: "black",
+                          }}
+                          secondary={
+                            <React.Fragment>
+                              <Typography
+                                sx={{ display: "inline" }}
+                                component="span"
+                                variant="body2"
+                                color="text.primary"
+                              >
+                                {value.city}
+                              </Typography>
+                              {` — ${value.infoStatus}`}
+                            </React.Fragment>
+                          }
+                        />
+                      </ListItem>
+                      <Divider variant="inset" component="li" />
+                    </List>
+                  );
+                })}
+              </div>
+            )}
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

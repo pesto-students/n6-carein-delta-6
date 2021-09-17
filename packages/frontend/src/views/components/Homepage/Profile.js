@@ -12,6 +12,7 @@ import PostCard from "../../common/PostCard";
 import { listFeed } from "../../../actions/feedActions";
 import ProfileDetails from "../../common/ProfileDetails";
 import ProfileCard from "../../common/ProfileCard";
+import Skeleton from "@mui/material/Skeleton";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 360,
@@ -64,6 +65,7 @@ const Profile = (props) => {
     ? JSON.parse(localStorage.getItem("user"))
     : {};
   const id = props.match.params.id ? props.match.params.id : me.id;
+  console.log(id)
   useEffect(() => {
     profile = { data: {}, _error: "" };
     if (id) {
@@ -142,14 +144,23 @@ const Profile = (props) => {
         }}
       >
         <div className="profileDash">
-          <img
-            className="cardProfileimg1"
-            src={
-              profile.data.profilePic
-                ? profile.data.profilePic.url
-                : `./assets/media/bg/profile.jpg`
-            }
-          />
+          {profile.data ? (
+            <img
+              className="cardProfileimg1"
+              src={
+                profile.data.profilePic
+                  ? profile.data.profilePic.url
+                  : `./assets/media/bg/profile.jpg`
+              }
+            />
+          ) : (
+            <Skeleton
+              animation="wave"
+              variant="circular"
+              width={40}
+              height={40}
+            />
+          )}
           <div>
             <p className={classes.nameText}>
               {profile.data.firstName} {profile.data.lastName}

@@ -6,7 +6,8 @@ function ProfileCard(props) {
   let color = randomColor();
   return (
     <Grid item xs={12} md={4} lg={4} sm={6} className="card-container">
-      <Grid className="cardInner">
+      <Grid  className="cardInner">
+        <Grid component={Link} to={`/profile/${props.user.id}`}>
         <div
           className="cardheader"
           style={{
@@ -42,9 +43,9 @@ function ProfileCard(props) {
         <div className="csocial-container">
           <div className="cfollowers">
             <h1 className="cbold-text">{props.user.friends?.length}</h1>
-            <h2 className="csmaller-text">Team Size</h2>
+            <h2 className="csmaller-text">Friends</h2>
           </div>
-          <div className="clikes">
+          {/* <div className="clikes">
             <h2 style={{ fontWeight: "600" }} className="csmaller-text">
               In Your Team
             </h2>
@@ -60,8 +61,9 @@ function ProfileCard(props) {
                 Profile
               </Link>
             </Button>
-          </div>
+          </div> */}
         </div>
+        </Grid>
       </Grid>
     </Grid>
   );

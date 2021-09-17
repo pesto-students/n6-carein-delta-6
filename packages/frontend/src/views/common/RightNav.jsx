@@ -101,11 +101,11 @@ export default function RightNav() {
               >
                 <ListItemIcon>
                   <Avatar
-                    alt="M"
+                    alt={user.firstName}
                     src={
                       user.media
                         ? user.media.url
-                        : `./assets/media/bg/profile.jpg`
+                        : ``
                     }
                   />
                 </ListItemIcon>
