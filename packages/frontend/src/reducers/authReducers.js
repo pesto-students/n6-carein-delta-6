@@ -3,6 +3,8 @@ import {
   USER_ADD,
   USER_LOADING,
   USER_UPDATE,
+  GET_SUCCESS,
+  GET_ERRORS
 } from "../actions/types";
 const isEmpty = require("is-empty");
 const initialState = {
@@ -33,6 +35,11 @@ export default function authReducer(state = initialState, action) {
         ...state,
         loading: true,
       };
+      case GET_SUCCESS:
+        return {
+          isAuthenticated: !isEmpty(action.payload),
+          user: action.payload,
+        };
     default:
       return state;
   }

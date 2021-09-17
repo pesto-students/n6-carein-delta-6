@@ -9,9 +9,14 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import * as Yup from 'yup';
-import { useFormik, FormikProvider } from 'formik';
+import { useFormik, FormikProvider, Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import { signupUser } from "../../../actions/authActions";
+import { addUsers } from '../../../actions/usersActions';
+import { FormControl, InputLabel,  } from '@material-ui/core';
+import { Select } from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
+import { useState } from 'react';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -64,6 +69,7 @@ const Sign = () => {
   const classes = useStyles();
  const dispatch = useDispatch();
 
+
   const RegisterSchema = Yup.object().shape({
     firstName: Yup.string()
       .min(2, "Too Short!")
@@ -80,12 +86,15 @@ const Sign = () => {
       .min(4, "Too short")
       .max(15, "Too Long")
       .required("Password is required"),
-    mobnumber: Yup.string   ()
+    mobnumber: Yup.string()
       .matches(/^[0-9]+$/, "Must be only digits")
       .min(10, "Mobile number should be 10 digits")
       .max(10, "Mobile number should be 10 digits")
       .required("Mobile number is required"),
     addressLine1: Yup.string().required("Address is required"),
+    pincode: Yup.string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .required("pincode is required"),
     dob: Yup.string().required("Date of Birth is required"),
   });
 
@@ -97,23 +106,13 @@ const Sign = () => {
       password: "",
       username: "",
       addressLine1: "",
+      pincode: null,
       dob: "",
       mobnumber : null,
     },
     validationSchema: RegisterSchema,
     onSubmit: (values) => {
-      
-      let body = {
-        firstName : values.firstName,
-        lastName : values.lastName,
-        email : values.email,
-        password : values.password,
-        username : values.mobnumber,
-        phone : values.mobnumber,
-        addressLine1 : values.addressLine1
-      }
-      console.log(body);
-      dispatch(signupUser(body));
+      dispatch(addUsers(values));
     },
   });
 
@@ -139,7 +138,7 @@ const Sign = () => {
             </div>
           </Typography>
           <FormikProvider value={formik}>
-          <form className={classes.form} noValidate onSubmit={handleSubmit}>
+          <Form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -150,7 +149,7 @@ const Sign = () => {
                   fullWidth
                   id="firstName"
                   label="First Name"
-                  {...getFieldProps('firstName')}
+                  {...getFieldProps("firstName")}
                   error={Boolean(touched.firstName && errors.firstName)}
                   helperText={touched.firstName && errors.firstName}
                 />
@@ -164,7 +163,7 @@ const Sign = () => {
                   label="Last Name"
                   name="lastName"
                   autoComplete="lname"
-                  {...getFieldProps('lastName')}
+                  {...getFieldProps("lastName")}
                   error={Boolean(touched.lastName && errors.lastName)}
                   helperText={touched.lastName && errors.lastName}
                 />
@@ -178,7 +177,7 @@ const Sign = () => {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  {...getFieldProps('email')}
+                  {...getFieldProps("email")}
                   error={Boolean(touched.email && errors.email)}
                   helperText={touched.email && errors.email}
                 />
@@ -194,7 +193,7 @@ const Sign = () => {
                   type="password"
                   id="password"
                   autoComplete="current-password"
-                  {...getFieldProps('password')}
+                  {...getFieldProps("password")}
                   error={Boolean(touched.password && errors.password)}
                   helperText={touched.password && errors.password}
                 />
@@ -209,7 +208,7 @@ const Sign = () => {
                   label="Mobile Number"
                   name="mobnumber"
                   autoComplete="mobnumber"
-                  {...getFieldProps('mobnumber')}
+                  {...getFieldProps("mobnumber")}
                   error={Boolean(touched.mobnumber && errors.mobnumber)}
                   helperText={touched.mobnumber && errors.mobnumber}
                 />
@@ -223,11 +222,26 @@ const Sign = () => {
                   label="Address"
                   name="address"
                   autoComplete="address"
-                  {...getFieldProps('address')}
+                  {...getFieldProps("address")}
                   error={Boolean(touched.address && errors.address)}
                   helperText={touched.address && errors.address}
                 />
               </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="pincode"
+                  label="Pincode"
+                  name="pincode"
+                  autoComplete="pincode"
+                  {...getFieldProps("pincode")}
+                  error={Boolean(touched.pincode && errors.pincode)}
+                  helperText={touched.pincode && errors.pincode}
+                />
+              </Grid>
+              
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"
@@ -242,7 +256,7 @@ const Sign = () => {
                   name="dob"
                   autoComplete="dob"
                   defaultValue={date}
-                  {...getFieldProps('dob')}
+                  {...getFieldProps("dob")}
                   error={Boolean(touched.dob && errors.dob)}
                   helperText={touched.dob && errors.dob}
                 />
@@ -268,7 +282,7 @@ const Sign = () => {
                .
             </Typography>
             
-          </form>
+          </Form>
           </FormikProvider>
 
           <Typography

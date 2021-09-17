@@ -59,6 +59,7 @@ const Homepage = (props) => {
     <Grid item md={12} xs={12} lg={12}>
       <PostCard />
 
+
       {feedData.data.length ? (
         <InfiniteScroll
           dataLength={feedCount.data - feedData.data.length} //This is important field to render the next data
@@ -72,6 +73,7 @@ const Homepage = (props) => {
           }
         >
           {feedData.data.map((data, id) => (
+
             <FeedCard user={user} key={id} feed={data} />
           ))}
         </InfiniteScroll>
