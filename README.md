@@ -21,11 +21,11 @@
 
 ## Stakeholders
 
-- Vinit Borole - [LinkedIn](#) - [GitHub](https://github.com/vinitborole)
-
 - Shubham Bhatiya - [LinkedIn](#) - [GitHub](#)
 
-- Tanu Grover - [LinkedIn](#) - [GitHub](#)
+- Tanu Grover - [LinkedIn](#) - [GitHub](bhatia12)
+
+- Vinit Borole - [LinkedIn](https://www.linkedin.com/in/vinitborole/) - [GitHub](https://github.com/vinitborole)
 
 ## Installation and Setup
 
@@ -48,13 +48,11 @@
 
 ## Artefacts
 
-- [PRD](#)
-
-- [One Pager](#)
+- [PRD](https://pdfhost.io/v/UOURUjuRX_CareinPRDTeamDelta)
 
 - [UI Design Figma](#)
 
-- [System Design Figma](#)
+- [System Design](https://pdfhost.io/v/x2d~Vog65_CareinHLDTeamDelta)
 
 ## Performance Screenshot
 
