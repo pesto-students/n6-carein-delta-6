@@ -53,10 +53,10 @@ export const signupUser = (userData) => (dispatch) => {
     url: api.getCurrentHost() + "auth/local/register",
     data: userData,
     headers: {
-    	Authorization: 'Bearer ' + userData.token,
-    	Accept: 'application/json',
-    	'Content-Type': 'application/json'
-    }
+      Authorization: "Bearer " + userData.token,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
   };
   console.log("CONFIG", config);
   axios(config).then(
@@ -133,6 +133,4 @@ export const logoutUser = (logoutData) => (dispatch) => {
   localStorage.removeItem("jwtToken");
   setAuthToken(false);
   dispatch(setCurrentUser({}));
- 
-  
 };

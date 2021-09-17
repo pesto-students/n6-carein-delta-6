@@ -17,6 +17,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import NavBar from "./NavBar";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
+import Header from "../../containers/Header/Header";
+import Modals from "../../containers/Modal/Modal";
+import DeleteRecordModal from "../../containers/DeleteRecordModal/DeleteRecordModal";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -49,9 +52,19 @@ const useStyles = makeStyles((theme) => ({
 export default function SideNav() {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
   }
+
+  const showModel = () => {
+    console.log("hi");
+    setOpen(true);
+  };
+  const onHide = () => {
+    setOpen(false);
+  };
+
   const drawer = (
     <div>
       <List component="nav" className={classes.content}>
@@ -86,7 +99,7 @@ export default function SideNav() {
           </ListItemIcon>
           <ListItemText primary="Subscription" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => showModel()}>
           <Button color="secondary" variant="contained" fullWidth>
             SOS
           </Button>
@@ -94,6 +107,7 @@ export default function SideNav() {
       </List>
     </div>
   );
+
   return (
     <>
       <CssBaseline />
@@ -134,6 +148,7 @@ export default function SideNav() {
           </Drawer>
         </Hidden>
       </nav>
+      <DeleteRecordModal  closeModal={onHide} show={open} />
     </>
   );
 }

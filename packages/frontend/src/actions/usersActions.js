@@ -9,7 +9,7 @@ import Api from "../constants/index";
 import setAuthToken from "../utils/setAuthToken";
 import jwt from "jwt-simple";
 const api = new Api();
- 
+
 export const addUsers = (userData) => (dispatch) => {
   let config = {
     method: "POST",
@@ -45,7 +45,7 @@ export const addUsers = (userData) => (dispatch) => {
     }
   );
 };
- 
+
 export const searchUsers = (userData) => (dispatch) => {
   let token = localStorage.jwtToken;
   let config = {

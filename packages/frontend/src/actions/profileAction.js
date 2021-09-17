@@ -41,7 +41,7 @@ export const profileData =
       },
       (error) => {
         console.log("fetch data error");
-        
+
         dispatch({
           type: PROFILE_GET_ERRORS,
           payload: {

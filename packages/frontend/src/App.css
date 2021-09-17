@@ -1044,10 +1044,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  background-color: lightgrey;
-}
-
 #clearBtn {
   cursor: pointer;
 }

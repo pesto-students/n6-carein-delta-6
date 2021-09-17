@@ -124,7 +124,7 @@ function AssistanceService(props) {
         </Card>
         <Card className={classes.second}>
           <CardContent>
-            <Typography gutterBottom variant="p" component="p">
+            <Typography gutterBottom variant="p" style={{marginBottom :20  }} component="p">
               Quick Registration
             </Typography>
             <form className={classes.form}>
@@ -133,7 +133,7 @@ function AssistanceService(props) {
                   <TextField
                     autoComplete="firstName"
                     name="firstName"
-                    variant="filled"
+                    variant="outlined"
                     className="inputText"
                     required
                     fullWidth
@@ -147,7 +147,7 @@ function AssistanceService(props) {
                   <TextField
                     autoComplete="lastName"
                     name="lastName"
-                    variant="filled"
+                    variant="outlined"
                     required
                     value={lastName}
                     className="inputText"
@@ -162,35 +162,23 @@ function AssistanceService(props) {
                 <TextField
                   autoComplete="addressLine1"
                   name="addressLine1"
-                  variant="filled"
+                  variant="outlined"
                   required
                   fullWidth
                   value={addressLine1}
                   className="inputText"
                   id="addressLine1"
-                  label="Address Line1"
+                  label="Address"
                   onChange={(e) => setAddressLine1(e.target.value)}
                 />
               </Grid>
-              <Grid item md={12} className={classes.text}>
-                <TextField
-                  autoComplete="addressLine2"
-                  name="addressLine2"
-                  variant="filled"
-                  className="inputText"
-                  fullWidth
-                  value={addressLine2}
-                  id="addressLine2"
-                  label="Address Line2"
-                  onChange={(e) => setAddressLine2(e.target.value)}
-                />
-              </Grid>
+
               <Grid container spacing={2} className={classes.text}>
                 <Grid item md={4}>
                   <TextField
                     autoComplete="city"
                     name="city"
-                    variant="filled"
+                    variant="outlined"
                     required
                     value={city}
                     className="inputText"
@@ -204,7 +192,7 @@ function AssistanceService(props) {
                   <TextField
                     autoComplete="state"
                     name="state"
-                    variant="filled"
+                    variant="outlined"
                     required
                     fullWidth
                     value={state}
@@ -218,7 +206,7 @@ function AssistanceService(props) {
                   <TextField
                     autoComplete="pincode"
                     name="pincode"
-                    variant="filled"
+                    variant="outlined"
                     required
                     value={pincode}
                     fullWidth
@@ -229,12 +217,24 @@ function AssistanceService(props) {
                   />
                 </Grid>
               </Grid>
+              <Grid item md={12} className={classes.text}>
+                <TextField
+                  name="addressLine2"
+                  variant="outlined"
+                  className="inputText"
+                  fullWidth
+                  value={""}
+                  id="addressLine2"
+                  label="Describe your problem"
+                  onChange={(e) => setAddressLine2(e.target.value)}
+                />
+              </Grid>
               <Grid container spacing={2} className={classes.text}>
                 <Grid item md={12}>
                   <TextField
                     autoComplete="from"
                     name="from"
-                    variant="filled"
+                    variant="outlined"
                     className="inputText"
                     required
                     value={from}
@@ -253,7 +253,7 @@ function AssistanceService(props) {
                     variant="body1"
                     component="p"
                   >
-                    Total Amount: Rs{props.service.price_per_day}/-
+                    Starting From Rs{props.service.price_per_day}/-
                   </Typography>
                 </Grid>
               </Grid>

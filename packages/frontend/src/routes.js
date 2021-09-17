@@ -25,7 +25,7 @@ const routes = [
      { path: '/Services', name: 'Services', component: Services },
      { path: '/Subscription', name: 'Subscription', component: Subscription },
      { path: '/Servicedetails/:id', name: 'Servicedetails', component: ServiceDetails },
-     { path: '/Profile', name: 'Profile', component: Profile },
+     { path: '/me', name: 'Profile', component: Profile },
      { path: '/Profile/:id', name: 'Profile', component: Profile },
 ];
 
