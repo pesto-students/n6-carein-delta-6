@@ -87,7 +87,7 @@ function PostCard() {
 
         <Grid container spacing={3} className={classes.main}>
           <Grid item md={0.5} className={classes.profile}>
-            <Avatar alt="Remy Sharp" src={user.profilePic.url} />
+            <Avatar alt={user.firstName} src={user.profilePic?.url} />
           </Grid>
           <Grid item md={11} className={classes.text}>
             <TextField

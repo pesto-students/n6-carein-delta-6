@@ -24,6 +24,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+import { logoutUser } from "../../actions/authActions";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -136,6 +137,9 @@ export default function NavBar(props) {
     setAnchorEl(event.currentTarget);
   };
 
+  const logout = () => {
+    dispatch(logoutUser())
+  }
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -175,7 +179,7 @@ export default function NavBar(props) {
       <MenuItem onClick={handleMenuClose}>
         <Link to="/Profile">Profile</Link>
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={() => logout()}>Logout</MenuItem>
     </Menu>
   );
 

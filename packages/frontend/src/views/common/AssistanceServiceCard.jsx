@@ -24,6 +24,17 @@ const useStyles = makeStyles((theme) => ({
   text: {
     margin: theme.spacing(0, 0, 0),
     fontSize: "14px",
+    color : '#5c3d85'
+  },
+  cardDesc : {
+    display: '-webkit-box',
+    '-webkit-line-clamp': '3',
+    '-webkit-box-orient': 'vertical',
+    'overflow': 'hidden',
+    textOverflow: 'ellipsis',
+    fontWeight: '400',
+    color: 'black',
+    fontSize: "14px",
   },
   main: {
     margin: theme.spacing(0, 0, 1),
@@ -81,6 +92,14 @@ function AssistanceServiceCard(props) {
               component="h6"
             >
               Charges: Rs.{props.service.price_per_day}/day
+            </Typography>
+            <Typography
+              className={classes.cardDesc}
+              variant="h6"
+              color="textSecondary"
+              component="h6"
+            >
+              {props.service.description}
             </Typography>
           </CardContent>
           <CardActions>

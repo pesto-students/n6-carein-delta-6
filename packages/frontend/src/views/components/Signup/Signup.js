@@ -1,22 +1,22 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import { Link } from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import * as Yup from 'yup';
-import { useFormik, FormikProvider, Formik, Form } from 'formik';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import { Link } from "react-router-dom";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import * as Yup from "yup";
+import { useFormik, FormikProvider, Formik, Form } from "formik";
+import { useDispatch } from "react-redux";
 import { signupUser } from "../../../actions/authActions";
-import { addUsers } from '../../../actions/usersActions';
-import { FormControl, InputLabel,  } from '@material-ui/core';
-import { Select } from '@material-ui/core';
-import { MenuItem } from '@material-ui/core';
-import { useState } from 'react';
+import { addUsers } from "../../../actions/usersActions";
+import { FormControl, InputLabel } from "@material-ui/core";
+import { Select } from "@material-ui/core";
+import { MenuItem } from "@material-ui/core";
+import { useState } from "react";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -35,13 +35,15 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: 'url(https://media.istockphoto.com/photos/two-senior-men-discussing-on-park-bench-picture-id1289142883?b=1&k=20&m=1289142883&s=170667a&w=0&h=fQnvJBfG3QiNLLmRFx2jrGG8mEfjMEjktTWARPnkCzE=)',
-    backgroundRepeat: 'no-repeat',
+    backgroundImage:
+      "url(https://media.istockphoto.com/photos/two-senior-men-discussing-on-park-bench-picture-id1289142883?b=1&k=20&m=1289142883&s=170667a&w=0&h=fQnvJBfG3QiNLLmRFx2jrGG8mEfjMEjktTWARPnkCzE=)",
+    backgroundRepeat: "no-repeat",
     backgroundColor:
-    theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-
+      theme.palette.type === "light"
+        ? theme.palette.grey[100]
+        : theme.palette.grey[900],
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -67,8 +69,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Sign = () => {
   const classes = useStyles();
- const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
 
   const RegisterSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -86,16 +87,13 @@ const Sign = () => {
       .min(4, "Too short")
       .max(15, "Too Long")
       .required("Password is required"),
-    mobnumber: Yup.string()
-      .matches(/^[0-9]+$/, "Must be only digits")
-      .min(10, "Mobile number should be 10 digits")
-      .max(10, "Mobile number should be 10 digits")
+    mobnumber: Yup.number()
+      .min(1000000000, "Mobile number should be 10 digits")
+      .max(10000000000, "Mobile number should be 10 digits")
       .required("Mobile number is required"),
     addressLine1: Yup.string().required("Address is required"),
-    pincode: Yup.string()
-    .matches(/^[0-9]+$/, "Must be only digits")
-    .required("pincode is required"),
     dob: Yup.string().required("Date of Birth is required"),
+    city: Yup.string().required("City is required"),
   });
 
   const formik = useFormik({
@@ -108,17 +106,23 @@ const Sign = () => {
       addressLine1: "",
       pincode: null,
       dob: "",
-      mobnumber : null,
+      mobnumber: null,
     },
     validationSchema: RegisterSchema,
     onSubmit: (values) => {
+      console.log("submit");
+      values.username = values.mobnumber;
+      values.phone = values.mobnumber;
+      delete values.mobnumber;
+      console.log(values);
+
       dispatch(addUsers(values));
     },
   });
 
   var curr = new Date();
   curr.setDate(curr.getDate() + 3);
-  var date = curr.toISOString().substr(0,10);
+  var date = curr.toISOString().substr(0, 10);
 
   const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
 
@@ -138,151 +142,153 @@ const Sign = () => {
             </div>
           </Typography>
           <FormikProvider value={formik}>
-          <Form className={classes.form} noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="fname"
-                  name="firstName"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  {...getFieldProps("firstName")}
-                  error={Boolean(touched.firstName && errors.firstName)}
-                  helperText={touched.firstName && errors.firstName}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="lname"
-                  {...getFieldProps("lastName")}
-                  error={Boolean(touched.lastName && errors.lastName)}
-                  helperText={touched.lastName && errors.lastName}
-                />
-              </Grid>
-              <Grid item lg={24} sm={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  {...getFieldProps("email")}
-                  error={Boolean(touched.email && errors.email)}
-                  helperText={touched.email && errors.email}
-                />
-              </Grid>
+            <Form className={classes.form} noValidate onSubmit={handleSubmit}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete="fname"
+                    name="firstName"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="firstName"
+                    label="First Name"
+                    {...getFieldProps("firstName")}
+                    error={Boolean(touched.firstName && errors.firstName)}
+                    helperText={touched.firstName && errors.firstName}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="lastName"
+                    label="Last Name"
+                    name="lastName"
+                    autoComplete="lname"
+                    {...getFieldProps("lastName")}
+                    error={Boolean(touched.lastName && errors.lastName)}
+                    helperText={touched.lastName && errors.lastName}
+                  />
+                </Grid>
+                <Grid item lg={24} sm={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    {...getFieldProps("email")}
+                    error={Boolean(touched.email && errors.email)}
+                    helperText={touched.email && errors.email}
+                  />
+                </Grid>
 
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  {...getFieldProps("password")}
-                  error={Boolean(touched.password && errors.password)}
-                  helperText={touched.password && errors.password}
-                />
-              </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    {...getFieldProps("password")}
+                    error={Boolean(touched.password && errors.password)}
+                    helperText={touched.password && errors.password}
+                  />
+                </Grid>
 
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="mobnumber"
-                  label="Mobile Number"
-                  name="mobnumber"
-                  autoComplete="mobnumber"
-                  {...getFieldProps("mobnumber")}
-                  error={Boolean(touched.mobnumber && errors.mobnumber)}
-                  helperText={touched.mobnumber && errors.mobnumber}
-                />
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="mobnumber"
+                    label="Mobile Number"
+                    name="mobnumber"
+                    autoComplete="mobnumber"
+                    {...getFieldProps("mobnumber")}
+                    error={Boolean(touched.mobnumber && errors.mobnumber)}
+                    helperText={touched.mobnumber && errors.mobnumber}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="address"
+                    label="Address"
+                    name="address"
+                    autoComplete="address"
+                    {...getFieldProps("addressLine1")}
+                    error={Boolean(touched.addressLine1 && errors.addressLine1)}
+                    helperText={touched.addressLine1 && errors.addressLine1}
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <InputLabel id="demo-simple-select-label">City</InputLabel>
+                  <Select
+                    variant="outlined"
+                    style={{ width: "100%" }}
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="City"
+                    {...getFieldProps("city")}
+                  >
+                    <MenuItem value="Delhi">Delhi</MenuItem>
+                    <MenuItem value="Mumbai">Mumbai</MenuItem>
+                    <MenuItem value="Banglore">Banglore</MenuItem>
+                  </Select>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    type="date"
+                    id="dob"
+                    label="Date of birth"
+                    name="dob"
+                    autoComplete="dob"
+                    defaultValue={date}
+                    {...getFieldProps("dob")}
+                    error={Boolean(touched.dob && errors.dob)}
+                    helperText={touched.dob && errors.dob}
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="address"
-                  label="Address"
-                  name="address"
-                  autoComplete="address"
-                  {...getFieldProps("address")}
-                  error={Boolean(touched.address && errors.address)}
-                  helperText={touched.address && errors.address}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="pincode"
-                  label="Pincode"
-                  name="pincode"
-                  autoComplete="pincode"
-                  {...getFieldProps("pincode")}
-                  error={Boolean(touched.pincode && errors.pincode)}
-                  helperText={touched.pincode && errors.pincode}
-                />
-              </Grid>
-              
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  type="date"
-                  id="dob"
-                  label="Date of birth"
-                  name="dob"
-                  autoComplete="dob"
-                  defaultValue={date}
-                  {...getFieldProps("dob")}
-                  error={Boolean(touched.dob && errors.dob)}
-                  helperText={touched.dob && errors.dob}
-                />
-              </Grid>
-              
-             
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              loading={isSubmitting}
-              className={classes.submit}
-            >
-              Sign Up
-            </Button>
-            <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
-               Already have an account?&nbsp;
-              <Link to="/" underline="always" sx={{ color: 'text.primary' }}>
-                Sign In
-              </Link>
-               .
-            </Typography>
-            
-          </Form>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                loading={isSubmitting}
+                className={classes.submit}
+              >
+                Sign Up
+              </Button>
+              <Typography
+                variant="body2"
+                align="center"
+                sx={{ color: "text.secondary", mt: 3 }}
+              >
+                Already have an account?&nbsp;
+                <Link to="/" underline="always" sx={{ color: "text.primary" }}>
+                  Sign In
+                </Link>
+                .
+              </Typography>
+            </Form>
           </FormikProvider>
 
           <Typography

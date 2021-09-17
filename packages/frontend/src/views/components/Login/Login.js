@@ -9,13 +9,11 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
-import { useFormik, Form, FormikProvider } from "formik";
+import { useFormik, Form, FormikProvider, Formik } from "formik";
 import { loginUser } from "../../../actions/authActions";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
-
-
+ 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -55,22 +53,7 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
-  // const handleSubmit = (e) => {
-  // 	e.preventDefault();
-  // 	const userData = {
-  // 		identifier: email,
-  // 		password: password
-  // 	};
-  // 	// this.props.loginUser(userData);
-  //   if (email && password) {
-  //     // get return url from location state or default to home page
-  //     // const { from } = location.state || { from: { pathname: "/" } };
-  //     dispatch(loginUser(userData));
-  // }
-
-  // };
-
+ 
   const LoginSchema = Yup.object().shape({
     identifier: Yup.string().required("Email or Mobile Number is required"),
     password: Yup.string()
@@ -79,7 +62,7 @@ const Login = () => {
       .required("Password is required"),
   });
 
-  const formik = useFormik({
+  var formik = useFormik({
     initialValues: {
       identifier: "",
       password: "",
@@ -92,9 +75,14 @@ const Login = () => {
     },
   });
 
-  const { errors, touched, values, isSubmitting, getFieldProps, handleSubmit } =
+  const { errors, touched, values, isSubmitting, getFieldProps, handleSubmit ,setFieldValue   } =
     formik;
 
+  const dummyAccount = () => {
+    console.log("hi");
+    setFieldValue('identifier' , 'carein@gmail.com')
+    setFieldValue('password' , 'vinitborole')
+  };
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -140,22 +128,15 @@ const Login = () => {
                 error={Boolean(touched.password && errors.password)}
                 helperText={touched.password && errors.password}
               />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    {...getFieldProps("remember")}
-                    checked={values.remember}
-                    color="primary"
-                  />
-                }
-                label="Remember me"
-              />
+              <Button onClick={() => dummyAccount()} variant="outlined">
+                Sign In With Test Account
+              </Button>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
-                loading={isSubmitting}
+                loading 
                 className={classes.submit}
               >
                 SIGN IN

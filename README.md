@@ -35,8 +35,6 @@
 
 - Run `npx lerna bootstrap`
 
-- Add `.env file in ./packages/frontend`
-
 - Run `npm run start`
 
 ## Environments and Deployments
@@ -44,8 +42,8 @@
 | Environment | Base URL | Description  
 | :-------:   | :------: | :----------:
 | Development | [http://localhost:3000](http://localhost:3000) | When running locally on machine 
-| QA| [#](#) | QA  Environment 
-| Staging | [#](#) | Staging Environment
+| QA| [https://development.ddo48o6b29494.amplifyapp.com/](https://development.ddo48o6b29494.amplifyapp.com/) | QA  Environment 
+| Staging | [https://staging.d2qaduzd6pjt9f.amplifyapp.com/](https://staging.d2qaduzd6pjt9f.amplifyapp.com/) | Staging Environment
 | Production | [https://master.d3jkmg959k8ms4.amplifyapp.com/](https://master.d3jkmg959k8ms4.amplifyapp.com/) | Main production environment  
 
 ## Artefacts
