@@ -52,11 +52,11 @@ export const signupUser = (userData) => (dispatch) => {
     method: "POST",
     url: api.getCurrentHost() + "auth/local/register",
     data: userData,
-    // headers: {
-    // 	Authorization: 'Bearer ' + userData.token,
-    // 	Accept: 'application/json',
-    // 	'Content-Type': 'application/json'
-    // }
+    headers: {
+    	Authorization: 'Bearer ' + userData.token,
+    	Accept: 'application/json',
+    	'Content-Type': 'application/json'
+    }
   };
   console.log("CONFIG", config);
   axios(config).then(

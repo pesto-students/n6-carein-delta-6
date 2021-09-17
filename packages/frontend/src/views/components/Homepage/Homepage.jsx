@@ -30,6 +30,7 @@ const Homepage = (props) => {
   return (
     <Grid item md={12} xs={12} lg={12}>
       <PostCard />
+      
       {feedData.data.length
         ? feedData.data.map((data, id) => (
             <FeedCard user={user} key={id} feed={data} />
