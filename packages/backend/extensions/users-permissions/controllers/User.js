@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * User.js controller
@@ -6,17 +6,17 @@
  * @description: A set of functions called "actions" for managing `User`.
  */
 
-const _ = require('lodash');
-const adminUserController = require('./user/admin');
-const apiUserController = require('./user/api');
-const { sanitizeEntity } = require('strapi-utils');
+const _ = require("lodash");
+const adminUserController = require("./user/admin");
+const apiUserController = require("./user/api");
+const { sanitizeEntity } = require("strapi-utils");
 
-const sanitizeUser = user =>
+const sanitizeUser = (user) =>
   sanitizeEntity(user, {
-    model: strapi.query('user', 'users-permissions').model,
+    model: strapi.query("user", "users-permissions").model,
   });
 
-const resolveController = ctx => {
+const resolveController = (ctx) => {
   const {
     state: { isAuthenticatedAdmin },
   } = ctx;
@@ -24,7 +24,7 @@ const resolveController = ctx => {
   return isAuthenticatedAdmin ? adminUserController : apiUserController;
 };
 
-const resolveControllerMethod = method => ctx => {
+const resolveControllerMethod = (method) => (ctx) => {
   const controller = resolveController(ctx);
   const callbackFn = controller[method];
 
@@ -36,8 +36,8 @@ const resolveControllerMethod = method => ctx => {
 };
 
 module.exports = {
-  create: resolveControllerMethod('create'),
-  update: resolveControllerMethod('update'),
+  create: resolveControllerMethod("create"),
+  update: resolveControllerMethod("update"),
 
   /**
    * Retrieve user records.
@@ -45,17 +45,17 @@ module.exports = {
    */
   async find(ctx, next, { populate } = {}) {
     let users;
-   if(ctx.state.user.farm){
-             ctx.query.farm = ctx.state.user.farm;
-        }else{
-            ctx.query.farm = 0
-        }
-       
-    if (_.has(ctx.query, '_q')) {
+
+    if (_.has(ctx.query, "_q")) {
       // use core strapi query to search for users
-      users = await strapi.query('user', 'users-permissions').search(ctx.query, populate);
+      users = await strapi
+        .query("user", "users-permissions")
+        .search(ctx.query, populate);
     } else {
-      users = await strapi.plugins['users-permissions'].services.user.fetchAll(ctx.query, populate);
+      users = await strapi.plugins["users-permissions"].services.user.fetchAll(
+        ctx.query,
+        populate
+      );
     }
 
     ctx.body = users.map(sanitizeUser);
@@ -68,12 +68,10 @@ module.exports = {
   async findOne(ctx) {
     const { id } = ctx.params;
     let s = {
-        id : ctx.params.id,
-        farm : ctx.state.user.farm
-    }
-    let data = await strapi.plugins['users-permissions'].services.user.fetch(s);
-    
-    
+      id: ctx.params.id,
+      farm: ctx.state.user.farm,
+    };
+    let data = await strapi.plugins["users-permissions"].services.user.fetch(s);
 
     if (data) {
       data = sanitizeUser(data);
@@ -89,9 +87,13 @@ module.exports = {
    */
   async count(ctx) {
     if (ctx.query._q) {
-      return await strapi.plugins['users-permissions'].services.user.countSearch(ctx.query);
+      return await strapi.plugins[
+        "users-permissions"
+      ].services.user.countSearch(ctx.query);
     }
-    ctx.body = await strapi.plugins['users-permissions'].services.user.count(ctx.query);
+    ctx.body = await strapi.plugins["users-permissions"].services.user.count(
+      ctx.query
+    );
   },
 
   /**
@@ -100,7 +102,9 @@ module.exports = {
    */
   async destroy(ctx) {
     const { id } = ctx.params;
-    const data = await strapi.plugins['users-permissions'].services.user.remove({ id });
+    const data = await strapi.plugins["users-permissions"].services.user.remove(
+      { id }
+    );
     ctx.send(sanitizeUser(data));
   },
 
@@ -109,11 +113,13 @@ module.exports = {
       request: { query },
     } = ctx;
 
-    const toRemove = Object.values(_.omit(query, 'source'));
-    const { primaryKey } = strapi.query('user', 'users-permissions');
+    const toRemove = Object.values(_.omit(query, "source"));
+    const { primaryKey } = strapi.query("user", "users-permissions");
     const finalQuery = { [`${primaryKey}_in`]: toRemove, _limit: 100 };
 
-    const data = await strapi.plugins['users-permissions'].services.user.removeAll(finalQuery);
+    const data = await strapi.plugins[
+      "users-permissions"
+    ].services.user.removeAll(finalQuery);
 
     ctx.send(data);
   },
@@ -126,7 +132,9 @@ module.exports = {
     const user = ctx.state.user;
 
     if (!user) {
-      return ctx.badRequest(null, [{ messages: [{ id: 'No authorization header was found' }] }]);
+      return ctx.badRequest(null, [
+        { messages: [{ id: "No authorization header was found" }] },
+      ]);
     }
 
     ctx.body = sanitizeUser(user);
