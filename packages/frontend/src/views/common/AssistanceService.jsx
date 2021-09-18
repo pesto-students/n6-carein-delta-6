@@ -219,7 +219,7 @@ function AssistanceService(props) {
               </Grid>
               <Grid item md={12} className={classes.text}>
                 <TextField
-                  name="addressLine2"
+                  name="addressLine1"
                   variant="outlined"
                   className="inputText"
                   fullWidth
