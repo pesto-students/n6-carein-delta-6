@@ -9,8 +9,10 @@ import {
   USER_LOADING,
 } from "./types";
 import Api from "../constants/index";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const api = new Api();
+toast.configure();
 
 export const loginUser = (userData) => (dispatch) => {
   console.log(dispatch);
@@ -38,10 +40,19 @@ export const loginUser = (userData) => (dispatch) => {
       dispatch(setCurrentUser(decoded));
     })
     .catch((err) => {
-      console.log(err.response);
+      console.log(err.response.data.message[0].messages[0].message);
       dispatch({
         type: GET_ERRORS,
-        payload: err.response,
+        payload: err.response.data,
+      });
+      toast.error(err.response.data.message[0].messages[0].message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
     });
 };
@@ -53,10 +64,10 @@ export const signupUser = (userData) => (dispatch) => {
     url: api.getCurrentHost() + "auth/local/register",
     data: userData,
     headers: {
-    	Authorization: 'Bearer ' + userData.token,
-    	Accept: 'application/json',
-    	'Content-Type': 'application/json'
-    }
+      Authorization: "Bearer " + userData.token,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
   };
   console.log("CONFIG", config);
   axios(config).then(

@@ -34,18 +34,16 @@ const Signup = React.lazy(() => import("./views/components/Signup/Signup"));
 const Homepage = React.lazy(() =>
   import("./views/components/Homepage/Homepage")
 );
-const Friends = React.lazy(() => import("./views/components/Homepage/Friends"));
-const Events = React.lazy(() => import("./views/components/Homepage/Events"));
-const Services = React.lazy(() =>
-  import("./views/components/Homepage/Services")
-);
+const Friends = React.lazy(() => import("./views/components/Pages/Friends"));
+const Events = React.lazy(() => import("./views/components/Pages/Events"));
+const Services = React.lazy(() => import("./views/components/Pages/Services"));
 const Subscription = React.lazy(() =>
-  import("./views/components/Homepage/Subscription")
+  import("./views/components/Pages/Subscription")
 );
 const ServiceDetails = React.lazy(() =>
-  import("./views/components/Homepage/ServiceDetails")
+  import("./views/components/Pages/ServiceDetails")
 );
-const Profile = React.lazy(() => import("./views/components/Homepage/Profile"));
+const Profile = React.lazy(() => import("./views/components/Pages/Profile"));
 
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken;
