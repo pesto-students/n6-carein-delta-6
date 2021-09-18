@@ -110,8 +110,53 @@ const tiers = [
   },
 ];
 
+function loadScript(src) {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = () => {
+      resolve(true);
+    };
+    script.onerror = () => {
+      resolve(false);
+    };
+    document.body.appendChild(script);
+  });
+}
+
+const __DEV__ = document.domain === "localhost";
+
+
 export default function SubscriptionCard() {
   const classes = useStyles();
+  async function displayRazorpay() {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+    if (!res) {
+      alert("Razorpay SDK failed to load");
+      return;
+    }
+
+    const options = {
+      key: __DEV__ ? "rzp_test_7tOAQOJbQxdBNt" : "rzp_test_7tOAQOJbQxdBNt", // Enter the Key ID generated from the Dashboard
+      amount: "50000", // Rs.500
+      currency: "INR",
+      name: "Carein",
+      description: "Test Transaction",
+      //"image": "https://example.com/your_logo",
+      //"order_id": 'order_Hx323PZJBFKPQS', //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      handler: function (response) {
+        alert(response.razorpay_payment_id);
+      },
+      // prefill: {
+      //   firstName,
+      // },
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  }
+
 
   return (
     <React.Fragment>
@@ -173,6 +218,7 @@ export default function SubscriptionCard() {
                     fullWidth
                     variant={tier.buttonVariant}
                     color="primary"
+                    onClick={displayRazorpay}
                   >
                     {tier.buttonText}
                   </Button>

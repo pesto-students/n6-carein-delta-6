@@ -219,14 +219,14 @@ function AssistanceService(props) {
               </Grid>
               <Grid item md={12} className={classes.text}>
                 <TextField
-                  name="addressLine2"
+                  name="addressLine1"
                   variant="outlined"
                   className="inputText"
                   fullWidth
                   value={""}
-                  id="addressLine2"
+                  id="addressLine1"
                   label="Describe your problem"
-                  onChange={(e) => setAddressLine2(e.target.value)}
+                  onChange={(e) => setAddressLine1(e.target.value)}
                 />
               </Grid>
               <Grid container spacing={2} className={classes.text}>
