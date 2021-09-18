@@ -11,7 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import { useFormik, Form, FormikProvider, Formik } from "formik";
 import { loginUser } from "../../../actions/authActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -53,6 +53,8 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const LoginData = useSelector((state) => state.auth);
+  console.log(LoginData);
 
   const LoginSchema = Yup.object().shape({
     identifier: Yup.string().required("Email or Mobile Number is required"),

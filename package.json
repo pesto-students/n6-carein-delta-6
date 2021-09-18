@@ -20,6 +20,7 @@
     }
   },
   "dependencies": {
-    "date-fns": "^2.23.0"
+    "date-fns": "^2.23.0",
+    "react-virtualized": "^9.22.3"
   }
 }
