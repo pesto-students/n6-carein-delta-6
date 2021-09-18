@@ -7,7 +7,8 @@ import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { Grid } from "@material-ui/core";
-
+import { Modal } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "auto",
@@ -61,14 +62,17 @@ function AssistanceService(props) {
   const [pincode, setPincode] = useState(user.pincode);
   const [from, setFrom] = useState(new Date());
   const [to, setTo] = useState("");
+  const [open, setOpen] = useState(false);
+  const [d, setD] = useState("");
   console.log(firstName);
-
+  const history = useHistory();
   async function displayRazorpay() {
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
     if (!res) {
-      alert("Razorpay SDK failed to load");
+      setD("Razorpay SDK failed to load");
+      setOpen(true);
       return;
     }
 
@@ -81,7 +85,11 @@ function AssistanceService(props) {
       //"image": "https://example.com/your_logo",
       //"order_id": 'order_Hx323PZJBFKPQS', //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
       handler: function (response) {
-        alert(response.razorpay_payment_id);
+        setD(
+          "Razorpay Payment Success : Payment Id - " +
+            response.razorpay_payment_id
+        );
+        setOpen(true);
       },
       prefill: {
         firstName,
@@ -90,7 +98,10 @@ function AssistanceService(props) {
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   }
-
+  const confirmPayment = () => {
+    setOpen(false);
+    history.push("/homepage");
+  };
   return (
     <Grid container spacing={5}>
       <Grid item md={12}>
@@ -124,7 +135,12 @@ function AssistanceService(props) {
         </Card>
         <Card className={classes.second}>
           <CardContent>
-            <Typography gutterBottom variant="p" style={{marginBottom :20  }} component="p">
+            <Typography
+              gutterBottom
+              variant="p"
+              style={{ marginBottom: 20 }}
+              component="p"
+            >
               Quick Registration
             </Typography>
             <form className={classes.form}>
@@ -223,7 +239,6 @@ function AssistanceService(props) {
                   variant="outlined"
                   className="inputText"
                   fullWidth
-                  value={""}
                   id="addressLine2"
                   label="Describe your requirement"
                   onChange={(e) => setAddressLine2(e.target.value)}
@@ -258,12 +273,12 @@ function AssistanceService(props) {
                 </Grid>
                 <Grid item md={12}>
                   <Typography
-                    className='dumyCard'
+                    className="dumyCard"
                     gutterBottom
                     variant="body1"
                     component="p"
                   >
-                    For Test Purpose use following 
+                    For Test Purpose use following
                     <ul>
                       <li>Card No : 4111-1111-1111-1111</li>
                       <li>CVV No : Any 3 Digit No</li>
@@ -296,6 +311,25 @@ function AssistanceService(props) {
             </form>
           </CardContent>
         </Card>
+        <Modal
+          show={open}
+          onHide={() => setOpen(false)}
+          backdrop="static"
+          keyboard={false}
+          centered
+        >
+          <Modal.Body>
+            <div className="alert-body">
+              <h2> Thank You for Registering </h2>
+              <p>{d}</p>
+            </div>
+            <div className="alert-footer-box">
+              <Button variant="danger" onClick={() => confirmPayment()}>
+                Dismiss
+              </Button>
+            </div>
+          </Modal.Body>
+        </Modal>
       </Grid>
     </Grid>
   );

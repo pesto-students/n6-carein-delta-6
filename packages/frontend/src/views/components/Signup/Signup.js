@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
@@ -19,6 +19,7 @@ import { MenuItem } from "@material-ui/core";
 import { useState } from "react";
 
 import { Modal } from "react-bootstrap";
+import { Input } from "@mui/material";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -106,7 +107,7 @@ const Sign = () => {
       password: "",
       username: "",
       addressLine1: "",
-      city: 'Delhi',
+      city: "Delhi",
       dob: "1962-01-01",
       mobnumber: null,
     },
@@ -286,6 +287,19 @@ const Sign = () => {
                     error={Boolean(touched.dob && errors.dob)}
                     helperText={touched.dob && errors.dob}
                   />
+                </Grid>
+                <Grid item xs={12}>
+                  <label htmlFor="contained-button-file">
+                    <Input
+                      accept="image/*"
+                      id="contained-button-file"
+                      type="file"
+                      style={{ display: "none" }}
+                    />
+                    <Button variant="contained" component="span">
+                      Upload Identity Proof
+                    </Button>
+                  </label>
                 </Grid>
               </Grid>
               <Button
