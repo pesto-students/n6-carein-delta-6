@@ -35,7 +35,7 @@ export const listFeed =
         dispatch({
           type: FEEDS_GET_SUCCESS,
           payload: {
-            _sstart: userData,
+            _start: userData,
             _limit: 10,
             data: success.data,
             _error: "",
