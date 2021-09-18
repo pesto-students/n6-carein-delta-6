@@ -13,7 +13,7 @@ import { useFormik, Form, FormikProvider, Formik } from "formik";
 import { loginUser } from "../../../actions/authActions";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
- 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
- 
+
   const LoginSchema = Yup.object().shape({
     identifier: Yup.string().required("Email or Mobile Number is required"),
     password: Yup.string()
@@ -75,13 +75,21 @@ const Login = () => {
     },
   });
 
-  const { errors, touched, values, isSubmitting, getFieldProps, handleSubmit ,setFieldValue   } =
-    formik;
+  const {
+    errors,
+    touched,
+    values,
+    isSubmitting,
+    getFieldProps,
+    handleSubmit,
+    setFieldValue,
+    setErrors
+  } = formik;
 
   const dummyAccount = () => {
     console.log("hi");
-    setFieldValue('identifier' , 'carein@gmail.com')
-    setFieldValue('password' , 'vinitborole')
+    setFieldValue("identifier", "carein@gmail.com");
+    setFieldValue("password", "vinitborole");
   };
   return (
     <Grid container component="main" className={classes.root}>
@@ -99,8 +107,16 @@ const Login = () => {
               />
             </div>
           </Typography>
+
           <FormikProvider value={formik}>
             <Form className={classes.form} noValidate onSubmit={handleSubmit}>
+              <Button
+                style={{ background: "#8fe3d98f" }}
+                onClick={() => dummyAccount()}
+                variant="outlined"
+              >
+                Sign In With Test Account
+              </Button>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -128,15 +144,13 @@ const Login = () => {
                 error={Boolean(touched.password && errors.password)}
                 helperText={touched.password && errors.password}
               />
-              <Button onClick={() => dummyAccount()} variant="outlined">
-                Sign In With Test Account
-              </Button>
+
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
-                loading 
+                loading
                 className={classes.submit}
               >
                 SIGN IN
@@ -144,11 +158,7 @@ const Login = () => {
 
               <Grid container></Grid>
               <Grid container>
-                <Grid item xs>
-                  <Link to="/Forgotpassword" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
+                <Grid item xs></Grid>
                 <Grid item>
                   <Link to="/Signup" variant="body2">
                     {"Don't have an account? Sign Up"}

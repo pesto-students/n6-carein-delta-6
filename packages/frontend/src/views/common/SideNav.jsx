@@ -100,7 +100,15 @@ export default function SideNav() {
           <ListItemText primary="Subscription" />
         </ListItem>
         <ListItem button onClick={() => showModel()}>
-          <Button color="secondary" variant="contained" fullWidth>
+          <Button
+            style={{
+              color: "red",
+              backgroundColor: 'white',
+              border: "1px solid red",
+            }}
+            variant="contained"
+            fullWidth
+          >
             SOS
           </Button>
         </ListItem>
@@ -148,7 +156,7 @@ export default function SideNav() {
           </Drawer>
         </Hidden>
       </nav>
-      <DeleteRecordModal  closeModal={onHide} show={open} />
+      <DeleteRecordModal closeModal={onHide} show={open} />
     </>
   );
 }

@@ -17,6 +17,8 @@ import { FormControl, InputLabel } from "@material-ui/core";
 import { Select } from "@material-ui/core";
 import { MenuItem } from "@material-ui/core";
 import { useState } from "react";
+
+import { Modal } from "react-bootstrap";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -70,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 const Sign = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const [open, setOpen] = useState(false);
   const RegisterSchema = Yup.object().shape({
     firstName: Yup.string()
       .min(2, "Too Short!")
@@ -104,8 +106,8 @@ const Sign = () => {
       password: "",
       username: "",
       addressLine1: "",
-      pincode: null,
-      dob: "",
+      city: 'Delhi',
+      dob: "1962-01-01",
       mobnumber: null,
     },
     validationSchema: RegisterSchema,
@@ -115,8 +117,20 @@ const Sign = () => {
       values.phone = values.mobnumber;
       delete values.mobnumber;
       console.log(values);
+      if (values.dob) {
+        let today = new Date().setHours(0);
+        let dob = new Date(values.dob).setHours(0);
+        let diff = today - dob;
 
-      dispatch(addUsers(values));
+        let years = diff / (1000 * 60 * 60 * 24 * 365);
+        console.log(years);
+        if (years > 55) {
+          dispatch(addUsers(values));
+          setOpen(true);
+        } else {
+          setErrors({ dob: "Minimum age should be more than 55 years" });
+        }
+      }
     },
   });
 
@@ -124,7 +138,14 @@ const Sign = () => {
   curr.setDate(curr.getDate() + 3);
   var date = curr.toISOString().substr(0, 10);
 
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
+  const {
+    errors,
+    touched,
+    handleSubmit,
+    isSubmitting,
+    getFieldProps,
+    setErrors,
+  } = formik;
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -307,7 +328,30 @@ const Sign = () => {
             .
           </Typography>
         </div>
-
+        <Modal
+          show={open}
+          onHide={() => setOpen(false)}
+          backdrop="static"
+          keyboard={false}
+          centered
+        >
+          <Modal.Body>
+            <div className="alert-body">
+              <h2> Thank You for Registering </h2>
+              <p>
+                {" "}
+                Our Team will verify your account details and confirm it. After
+                confirmation you will recieve mail from team regarding your
+                account details.{" "}
+              </p>
+            </div>
+            <div className="alert-footer-box">
+              <Button variant="danger" onClick={() => setOpen(false)}>
+                Dismiss
+              </Button>
+            </div>
+          </Modal.Body>
+        </Modal>
         <Box mt={5}>
           <Copyright />
         </Box>

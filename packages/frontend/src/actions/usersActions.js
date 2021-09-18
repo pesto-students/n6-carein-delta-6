@@ -30,7 +30,7 @@ export const addUsers = (userData) => (dispatch) => {
       const token = jwt.encode(payload, secret);
       // localStorage.setItem("jwtToken", success.data.jwt);
       // localStorage.setItem("user", JSON.stringify(success.data.user));
-      window.open("/", "_self");
+      // window.open("/", "_self");
       const decoded = jwt.decode(token, secret);
       dispatch({
         type: GET_SUCCESS,

@@ -67,9 +67,9 @@ const Profile = (props) => {
     ? JSON.parse(localStorage.getItem("user"))
     : {};
   // const [id,setId] = useState(me.id)
-  console.log(props.match.params.id)
+   
   const id = props.match.params.id ? props.match.params.id : me.id;
-  console.log(id)
+ 
   useEffect(() => {
     profile = { data: {}, _error: "" };
     if (id) {
@@ -148,7 +148,7 @@ const Profile = (props) => {
         }}
       >
         <div className="profileDash">
-          {profile.data ? (
+          {profile.data.id ? (
             <img
               className="cardProfileimg1"
               src={

@@ -9,8 +9,6 @@
 - [Environments and Deployments](#environments-and-deployments)
 - [Artefacts](#artefacts)
 
-- [Performance Screenshot](#performance-screenshot)
-
 - [Features](#features)
 
 - [Upcoming Features](#upcoming-features)
@@ -54,10 +52,6 @@
 
 - [System Design](https://pdfhost.io/v/x2d~Vog65_CareinHLDTeamDelta)
 
-## Performance Screenshot
-
-![alt text](https://firebasestorage.googleapis.com/v0/b/devshare-89972.appspot.com/o/lighthouse%20report_page-0001.jpg?alt=media&token=2701e5e2-94d2-4c46-bb58-203285dfcd59)
-
 ## Features
 
 - **Authentication** - Email and password One user, one account
@@ -94,12 +88,9 @@
 
 - AWS BeanStalk (To deploy backend )
 
-- Sentry.io (For error and performance insights)
-
 ## Tech Stack
 
 - React JS
 - Redux
 - Nodejs / Strapi.io
 - MongoDB
-- Jest

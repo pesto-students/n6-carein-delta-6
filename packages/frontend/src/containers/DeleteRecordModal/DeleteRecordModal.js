@@ -27,8 +27,8 @@ class DeleteRecordModal extends Component {
             <h2> Our Team Is On The Way! </h2>
             <p>
               {" "}
-              Sorry to see you in trouble. Our team will try to connect you in a
-              meanwhile.{" "}
+              We'll be reaching out on your provide number within less than 1
+              min and has also informed emergency contacts.{" "}
             </p>
           </div>
           <div className="alert-footer-box">

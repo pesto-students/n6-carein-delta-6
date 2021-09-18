@@ -225,7 +225,7 @@ function AssistanceService(props) {
                   fullWidth
                   value={""}
                   id="addressLine2"
-                  label="Describe your problem"
+                  label="Describe your requirement"
                   onChange={(e) => setAddressLine2(e.target.value)}
                 />
               </Grid>
@@ -254,6 +254,23 @@ function AssistanceService(props) {
                     component="p"
                   >
                     Starting From Rs{props.service.price_per_day}/-
+                  </Typography>
+                </Grid>
+                <Grid item md={12}>
+                  <Typography
+                    className='dumyCard'
+                    gutterBottom
+                    variant="body1"
+                    component="p"
+                  >
+                    For Test Purpose use following 
+                    <ul>
+                      <li>Card No : 4111-1111-1111-1111</li>
+                      <li>CVV No : Any 3 Digit No</li>
+                      <li>Date To : Any Future Date</li>
+                      <li>Mobile : Your Mobile No</li>
+                    </ul>
+                    Verify your OTP
                   </Typography>
                 </Grid>
               </Grid>
