@@ -24,7 +24,7 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { logoutUser } from "../../actions/authActions";
 import debounce from "lodash/debounce";
-
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -121,6 +121,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavBar(props) {
   const classes = useStyles();
+  const history = useHistory();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -156,6 +157,10 @@ export default function NavBar(props) {
     }
   }, 1000);
 
+  const gotoProfile =(id) => {
+    setSearchParameters('')
+    history.push(`/Profile/${id}`);
+  }
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -255,6 +260,8 @@ export default function NavBar(props) {
                       <ListItem
                         style={{ paddingTop: 0, paddingBottom: 0 }}
                         alignItems="flex-start"
+                        component={Link}
+                        to={`/profile/${value.id}`}
                       >
                         <ListItemAvatar>
                           <Avatar

@@ -19,9 +19,9 @@
 
 ## Stakeholders
 
-- Shubham Bhatiya - [LinkedIn](#) - [GitHub](#)
+- Shubham Bhatiya - [LinkedIn](http://www.linkedin.com/in/shubhbhatia800) - [GitHub](https://github.com/bhatia12)
 
-- Tanu Grover - [LinkedIn](#) - [GitHub](bhatia12)
+- Tanu Grover - [LinkedIn](https://www.linkedin.com/in/tanugrover/) - [GitHub](https://github.com/tanu2122)
 
 - Vinit Borole - [LinkedIn](https://www.linkedin.com/in/vinitborole/) - [GitHub](https://github.com/vinitborole)
 
@@ -48,7 +48,7 @@
 
 - [PRD](https://pdfhost.io/v/UOURUjuRX_CareinPRDTeamDelta)
 
-- [UI Design Figma](#)
+- [UI Design Figma](https://www.figma.com/proto/6TKpWaGRxpgLn254x2nfXS/CareIN?page-id=0%3A1&node-id=86%3A11&viewport=241%2C48%2C0.04&scaling=scale-down&starting-point-node-id=86%3A11)
 
 - [System Design](https://pdfhost.io/v/x2d~Vog65_CareinHLDTeamDelta)
 
