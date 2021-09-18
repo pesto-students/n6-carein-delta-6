@@ -28,7 +28,7 @@ export const listFriend = () => (dispatch) => {
     },
     (error) => {
       console.log("fetch data error");
-      
+
       dispatch({
         type: FRIENDS_GET_ERRORS,
         payload: {

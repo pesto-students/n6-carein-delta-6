@@ -1055,10 +1055,62 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  background-color: lightgrey;
-}
-
 #clearBtn {
   cursor: pointer;
+}
+.alert-icon {
+  font-size: 80px;
+  color: #f15e5e;
+  margin-bottom: 10px;
+}
+
+.alert-body,
+.alert-footer-box {
+  text-align: center;
+}
+
+.alert-body h2 {
+  font-size: 26px;
+  margin-bottom: 16px;
+}
+
+.alert-body p {
+  font-size: 15px;
+}
+
+.alert-body {
+  margin-bottom: 40px;
+}
+
+.alert-footer-box .btn-secondary {
+  background: #c1c1c1;
+  border-color: #c1c1c1;
+}
+
+.alert-footer-box .btn {
+  min-width: 110px;
+}
+
+.alert-footer-box .btn + .btn {
+  margin-left: 13px;
+}
+
+.alert-footer-box {
+  padding-bottom: 10px;
+}
+.Register {
+  background: #5c3d85 !important;
+  color: #ffffff !important;
+}
+.Registered {
+  background: #ffffff !important;
+  color: #5c3d85 !important;
+}
+
+.dumyCard {
+  font-size: 12px !important;
+  background: #ff004752;
+  padding: 10px;
+  border: 1px dotted;
+  border-radius: 7px;
 }

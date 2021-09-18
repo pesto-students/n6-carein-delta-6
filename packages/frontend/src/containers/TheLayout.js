@@ -6,6 +6,7 @@ import SideNav from "../views/common/SideNav";
 import RightNav from "../views/common/RightNav";
 import Hidden from "@material-ui/core/Hidden";
 import { TheContent, TheHeader, TheFooter } from "./index";
+import Header from "./Header/Header";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +33,7 @@ const DashboardLayout = (props) => {
   return (
     <div className={classes.root}>
       <SideNav></SideNav>
+      {/* <Header /> */}
       <div className={classes.toolbar} />
       <div className={classes.content}>
         <Grid container className={useStyles.root}>

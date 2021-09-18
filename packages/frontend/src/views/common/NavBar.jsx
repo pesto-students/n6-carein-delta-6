@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-// import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
@@ -13,7 +12,6 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
 import { searchUsers } from "../../actions/usersActions";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -24,6 +22,8 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+import { logoutUser } from "../../actions/authActions";
+import debounce from "lodash/debounce";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -122,13 +122,9 @@ const useStyles = makeStyles((theme) => ({
 export default function NavBar(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [searchParameters, setSearchParameters] = useState("");
-  const [filteredData, setFilteredData] = useState("");
-  //const path = `/Profile/${props.search.id}`
-
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -136,6 +132,9 @@ export default function NavBar(props) {
     setAnchorEl(event.currentTarget);
   };
 
+  const logout = () => {
+    dispatch(logoutUser());
+  };
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -150,16 +149,12 @@ export default function NavBar(props) {
   };
   const searchData = useSelector((state) => state.apiRes.search);
 
-  const handleSearch = (e) => {
-    const userData = {
-      searchParameters: searchParameters,
-    };
-    dispatch(searchUsers(searchParameters));
-    //e.preventDefault()
-  };
-  const _handleKeyDown = (e) => {
-    handleSearch();
-  };
+  const _handleKeyDown = debounce((e) => {
+    console.log(e);
+    if (e.key === "Enter") {
+      dispatch(searchUsers(searchParameters));
+    }
+  }, 1000);
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -173,9 +168,9 @@ export default function NavBar(props) {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Link to="/Profile">Profile</Link>
+        <Link to="/me">Profile</Link>
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={() => logout()}>Logout</MenuItem>
     </Menu>
   );
 
@@ -224,7 +219,7 @@ export default function NavBar(props) {
               <Link to="/Homepage">
                 <img
                   className={classes.logo}
-                  src="./assets/media/bg/carelogo4.png"
+                  src="/assets/media/bg/carelogo4.png"
                   alt="logo"
                 />
               </Link>
@@ -250,7 +245,7 @@ export default function NavBar(props) {
 
             {searchParameters.length != 0 && (
               <div className="dataResult">
-                {searchData.data.map((value, key) => {
+                {searchData.data?.map((value, key) => {
                   return (
                     // <a className="dataItem">
                     //   <p>{value.firstName}</p>

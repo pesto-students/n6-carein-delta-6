@@ -41,6 +41,18 @@ const routes = [
   },
   { path: "/Profile", name: "Profile", component: Profile },
   { path: "/Profile/:id", name: "Profile", component: Profile },
+     { path: '/login', name: 'Login', component: Login },
+     { path: '/forgotpassword', name: 'Forgotpassword', component: Forgotpassword },
+     { path: '/emailverify', name: 'Emailverify', component: Emailverify },
+     { path: '/signup', name: 'Signup', component: Signup },
+     { path: '/homepage', name: 'Homepage', component: Homepage },
+     { path: '/Friends', name: 'Friends', component: Friends },
+     { path: '/Events', name: 'Events', component: Events },
+     { path: '/Services', name: 'Services', component: Services },
+     { path: '/Subscription', name: 'Subscription', component: Subscription },
+     { path: '/Servicedetails/:id', name: 'Servicedetails', component: ServiceDetails },
+     { path: '/me', name: 'Profile', component: Profile },
+     { path: '/Profile/:id', name: 'Profile', component: Profile },
 ];
 
 export default routes;

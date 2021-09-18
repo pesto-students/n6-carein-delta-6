@@ -9,8 +9,6 @@
 - [Environments and Deployments](#environments-and-deployments)
 - [Artefacts](#artefacts)
 
-- [Performance Screenshot](#performance-screenshot)
-
 - [Features](#features)
 
 - [Upcoming Features](#upcoming-features)
@@ -21,11 +19,11 @@
 
 ## Stakeholders
 
-- Vinit Borole - [LinkedIn](#) - [GitHub](https://github.com/vinitborole)
-
 - Shubham Bhatiya - [LinkedIn](#) - [GitHub](#)
 
-- Tanu Grover - [LinkedIn](#) - [GitHub](#)
+- Tanu Grover - [LinkedIn](#) - [GitHub](bhatia12)
+
+- Vinit Borole - [LinkedIn](https://www.linkedin.com/in/vinitborole/) - [GitHub](https://github.com/vinitborole)
 
 ## Installation and Setup
 
@@ -35,8 +33,6 @@
 
 - Run `npx lerna bootstrap`
 
-- Add `.env file in ./packages/frontend`
-
 - Run `npm run start`
 
 ## Environments and Deployments
@@ -44,23 +40,17 @@
 | Environment | Base URL | Description  
 | :-------:   | :------: | :----------:
 | Development | [http://localhost:3000](http://localhost:3000) | When running locally on machine 
-| QA| [#](#) | QA  Environment 
-| Staging | [#](#) | Staging Environment
+| QA| [https://development.ddo48o6b29494.amplifyapp.com/](https://development.ddo48o6b29494.amplifyapp.com/) | QA  Environment 
+| Staging | [https://staging.d2qaduzd6pjt9f.amplifyapp.com/](https://staging.d2qaduzd6pjt9f.amplifyapp.com/) | Staging Environment
 | Production | [https://master.d3jkmg959k8ms4.amplifyapp.com/](https://master.d3jkmg959k8ms4.amplifyapp.com/) | Main production environment  
 
 ## Artefacts
 
-- [PRD](#)
-
-- [One Pager](#)
+- [PRD](https://pdfhost.io/v/UOURUjuRX_CareinPRDTeamDelta)
 
 - [UI Design Figma](#)
 
-- [System Design Figma](#)
-
-## Performance Screenshot
-
-![alt text](https://firebasestorage.googleapis.com/v0/b/devshare-89972.appspot.com/o/lighthouse%20report_page-0001.jpg?alt=media&token=2701e5e2-94d2-4c46-bb58-203285dfcd59)
+- [System Design](https://pdfhost.io/v/x2d~Vog65_CareinHLDTeamDelta)
 
 ## Features
 
@@ -98,12 +88,9 @@
 
 - AWS BeanStalk (To deploy backend )
 
-- Sentry.io (For error and performance insights)
-
 ## Tech Stack
 
 - React JS
 - Redux
 - Nodejs / Strapi.io
 - MongoDB
-- Jest

@@ -219,13 +219,13 @@ class Nav extends Component {
 				<div className="header-menu-wrapper header-menu-wrapper-left">
 					<div ref="navigationOuter" className="header-menu header-menu-mobile header-menu-layout-default">
 						<ul ref="navigation" className="menu-nav">
-							{priorityItems.map((item, i) => (
-								<li key={`navItem-${i}`} className="menu-item menu-item-rel">
-									<NavLink className="menu-link" to={item.link}>
-										<span className="menu-text"> {item.title} </span>
+							 
+								<li  className="menu-item menu-item-rel">
+									<NavLink className="menu-link" to="/homepage">
+										<span className="menu-text"> Feeds </span>
 									</NavLink>
 								</li>
-							))}
+							 
 						</ul>
 
 						{moreItems.length > 0 && (

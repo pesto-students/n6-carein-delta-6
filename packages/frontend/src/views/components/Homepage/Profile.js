@@ -49,8 +49,10 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "capitalize",
   },
   friends: {
-    display: "flex",
-    marginTop: 10,
+    display: 'flex',
+    marginTop: '10px',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
 }));
 
@@ -64,8 +66,10 @@ const Profile = (props) => {
   const me = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : {};
+  // const [id,setId] = useState(me.id)
+   
   const id = props.match.params.id ? props.match.params.id : me.id;
-  console.log(id)
+ 
   useEffect(() => {
     profile = { data: {}, _error: "" };
     if (id) {
@@ -144,7 +148,7 @@ const Profile = (props) => {
         }}
       >
         <div className="profileDash">
-          {profile.data ? (
+          {profile.data.id ? (
             <img
               className="cardProfileimg1"
               src={
@@ -179,7 +183,7 @@ const Profile = (props) => {
           color="primary"
           style={{ borderRadius: "14px", width: "180px" }}
         >
-          Add To Team
+          Add As Friend
         </Button>
       </div>
       <Grid className={classes.leftCont} item lg={2} md={2} xs={12}>

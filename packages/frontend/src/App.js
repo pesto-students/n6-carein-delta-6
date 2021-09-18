@@ -145,7 +145,7 @@ class App extends Component {
 
             <PrivateRoute
               exact
-              path="/Profile"
+              path="/me"
               name="Profile"
               layout={DashboardLayout}
               component={Profile}

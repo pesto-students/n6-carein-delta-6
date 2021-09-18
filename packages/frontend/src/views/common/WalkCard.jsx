@@ -49,6 +49,14 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     color: "#5c3d85",
   },
+  Registered : {
+    background : 'white',
+    color : 'blue'
+  },
+  Register : {
+    background : 'green',
+    color : 'blue'
+  }
 }));
 
 function WalkCard(props) {
@@ -122,10 +130,10 @@ function WalkCard(props) {
         <CardActions>
           <Button
             size="small"
-            className={classes.buttoninterested}
+            className={reg}
             fullWidth
             variant="contained"
-            color="primary"
+            disabled={reg == 'Registred' ? true : false}
             onClick={() => setReg("Registered")}
           >
             {reg}

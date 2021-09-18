@@ -78,13 +78,13 @@ const useStyles = makeStyles((theme) => ({
   comentBox: {
     display: "flex",
     background: "#f0e4fe",
-    borderRadius: "20px 6px 6px 6px",
+    borderRadius: "6px 6px 6px 6px",
   },
   commentInnerAvatar: {
     justifyContent: "flex-start",
     position: "relative",
-    left: "-4px",
-    top: "0px",
+    left: "6px",
+    top: "1px",
   },
   liked: {
     color: "rgb(255 0 0 / 54%)",
@@ -243,7 +243,7 @@ function FeedCard(props) {
           <Grid className={classes.avatar} item md={1}>
             <Avatar
               alt={props?.user?.firstName}
-              src={props?.user?.profilePic.url}
+              src={props?.user?.profilePic?.url}
             />
           </Grid>
           <Grid item md={11}>
@@ -286,8 +286,9 @@ function FeedCard(props) {
                           md={1}
                         >
                           <Avatar
+                            style={{ borderRadius: "6px" ,margin: '6px'}}
                             alt={props?.user?.firstName}
-                            src={props?.user?.profilePic?.url}
+                            src={comment?.user?.profilePic?.url}
                           />
                         </Grid>
                         <Grid item md={12}>

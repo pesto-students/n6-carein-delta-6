@@ -1,43 +1,44 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
-import './DeleteRecordModal.css';
+import "./DeleteRecordModal.css";
 
 class DeleteRecordModal extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            showModal: false
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      showModal: false,
+    };
+  }
 
-    openModal = () => this.setState({ showModal: true });
-    closeModal = () => this.setState({ showModal: false });
+  openModal = () => this.setState({ showModal: true });
+  closeModal = () => this.setState({ showModal: false });
 
-    render() {
-
-        return (
-            <Modal
-                show={this.state.showModal}
-                onHide={this.closeModal}
-                backdrop="static"
-                keyboard={false}
-                centered
-            >
-                <Modal.Body>
-                    <div className="alert-body">
-                        <div className="alert-icon">
-                            <i className="flaticon-close"></i>
-                        </div>
-                        <h2> Are you sure? </h2>
-                        <p> Do you really want to delete these records? This process cannot be undone. </p>
-                    </div>
-                    <div className="alert-footer-box">
-                        <Button variant="secondary" onClick={this.closeModal}>Cancel</Button>
-                        <Button variant="danger" className="btn"> Delete </Button>
-                    </div>
-                </Modal.Body>
-            </Modal>
-        )
-    }
+  render() {
+    return (
+      <Modal
+        show={this.props.show}
+        onHide={this.props.closeModal}
+        backdrop="static"
+        keyboard={false}
+        centered
+      >
+        <Modal.Body>
+          <div className="alert-body">
+            <h2> Our Team Is On The Way! </h2>
+            <p>
+              {" "}
+              We'll be reaching out on your provide number within less than 1
+              min and has also informed emergency contacts.{" "}
+            </p>
+          </div>
+          <div className="alert-footer-box">
+            <Button variant="danger" onClick={this.props.closeModal}>
+              Dismiss
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
+    );
+  }
 }
 export default DeleteRecordModal;

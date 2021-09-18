@@ -27,7 +27,6 @@ export const listNFriend = () => (dispatch) => {
       });
     },
     (error) => {
-      
       console.log("fetch data error");
       dispatch({
         type: FRIENDS_N_GET_ERRORS,

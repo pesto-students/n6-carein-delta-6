@@ -19,7 +19,7 @@ export const listFeed =
   (userData = 0, id = null) =>
   (dispatch) => {
     let postedBy = id ? `&postedBy=${id}` : "";
-    
+
     let token = localStorage.jwtToken;
     let config = {
       method: "GET",
@@ -32,7 +32,6 @@ export const listFeed =
     };
     axios(config).then(
       (success) => {
-         
         dispatch({
           type: FEEDS_GET_SUCCESS,
           payload: {

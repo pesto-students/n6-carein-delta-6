@@ -144,30 +144,4 @@ export const logoutUser = (logoutData) => (dispatch) => {
   localStorage.removeItem("jwtToken");
   setAuthToken(false);
   dispatch(setCurrentUser({}));
-  let config = {
-    method: "DELETE",
-    url: api.getCurrentHost() + "api/v1/users/logout",
-    data: logoutData,
-    headers: {
-      Authorization: "Bearer " + logoutData.token,
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  };
-  axios(config).then(
-    (success) => {
-      console.log("SUCCESSfully logout");
-      dispatch({
-        type: GET_SUCCESS,
-        payload: success,
-      });
-    },
-    (error) => {
-      console.log("ERROR");
-      dispatch({
-        type: GET_ERRORS,
-        payload: error.response.data,
-      });
-    }
-  );
 };

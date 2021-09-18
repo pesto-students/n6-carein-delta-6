@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
-import { useFormik, Form, FormikProvider } from "formik";
+import { useFormik, Form, FormikProvider, Formik } from "formik";
 import { loginUser } from "../../../actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -56,21 +56,6 @@ const Login = () => {
   const LoginData = useSelector((state) => state.auth);
   console.log(LoginData);
 
-  // const handleSubmit = (e) => {
-  // 	e.preventDefault();
-  // 	const userData = {
-  // 		identifier: email,
-  // 		password: password
-  // 	};
-  // 	// this.props.loginUser(userData);
-  //   if (email && password) {
-  //     // get return url from location state or default to home page
-  //     // const { from } = location.state || { from: { pathname: "/" } };
-  //     dispatch(loginUser(userData));
-  // }
-
-  // };
-
   const LoginSchema = Yup.object().shape({
     identifier: Yup.string().required("Email or Mobile Number is required"),
     password: Yup.string()
@@ -79,7 +64,7 @@ const Login = () => {
       .required("Password is required"),
   });
 
-  const formik = useFormik({
+  var formik = useFormik({
     initialValues: {
       identifier: "",
       password: "",
@@ -92,9 +77,22 @@ const Login = () => {
     },
   });
 
-  const { errors, touched, values, isSubmitting, getFieldProps, handleSubmit } =
-    formik;
+  const {
+    errors,
+    touched,
+    values,
+    isSubmitting,
+    getFieldProps,
+    handleSubmit,
+    setFieldValue,
+    setErrors
+  } = formik;
 
+  const dummyAccount = () => {
+    console.log("hi");
+    setFieldValue("identifier", "carein@gmail.com");
+    setFieldValue("password", "vinitborole");
+  };
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -111,8 +109,16 @@ const Login = () => {
               />
             </div>
           </Typography>
+
           <FormikProvider value={formik}>
             <Form className={classes.form} noValidate onSubmit={handleSubmit}>
+              <Button
+                style={{ background: "#8fe3d98f" }}
+                onClick={() => dummyAccount()}
+                variant="outlined"
+              >
+                Sign In With Test Account
+              </Button>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -140,22 +146,13 @@ const Login = () => {
                 error={Boolean(touched.password && errors.password)}
                 helperText={touched.password && errors.password}
               />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    {...getFieldProps("remember")}
-                    checked={values.remember}
-                    color="primary"
-                  />
-                }
-                label="Remember me"
-              />
+
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
-                loading={isSubmitting}
+                loading
                 className={classes.submit}
               >
                 SIGN IN
@@ -163,11 +160,7 @@ const Login = () => {
 
               <Grid container></Grid>
               <Grid container>
-                <Grid item xs>
-                  <Link to="/Forgotpassword" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
+                <Grid item xs></Grid>
                 <Grid item>
                   <Link to="/Signup" variant="body2">
                     {"Don't have an account? Sign Up"}
