@@ -158,8 +158,8 @@ function FeedCard(props) {
         <Grid container spacing={3} className={classes.main}>
           <Grid item md={1} className={classes.profile}>
             <Avatar
-              alt={props.feed.postedBy.firstName}
-              src={props.feed.postedBy.profilePic.url}
+              alt={props.feed?.postedBy?.firstName}
+              src={props.feed?.postedBy?.profilePic?.url}
             />
           </Grid>
           <Grid item md={5} className={classes.text}>
