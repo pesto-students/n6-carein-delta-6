@@ -495,7 +495,7 @@ module.exports = {
     let refered_by;
 
     try {
-      params.confirmed = false;
+      params.blocked = false;
       params.friends = [
         "612a750c9c011118947744f9",
         "613a52c5660bf9615c85362c",
