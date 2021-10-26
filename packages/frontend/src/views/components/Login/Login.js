@@ -54,7 +54,7 @@ const Login = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const LoginData = useSelector((state) => state.auth);
-  console.log(LoginData);
+  
 
   const LoginSchema = Yup.object().shape({
     identifier: Yup.string().required("Email or Mobile Number is required"),
@@ -89,7 +89,6 @@ const Login = () => {
   } = formik;
 
   const dummyAccount = () => {
-    console.log("hi");
     setFieldValue("identifier", "carein@gmail.com");
     setFieldValue("password", "vinitborole");
   };

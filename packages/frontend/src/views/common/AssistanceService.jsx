@@ -64,7 +64,6 @@ function AssistanceService(props) {
   const [to, setTo] = useState("");
   const [open, setOpen] = useState(false);
   const [d, setD] = useState("");
-  console.log(firstName);
   const history = useHistory();
   async function displayRazorpay() {
     const res = await loadScript(

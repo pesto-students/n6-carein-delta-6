@@ -55,8 +55,6 @@ function PostCard() {
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : {};
-
-  console.log(user);
   const handleSubmit = () => {
     const userData = {
       description: description,

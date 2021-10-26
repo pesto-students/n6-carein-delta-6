@@ -60,14 +60,12 @@ export const searchUsers = (userData) => (dispatch) => {
   };
   axios(config).then(
     (success) => {
-      console.log("fetch data success");
       dispatch({
         type: SEARCH_GET_SUCCESS,
         payload: success,
       });
     },
     (error) => {
-      console.log("fetch data error");
       dispatch({
         type: SEARCH_GET_ERRORS,
         payload: error,

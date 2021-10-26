@@ -15,12 +15,9 @@ const api = new Api();
 toast.configure();
 
 export const loginUser = (userData) => (dispatch) => {
-  console.log(dispatch);
-  console.log("req with", userData);
   axios
     .post(api.getCurrentHost() + "auth/local", userData)
     .then((res) => {
-      console.log(res, "res is");
       //const { token } = res.data;
       const secret = "FxUum76z";
       const payload = {
@@ -40,7 +37,6 @@ export const loginUser = (userData) => (dispatch) => {
       dispatch(setCurrentUser(decoded));
     })
     .catch((err) => {
-      console.log(err.response.data.message[0].messages[0].message);
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data,
@@ -69,17 +65,14 @@ export const signupUser = (userData) => (dispatch) => {
       "Content-Type": "application/json",
     },
   };
-  console.log("CONFIG", config);
   axios(config).then(
     (success) => {
-      console.log("SUCCESS", success);
       dispatch({
         type: GET_SUCCESS,
         payload: success,
       });
     },
     (error) => {
-      console.log(error.response.data.errorMessage);
       dispatch({
         type: GET_ERRORS,
         payload: error,
@@ -90,11 +83,9 @@ export const signupUser = (userData) => (dispatch) => {
 
 // otp verify
 export const verifyUser = (userData) => (dispatch) => {
-  console.log("req with", userData);
   axios
     .post(api.getCurrentHost() + "api/v1/users/verifyotp", userData)
     .then((res) => {
-      console.log(res, "res is");
       //const { token } = res.data;
       const secret = "FxUum76z";
       const currentTime = Date.now() / 1000;
@@ -119,7 +110,6 @@ export const verifyUser = (userData) => (dispatch) => {
       dispatch(setCurrentUser(decoded));
     })
     .catch((err) => {
-      console.log(err.response.data.errorMessage);
       dispatch({
         type: GET_ERRORS,
         payload: err.response,

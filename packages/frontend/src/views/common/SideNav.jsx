@@ -58,7 +58,6 @@ export default function SideNav() {
   }
 
   const showModel = () => {
-    console.log("hi");
     setOpen(true);
   };
   const onHide = () => {

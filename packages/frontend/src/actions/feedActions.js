@@ -43,8 +43,6 @@ export const listFeed =
         });
       },
       (error) => {
-        console.log("fetch data error");
-
         dispatch({
           type: FEEDS_GET_ERRORS,
           payload: {
@@ -75,7 +73,6 @@ export const countFeed =
     };
     axios(config).then(
       (success) => {
-        console.log("fetch data success");
         dispatch({
           type: FEEDS_COUNT_SUCCESS,
           payload: {
@@ -84,7 +81,6 @@ export const countFeed =
         });
       },
       (error) => {
-        console.log("fetch data error");
 
         dispatch({
           type: FEEDS_COUNT_ERRORS,
@@ -112,7 +108,6 @@ export const addFeeds = (userData) => (dispatch) => {
 
   axios(config).then(
     (success) => {
-      console.log("fetch data success");
       dispatch({
         type: FEEDS_ADD_SUCCESS,
         payload: {
@@ -123,7 +118,6 @@ export const addFeeds = (userData) => (dispatch) => {
     },
 
     (error) => {
-      console.log("fetch data error");
       dispatch({
         type: FEEDS_ADD_ERROR,
         payload: {
@@ -165,10 +159,8 @@ export const addComment = (userData) => (dispatch) => {
 
   axios(config).then(
     (success) => {
-      console.log("fetch data success");
     },
     (error) => {
-      console.log("fetch data error");
       dispatch({
         type: COMMENT_ADD_ERROR,
         payload: {
@@ -208,10 +200,8 @@ export const addLikes = (feedId) => (dispatch) => {
 
   axios(config).then(
     (success) => {
-      console.log("fetch data success");
     },
     (error) => {
-      console.log("fetch data error");
       dispatch({
         type: LIKES_ADD_ERROR,
         payload: {

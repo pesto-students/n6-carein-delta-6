@@ -17,8 +17,6 @@ const ServiceDetails = (props) => {
     });
     setService(serviceData.data[service_index]);
   }, [id]);
-
-  console.log(service);
   return service ? <AssistanceService service={service} /> : '';
 };
 

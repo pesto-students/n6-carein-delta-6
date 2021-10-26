@@ -89,10 +89,8 @@ const initialState = {
 };
 
 export default function apiResReducer(state = initialState, action) {
-  console.log(action.type);
   switch (action.type) {
     case FEEDS_GET_SUCCESS:
-      console.log("action FEEDS_GET_SUCCESS", action.payload);
       if (action.payload._start == 0) {
         return {
           ...state,
@@ -116,7 +114,6 @@ export default function apiResReducer(state = initialState, action) {
       }
 
     case FEEDS_GET_ERRORS:
-      console.log("reducer FEEDS_GET_ERRORS", action.payload);
       return {
         ...state,
         feeds: {
@@ -127,7 +124,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case FEEDS_COUNT_SUCCESS:
-      console.log("action FEEDS_COUNT_SUCCESS", action.payload);
       return {
         ...state,
         feedCount: {
@@ -135,7 +131,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case FEEDS_COUNT_ERRORS:
-      console.log("reducer FEEDS_COUNT_ERRORS", action.payload);
       return {
         ...state,
         feedCount: {
@@ -143,7 +138,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case FEEDS_ADD_SUCCESS:
-      console.log("reducer FEEDS_ADD_SUCCESS", state, action.payload);
       let newState = [action.payload.data.request].concat(state.feeds.data);
       return {
         ...state,
@@ -154,7 +148,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case FEEDS_ADD_ERROR:
-      console.log("reducer FEED_ADD_ERROR", FEEDS_ADD_ERROR);
       return {
         ...state,
         posts: {
@@ -163,7 +156,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case COMMENT_ADD_SUCCESS:
-      console.log("reducer COMMENT_ADD_SUCCESS", action.payload);
       let feedIndex = state.feeds.data.findIndex((e) => {
         return e.id == action.payload.data.feed;
       });
@@ -171,7 +163,6 @@ export default function apiResReducer(state = initialState, action) {
         action.payload.data,
       ]);
       state.feeds.data[feedIndex].comments = newStateComment;
-      console.log(state.feeds.data[feedIndex]);
       return {
         ...state,
         feeds: {
@@ -181,7 +172,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case COMMENT_ADD_ERROR:
-      console.log("reducer COMMENT_ADD_ERROR", COMMENT_ADD_ERROR);
       return {
         ...state,
         comment: {
@@ -189,7 +179,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case LIKES_ADD_ERROR:
-      console.log("reducer LIKEs_ADD_ERROR", LIKES_ADD_ERROR);
       return {
         ...state,
         likes: {
@@ -197,7 +186,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case LIKES_ADD_SUCCESS:
-      console.log("reducer COMMENT_ADD_ERROR", LIKES_ADD_SUCCESS);
       let feedLikeIndex = state.feeds.data.findIndex((e) => {
         return e.id == action.payload.data.feed;
       });
@@ -206,7 +194,6 @@ export default function apiResReducer(state = initialState, action) {
         state.feeds.data[feedLikeIndex].likes
       );
       state.feeds.data[feedLikeIndex].likes = newStateLikes;
-      console.log(state.feeds.data[feedLikeIndex]);
       return {
         ...state,
         feeds: {
@@ -216,7 +203,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case EVENTS_GET_SUCCESS:
-      console.log("action EVENTS_GET_SUCCESS", action.payload);
       return {
         ...state,
         events: {
@@ -227,7 +213,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case EVENTS_GET_ERRORS:
-      console.log("reducer EVENTS_GET_ERRORS", action.payload);
       return {
         ...state,
         events: {
@@ -238,7 +223,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case FRIENDS_GET_SUCCESS:
-      console.log("action FRIENDS_GET_SUCCESS", action.payload);
       return {
         ...state,
         friends: {
@@ -247,7 +231,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case FRIENDS_GET_ERRORS:
-      console.log("reducer FRIENDS_GET_ERRORS", action.payload);
       return {
         ...state,
         friends: {
@@ -256,7 +239,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case FRIENDS_N_GET_SUCCESS:
-      console.log("action FRIENDS_N_GET_SUCCESS", action.payload);
       return {
         ...state,
         friendsN: {
@@ -265,7 +247,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case FRIENDS_N_GET_ERRORS:
-      console.log("reducer FRIENDS_N_GET_ERRORS", action.payload);
       return {
         ...state,
         friendsN: {
@@ -274,7 +255,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case PROFILE_GET_SUCCESS:
-      console.log("action FRIENDS_N_GET_SUCCESS", action.payload);
 
       return {
         ...state,
@@ -284,7 +264,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case PROFILE_CLEAR:
-      console.log("action PROFILE_CLEAR", action.payload);
 
       return {
         ...state,
@@ -294,7 +273,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case PROFILE_GET_ERRORS:
-      console.log("reducer FRIENDS_N_GET_ERRORS", action.payload);
       return {
         ...state,
         profile: {
@@ -303,7 +281,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case SERVICES_GET_SUCCESS:
-      console.log("action SERVICES_GET_SUCCESS", action.payload);
       return {
         ...state,
         services: {
@@ -314,7 +291,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case SERVICES_GET_ERRORS:
-      console.log("reducer SERVICES_GET_ERRORS", action.payload);
       return {
         ...state,
         services: {
@@ -326,7 +302,6 @@ export default function apiResReducer(state = initialState, action) {
       };
 
     case SERVICEDETAIL_GET_SUCCESS:
-      console.log("action SERVICEDETAIL_GET_SUCCESS", action.payload);
 
       return {
         ...state,
@@ -336,7 +311,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case SERVICEDETAIL_GET_ERRORS:
-      console.log("reducer SERVICEDETAIL_GET_ERRORS", action.payload);
       return {
         ...state,
         serviceDetails: {
@@ -346,7 +320,6 @@ export default function apiResReducer(state = initialState, action) {
       };
 
     case SEARCH_GET_SUCCESS:
-      console.log("action SEARCH_GET_SUCCESS", action.payload);
       return {
         ...state,
         search: {
@@ -355,7 +328,6 @@ export default function apiResReducer(state = initialState, action) {
         },
       };
     case SEARCH_GET_ERRORS:
-      console.log("reducer SEARCH_GET_ERRORS", action.payload);
       return {
         ...state,
         search: {

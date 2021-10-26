@@ -50,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
 
 function AssistanceServiceCard(props) {
   const classes = useStyles();
-  console.log(props);
 
   return (
     <Grid item xs={12} md={4} lg={4} sm={6}>

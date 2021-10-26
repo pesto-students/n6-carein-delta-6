@@ -19,7 +19,6 @@ export const serviceData =
     };
     axios(config).then(
       (success) => {
-        console.log("fetch data success");
         dispatch({
           type: SERVICEDETAIL_GET_SUCCESS,
           payload: {
@@ -29,7 +28,6 @@ export const serviceData =
         });
       },
       (error) => {
-        console.log("fetch data error");
         dispatch({
           type: SERVICEDETAIL_GET_ERRORS,
           payload: {

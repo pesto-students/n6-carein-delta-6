@@ -223,7 +223,7 @@ function FeedCard(props) {
               <ListItem
                 onClick={() =>
                   likedTest()
-                    ? console.log("already liked")
+                    ? ""
                     : submitLike(props?.feed?.id)
                 }
               >

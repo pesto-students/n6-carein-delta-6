@@ -118,7 +118,6 @@ const Profile = (props) => {
   };
 
   const goto = (page) => {
-    console.log(page);
     switch (page) {
       case "about":
         setPage("about");

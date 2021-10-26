@@ -14,7 +14,6 @@ const Services = () => {
     dispatch(listServices());
   }, []);
 
-  console.log(serviceData);
   return serviceData.data.length
     ? serviceData.data.map((text, index) => <AssistanceServiceCard service={text} key={index} />)
     : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, index) => (

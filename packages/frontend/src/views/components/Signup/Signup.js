@@ -113,18 +113,15 @@ const Sign = () => {
     },
     validationSchema: RegisterSchema,
     onSubmit: (values) => {
-      console.log("submit");
       values.username = values.mobnumber;
       values.phone = values.mobnumber;
       delete values.mobnumber;
-      console.log(values);
       if (values.dob) {
         let today = new Date().setHours(0);
         let dob = new Date(values.dob).setHours(0);
         let diff = today - dob;
 
         let years = diff / (1000 * 60 * 60 * 24 * 365);
-        console.log(years);
         if (years > 55) {
           dispatch(addUsers(values));
           setOpen(true);

@@ -17,7 +17,6 @@ export const listNFriend = () => (dispatch) => {
   };
   axios(config).then(
     (success) => {
-      console.log("fetch data success FRIENDS_N_GET_SUCCESS");
       dispatch({
         type: FRIENDS_N_GET_SUCCESS,
         payload: {
@@ -27,7 +26,6 @@ export const listNFriend = () => (dispatch) => {
       });
     },
     (error) => {
-      console.log("fetch data error");
       dispatch({
         type: FRIENDS_N_GET_ERRORS,
         payload: {

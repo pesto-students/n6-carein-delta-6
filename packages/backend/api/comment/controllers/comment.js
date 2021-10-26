@@ -14,7 +14,6 @@ module.exports = {
       data.user = ctx.state.user.id;
       entity = await strapi.services.comment.create(data, { files });
     } else {
-    console.log(ctx.request.body)
       let body = {
         feed: ctx.request.body.feed,
         comment: ctx.request.body.comment,

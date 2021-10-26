@@ -29,7 +29,6 @@ export const listServices =
     };
     axios(config).then(
       (success) => {
-        console.log("fetch data success");
         dispatch({
           type: SERVICES_GET_SUCCESS,
           payload: {
@@ -41,7 +40,6 @@ export const listServices =
         });
       },
       (error) => {
-        console.log("fetch data error");
         dispatch({
           type: SERVICES_GET_ERRORS,
           payload: {
@@ -71,7 +69,6 @@ export const addService = (userData) => (dispatch) => {
 
   axios(config).then(
     (success) => {
-      console.log("fetch data success");
       dispatch({
         type: SERVICES_ADD_SUCCESS,
         payload: {
@@ -82,7 +79,6 @@ export const addService = (userData) => (dispatch) => {
     },
 
     (error) => {
-      console.log("fetch data error");
       dispatch({
         type: SERVICES_ADD_ERRORS,
         payload: {

@@ -44,7 +44,6 @@ const Homepage = (props) => {
     };
   };
   const cellRenderer = ({ index, key, style }) => {
-    console.log(key);
     return (
       <FeedCard
         style={{ height: 500 }}

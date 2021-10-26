@@ -151,7 +151,6 @@ export default function NavBar(props) {
   const searchData = useSelector((state) => state.apiRes.search);
 
   const _handleKeyDown = debounce((e) => {
-    console.log(e);
     if (e.key === "Enter") {
       dispatch(searchUsers(searchParameters));
     }

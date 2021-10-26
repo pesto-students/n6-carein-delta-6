@@ -30,7 +30,7 @@ export const profileData =
     };
     axios(config).then(
       (success) => {
-        console.log("fetch data success");
+
         dispatch({
           type: PROFILE_GET_SUCCESS,
           payload: {
@@ -40,8 +40,6 @@ export const profileData =
         });
       },
       (error) => {
-        console.log("fetch data error");
-
         dispatch({
           type: PROFILE_GET_ERRORS,
           payload: {
