@@ -1,8 +1,8 @@
 import * as React from "react";
 
 const server = {
-  baseUrl: "https://ludo.reezweb.com/",
-  prod: "https://ludo.reezweb.com/",
+  baseUrl: "https://carein.herokuapp.com/",
+  prod: "https://carein.herokuapp.com/",
   // baseUrl: 'http://localhost:1337/',
   // prod: 'http://localhost:1337/'
 };
