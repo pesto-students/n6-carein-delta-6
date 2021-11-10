@@ -1,17 +1,18 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import LoadingButton from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+//import FormControlLabel from "@material-ui/core/FormControlLabel";
+//import Checkbox from "@material-ui/core/Checkbox";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
-import { useFormik, Form, FormikProvider, Formik } from "formik";
+import { useFormik, Form, FormikProvider} from "formik";
 import { loginUser } from "../../../actions/authActions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const LoginData = useSelector((state) => state.auth);
+  //const LoginData = useSelector((state) => state.auth);
   
 
   const LoginSchema = Yup.object().shape({
@@ -80,12 +81,12 @@ const Login = () => {
   const {
     errors,
     touched,
-    values,
-    isSubmitting,
+    //values,
+    //isSubmitting,
     getFieldProps,
     handleSubmit,
-    setFieldValue,
-    setErrors
+    setFieldValue
+    //setErrors
   } = formik;
 
   const dummyAccount = () => {
@@ -146,7 +147,7 @@ const Login = () => {
                 helperText={touched.password && errors.password}
               />
 
-              <Button
+              <LoadingButton
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -155,7 +156,7 @@ const Login = () => {
                 className={classes.submit}
               >
                 SIGN IN
-              </Button>
+              </LoadingButton>
 
               <Grid container></Grid>
               <Grid container>

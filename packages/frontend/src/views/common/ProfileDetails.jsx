@@ -1,25 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import {
-  Divider,
-  FilledInput,
-  IconButton,
-  InputAdornment,
-  OutlinedInput,
-} from "@material-ui/core";
+import { Divider } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
-import { Avatar } from "@material-ui/core";
-import { TextField } from "@material-ui/core";
-import PhotoIcon from "@material-ui/icons/Photo";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Button from "@material-ui/core/Button";
+// import { Avatar } from "@material-ui/core";
+// import { TextField } from "@material-ui/core";
+// import PhotoIcon from "@material-ui/icons/Photo";
+// import Dialog from "@material-ui/core/Dialog";
+// import DialogActions from "@material-ui/core/DialogActions";
+// import DialogContent from "@material-ui/core/DialogContent";
+// import DialogContentText from "@material-ui/core/DialogContentText";
+// import DialogTitle from "@material-ui/core/DialogTitle";
+// import Button from "@material-ui/core/Button";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
@@ -55,10 +49,10 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfileDetails(props) {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const [open, setOpen] = useState(false);
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
   return (
     <Card className={classes.root}>
       <CardContent>

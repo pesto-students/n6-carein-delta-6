@@ -1,7 +1,7 @@
 import axios from "axios";
-import setAuthToken from "../utils/setAuthToken";
+//import setAuthToken from "../utils/setAuthToken";
 // import jwt from "jwt-decode";
-import jwt from "jwt-simple";
+//import jwt from "jwt-simple";
 import {
   SERVICES_GET_SUCCESS,
   SERVICES_GET_ERRORS,

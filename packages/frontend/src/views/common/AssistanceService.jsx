@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { Typography } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
-import { useDispatch } from "react-redux";
+//import { useDispatch } from "react-redux";
 import { Grid } from "@material-ui/core";
 import { Modal } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -51,7 +51,7 @@ function AssistanceService(props) {
     ? JSON.parse(localStorage.getItem("user"))
     : {};
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const classes = useStyles();
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
@@ -61,7 +61,7 @@ function AssistanceService(props) {
   const [state, setState] = useState(user.state);
   const [pincode, setPincode] = useState(user.pincode);
   const [from, setFrom] = useState(new Date());
-  const [to, setTo] = useState("");
+  //const [to, setTo] = useState("");
   const [open, setOpen] = useState(false);
   const [d, setD] = useState("");
   const history = useHistory();

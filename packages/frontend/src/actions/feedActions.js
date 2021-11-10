@@ -59,7 +59,7 @@ export const listFeed =
 export const countFeed =
   (userData = 0, id = null) =>
   (dispatch) => {
-    let postedBy = id ? `&postedBy=${id}` : "";
+    //let postedBy = id ? `&postedBy=${id}` : "";
 
     let token = localStorage.jwtToken;
     let config = {

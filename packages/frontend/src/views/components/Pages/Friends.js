@@ -49,9 +49,9 @@ const Friends = () => {
   const friendsNData = useSelector((state) => state.apiRes.friendsN);
   const dispatch = useDispatch();
   const [page, setPage] = useState("myFriends");
-  const user = localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
-    : {};
+  // const user = localStorage.getItem("user")
+  //   ? JSON.parse(localStorage.getItem("user"))
+  //   : {};
 
   useEffect(() => {
     dispatch(listFriend());

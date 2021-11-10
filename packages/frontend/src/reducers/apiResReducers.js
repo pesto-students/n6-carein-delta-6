@@ -91,7 +91,7 @@ const initialState = {
 export default function apiResReducer(state = initialState, action) {
   switch (action.type) {
     case FEEDS_GET_SUCCESS:
-      if (action.payload._start == 0) {
+      if (action.payload._start === 0) {
         return {
           ...state,
           feeds: {
@@ -157,7 +157,7 @@ export default function apiResReducer(state = initialState, action) {
       };
     case COMMENT_ADD_SUCCESS:
       let feedIndex = state.feeds.data.findIndex((e) => {
-        return e.id == action.payload.data.feed;
+        return e.id === action.payload.data.feed;
       });
       let newStateComment = [].concat(state.feeds.data[feedIndex].comments, [
         action.payload.data,
@@ -187,7 +187,7 @@ export default function apiResReducer(state = initialState, action) {
       };
     case LIKES_ADD_SUCCESS:
       let feedLikeIndex = state.feeds.data.findIndex((e) => {
-        return e.id == action.payload.data.feed;
+        return e.id === action.payload.data.feed;
       });
 
       let newStateLikes = [action.payload.data].concat(

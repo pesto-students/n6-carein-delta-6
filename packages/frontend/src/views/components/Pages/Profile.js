@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Button, Divider, Grid, Typography } from "@material-ui/core";
-import FriendCard from "../../common/friendCard";
+import { Button, Grid } from "@material-ui/core";
+//import FriendCard from "../../common/friendCard";
 import { makeStyles } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { profileData } from "../../../actions/profileAction";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import randomColor from "randomcolor";
+//import randomColor from "randomcolor";
 import FeedCard from "../../common/FeedCard";
-import PostCard from "../../common/PostCard";
+//import PostCard from "../../common/PostCard";
 import { listFeed } from "../../../actions/feedActions";
 import ProfileDetails from "../../common/ProfileDetails";
 import ProfileCard from "../../common/ProfileCard";
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Profile = (props) => {
-  let color = randomColor();
+  //let color = randomColor();
   const classes = useStyles();
   let profile = useSelector((state) => state.apiRes.profile);
   const feedData = useSelector((state) => state.apiRes.feeds);
@@ -129,6 +129,8 @@ const Profile = (props) => {
       case "team":
         setPage("team");
         return;
+      default:
+        return;
     }
   };
   return (
@@ -148,6 +150,7 @@ const Profile = (props) => {
                 ? profile.data.profilePic.url
                 : `./assets/media/bg/profile.jpg`
             }
+            alt=""
           />
           <div>
             <p className={classes.nameText}>

@@ -1,12 +1,12 @@
 import React from "react";
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import SideNav from "../views/common/SideNav";
 import RightNav from "../views/common/RightNav";
 import Hidden from "@material-ui/core/Hidden";
-import { TheContent, TheHeader, TheFooter } from "./index";
-import Header from "./Header/Header";
+import { TheContent } from "./index";
+//import Header from "./Header/Header";
 
 const useStyles = makeStyles((theme) => ({
   root: {

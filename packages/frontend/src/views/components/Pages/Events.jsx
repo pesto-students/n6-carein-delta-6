@@ -3,7 +3,7 @@ import WalkCard from "../../common/WalkCard";
 import { useDispatch, useSelector } from "react-redux";
 import { listEvents } from "../../../actions/eventActions";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
+//import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import { Grid } from "@material-ui/core";
 import Skeleton from "@mui/material/Skeleton";

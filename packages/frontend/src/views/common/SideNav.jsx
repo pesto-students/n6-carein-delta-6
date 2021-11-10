@@ -17,8 +17,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import NavBar from "./NavBar";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import Header from "../../containers/Header/Header";
-import Modals from "../../containers/Modal/Modal";
+//import Header from "../../containers/Header/Header";
+//import Modals from "../../containers/Modal/Modal";
 import DeleteRecordModal from "../../containers/DeleteRecordModal/DeleteRecordModal";
 const drawerWidth = 240;
 

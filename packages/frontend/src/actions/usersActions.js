@@ -6,8 +6,8 @@ import {
   SEARCH_GET_ERRORS,
 } from "./types";
 import Api from "../constants/index";
-import setAuthToken from "../utils/setAuthToken";
-import jwt from "jwt-simple";
+//import setAuthToken from "../utils/setAuthToken";
+//import jwt from "jwt-simple";
 const api = new Api();
 
 export const addUsers = (userData) => (dispatch) => {
@@ -23,15 +23,15 @@ export const addUsers = (userData) => (dispatch) => {
 
   axios(config).then(
     (success) => {
-      const secret = "FxUum76z";
-      const payload = {
-        jwt: success.data.jwt,
-      };
-      const token = jwt.encode(payload, secret);
-      // localStorage.setItem("jwtToken", success.data.jwt);
-      // localStorage.setItem("user", JSON.stringify(success.data.user));
-      // window.open("/", "_self");
-      const decoded = jwt.decode(token, secret);
+      // const secret = "FxUum76z";
+      // const payload = {
+      //   jwt: success.data.jwt,
+      // };
+      //const token = jwt.encode(payload, secret);
+      localStorage.setItem("jwtToken", success.data.jwt);
+      localStorage.setItem("user", JSON.stringify(success.data.user));
+      window.open("/", "_self");
+      //const decoded = jwt.decode(token, secret);
       dispatch({
         type: GET_SUCCESS,
         payload: success,

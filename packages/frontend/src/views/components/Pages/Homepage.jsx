@@ -5,15 +5,15 @@ import { Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { listFeed } from "../../../actions/feedActions";
 import { countFeed } from "../../../actions/feedActions";
-import { FixedSizeList } from "react-window";
+//import { FixedSizeList } from "react-window";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-import { Collection } from "react-virtualized";
+//import { Collection } from "react-virtualized";
 import "react-virtualized/styles.css"; // only needs to be imported once
 import InfiniteScroll from "react-infinite-scroll-component";
 import Skeleton from "@mui/material/Skeleton";
-import { AutoSizer, List, ContentBox } from "react-virtualized";
+//import { AutoSizer, List, ContentBox } from "react-virtualized";
 const Homepage = (props) => {
   const feedData = useSelector((state) => state.apiRes.feeds);
   const feedCount = useSelector((state) => state.apiRes.feedCount);
@@ -28,31 +28,31 @@ const Homepage = (props) => {
     dispatch(countFeed());
   }, []);
 
-  const Row = ({ index, style }) => (
-    <div style={style}>
-      <FeedCard user={user[index]} feed={feedData.data[index]} />
-    </div>
-  );
-  const cellSizeAndPositionGetter = ({ index }) => {
-    const datum = feedData.data[index];
+  // const Row = ({ index, style }) => (
+  //   <div style={style}>
+  //     <FeedCard user={user[index]} feed={feedData.data[index]} />
+  //   </div>
+  // );
+  // const cellSizeAndPositionGetter = ({ index }) => {
+  //   const datum = feedData.data[index];
 
-    return {
-      height: 300,
-      width: 300,
-      x: 0,
-      y: 0,
-    };
-  };
-  const cellRenderer = ({ index, key, style }) => {
-    return (
-      <FeedCard
-        style={{ height: 500 }}
-        key={key}
-        user={user}
-        feed={feedData.data[index]}
-      />
-    );
-  };
+  //   return {
+  //     height: 300,
+  //     width: 300,
+  //     x: 0,
+  //     y: 0,
+  //   };
+  // };
+  // const cellRenderer = ({ index, key, style }) => {
+  //   return (
+  //     <FeedCard
+  //       style={{ height: 500 }}
+  //       key={key}
+  //       user={user}
+  //       feed={feedData.data[index]}
+  //     />
+  //   );
+  // };
 
   return (
     <Grid item md={12} xs={12} lg={12}>

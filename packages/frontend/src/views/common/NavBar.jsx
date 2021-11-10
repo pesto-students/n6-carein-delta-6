@@ -60,8 +60,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     overflowY: "auto",
     position: "absolute",
-    position: "absolute",
-    overflow: "scroll",
+    //overflow: "scroll",
     maxHeight: "300px",
     [theme.breakpoints.up("sm")]: {
       position: "fixed",
@@ -121,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavBar(props) {
   const classes = useStyles();
-  const history = useHistory();
+  //const history = useHistory();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -156,10 +155,10 @@ export default function NavBar(props) {
     }
   }, 1000);
 
-  const gotoProfile =(id) => {
-    setSearchParameters('')
-    history.push(`/Profile/${id}`);
-  }
+  // const gotoProfile =(id) => {
+  //   setSearchParameters('')
+  //   history.push(`/Profile/${id}`);
+  // }
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -247,7 +246,7 @@ export default function NavBar(props) {
               onKeyPress={_handleKeyDown}
             />
 
-            {searchParameters.length != 0 && (
+            {searchParameters.length !== 0 && (
               <div className="dataResult">
                 {searchData.data?.map((value, key) => {
                   return (

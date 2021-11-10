@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -12,12 +12,12 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import { List } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addComment } from "../../actions/feedActions";
 import { addLikes } from "../../actions/feedActions";
 import { TextField } from "@material-ui/core";
 import { fToNow } from "../../utils/formatTime";
-import { LIKES_ADD_ERROR } from "../../actions/types";
+//import { LIKES_ADD_ERROR } from "../../actions/types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -111,7 +111,7 @@ function FeedCard(props) {
     ? JSON.parse(localStorage.getItem("user"))
     : {};
 
-  let commentsLength = props.feed.comments.length;
+ // let commentsLength = props.feed.comments.length;
 
   const userSubmit = (e) => {
     setComment("");
@@ -129,7 +129,7 @@ function FeedCard(props) {
       class: classes.Notliked,
     };
     let index = props.feed.likes.findIndex((e) => {
-      return e.user == user.id;
+      return e.user === user.id;
     });
 
     if (index >= 0) {

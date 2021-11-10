@@ -13,7 +13,7 @@ const ServiceDetails = (props) => {
   useEffect(() => {
     dispatch(listServices());
     let service_index = serviceData.data.findIndex((service) => {
-      return service.id == id;
+      return service.id === id;
     });
     setService(serviceData.data[service_index]);
   }, [id]);

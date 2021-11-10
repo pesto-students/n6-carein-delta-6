@@ -213,7 +213,7 @@ class Nav extends Component {
 	}
 
 	render() {
-		const { priorityItems, moreItems } = this.state;
+		const { moreItems } = this.state;
 		return (
 			<>
 				<div className="header-menu-wrapper header-menu-wrapper-left">

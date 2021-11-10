@@ -5,7 +5,7 @@ import { Container, Dropdown } from 'react-bootstrap';
 import Nav from './Nav.js';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 class Header extends Component {
 	constructor() {
