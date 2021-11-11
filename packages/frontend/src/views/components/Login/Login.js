@@ -1,6 +1,7 @@
 import React from "react";
+import { useState } from "react";
 import Button from "@material-ui/core/Button";
-import LoadingButton from "@material-ui/core/Button";
+import { LoadingButton } from '@mui/lab';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 //import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -14,7 +15,7 @@ import { useFormik, Form, FormikProvider} from "formik";
 import { loginUser } from "../../../actions/authActions";
 import { useDispatch} from "react-redux";
 import { Link } from "react-router-dom";
-
+//import { BarLoader } from "react-spinners"
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -69,19 +70,21 @@ const Login = () => {
     initialValues: {
       identifier: "",
       password: "",
-      remember: true,
+      //remember: true,
     },
 
     validationSchema: LoginSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, errors) => {
       dispatch(loginUser(values));
+    
     },
   });
+  
 
   const {
     errors,
     touched,
-    //values,
+    values,
     //isSubmitting,
     getFieldProps,
     handleSubmit,
@@ -93,6 +96,11 @@ const Login = () => {
     setFieldValue("identifier", "carein@gmail.com");
     setFieldValue("password", "vinitborole");
   };
+  console.log(values)
+  const [ load , setLoad ] = useState(false)
+  
+ 
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -131,6 +139,7 @@ const Login = () => {
                 {...getFieldProps("identifier")}
                 error={Boolean(touched.identifier && errors.identifier)}
                 helperText={touched.identifier && errors.identifier}
+                
               />
               <TextField
                 variant="outlined"
@@ -145,20 +154,42 @@ const Login = () => {
                 {...getFieldProps("password")}
                 error={Boolean(touched.password && errors.password)}
                 helperText={touched.password && errors.password}
+                
               />
 
-              <LoadingButton
+              {/* <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
-                loading
                 className={classes.submit}
+                loading={load}
+                onClick={() => setLoad(true)}
               >
-                SIGN IN
+              SIGN IN
+              </Button> */}
+              
+              <Button
+                type="submit"
+                fullWidth
+              >
+              <LoadingButton
+                fullWidth
+                variant="contained"
+                className={classes.submit}
+                loading={load}
+                onClick={() => setLoad(true)  }
+                loadingPosition="start"
+                disabled={!values.identifier && !values.password}
+                
+              >
+               SIGN IN
               </LoadingButton>
+              </Button>
+              
+              
 
-              <Grid container></Grid>
+          
               <Grid container>
                 <Grid item xs></Grid>
                 <Grid item>
