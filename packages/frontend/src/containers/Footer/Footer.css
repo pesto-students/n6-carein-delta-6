@@ -1,0 +1,28 @@
+.pms-footer {
+    margin-top: auto;
+    background: var(--whiteColor);
+    border-top: 1px solid var(--lightBorderColor);
+    padding: 14px 6px;
+    box-shadow: 0px 1px 3px 0px rgb(54 74 99 / 5%);
+}
+
+.pms-footer-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.pms-footer-copyright {
+    color: var(--smallTextColor);
+    font-size: 14px;
+}
+
+@media (max-width: 1366px){
+    .pms-footer{
+        padding: 6px;
+    }
+    .pms-footer-copyright{
+        font-size: 12px;
+    }
+}

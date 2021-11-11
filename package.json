@@ -1,0 +1,26 @@
+{
+  "name": "carein-monorepo",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "team-pesto-n6-delta",
+  "scripts": {
+    "lint": "lerna run lint --stream",
+    "start": "lerna run start",
+    "backend:develop": "lerna run develop --scope 'backend-carein'",
+    "frontend:develop": "lerna run start --scope 'frontend-carein'",
+    "boot": "lerna bootstrap"
+  },
+  "devDependencies": {
+    "husky": "^3.0.4",
+    "lerna": "^3.22.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lerna run --concurrency 1 --stream precommit"
+    }
+  },
+  "dependencies": {
+    "date-fns": "^2.23.0",
+    "react-virtualized": "^9.22.3"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "feed_likes",
+  "info": {
+    "name": "feedLike"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "feed": {
+      "model": "feed",
+      "via": "likes"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}

@@ -1,0 +1,119 @@
+/* comman table bx and table css */
+.table{
+    margin: 0;
+    border: 1px solid #F3F6F9;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.table td, .table th {
+    padding: .75rem 0.5rem;
+}
+.table.table-head-custom thead th{
+    border-bottom-width: 1px;
+}
+.table:not(.table-bordered) thead th,
+.table:not(.table-bordered) thead td {
+    border-top: 0;
+}
+.table.table-head-custom thead tr,
+.table.table-head-custom thead th{
+    font-weight: 600;
+    color: #B5B5C3;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+.table.table-vertical-center th, .table.table-vertical-center td {
+    vertical-align: middle;
+}
+.table.table-vertical-center td {
+    color: #3f4254;
+    font-size: 14px;
+}
+.table.table-head-dark thead tr th{
+    font-weight: normal;
+    background: var(--darkHeader);
+    font-size: 14px;
+    color: var(--whiteColor);
+}
+ul.pagination.react-bootstrap-table-page-btns-ul{
+    margin: 0;
+    justify-content: flex-end;
+}
+.pagination .page-link {
+    color: #7E8299;
+    background-color: #F3F6F9;
+    border-color: #F3F6F9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3px;
+    border-radius: 5px !important;
+    font-size: 15px;
+}
+
+.pagination .page-item.active .page-link {
+    color: #fff;
+    background-color: #3699ff;
+    border-color: #3699ff;
+}
+
+.pagination .page-link:hover {
+    color: #7E8299;
+    background-color: #E4E6EF;
+    border-color: #E4E6EF;
+}
+
+.react-bs-table-sizePerPage-dropdown .btn {
+    background: #efefef;
+    color: #000;
+    border: none;
+    width: 70px;
+    text-align: left;
+}
+.react-bs-table-sizePerPage-dropdown .btn.dropdown-toggle:after {
+    display: none;
+}
+.react-bs-table-sizePerPage-dropdown .btn.dropdown-toggle:before{
+    content: "\f078";
+    font-family: "Font Awesome 5 Pro";
+    font-size: 13px;
+    float: right;
+    line-height: 22px;
+}
+.react-bs-table-sizePerPage-dropdown {
+    margin-right: 10px;
+}
+.react-bootstrap-table-pagination-total {
+    font-size: 14px;
+}
+
+
+
+.table-card-action .btn {
+    margin: 0 5px;
+}
+.table-striped tbody tr:nth-of-type(odd){
+    background-color: var(--whiteColor)
+}
+.table-striped tbody tr:nth-of-type(even){
+    background-color: var(--tableStripedBg)
+}
+/* comman table bx and table css */
+
+.table-card-body .react-bootstrap-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+@media (max-width: 1199px){
+    
+    .react-bootstrap-table table {
+        table-layout: auto;
+    }
+    .table.table-vertical-center td,
+    .table.table-vertical-center th {
+        white-space: nowrap;
+    }
+}

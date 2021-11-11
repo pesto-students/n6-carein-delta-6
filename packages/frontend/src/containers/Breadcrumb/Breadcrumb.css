@@ -1,0 +1,30 @@
+.breadcrumb {
+  padding: 0.25rem 0;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+.breadcrumb-item {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  display: flex;
+}
+.breadcrumb-item.active {
+  color: #b7c2d0;
+}
+.breadcrumb-item a {
+  color: var(--smallTextColor);
+}
+.breadcrumb-item a:hover {
+  color: var(--primaryColor);
+}
+.pms-block-head-content .pms-block-title {
+  font-size: 28px;
+  margin: 0;
+}
+
+@media (max-width: 1440px) {
+  .pms-block-head-content .pms-block-title {
+    font-size: 24px;
+  }
+}

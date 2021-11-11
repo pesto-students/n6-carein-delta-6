@@ -1,0 +1,5 @@
+node_modules
+.DS_Store
+cert.pem
+packages/backend/package-lock.json
+packages/backend/yarn.lock
